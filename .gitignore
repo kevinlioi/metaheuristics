@@ -1,0 +1,10 @@
+# .gitignore
+
+# IDE-specific
+.idea/
+
+# Environments
+venv/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
