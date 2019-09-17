@@ -21,7 +21,7 @@ if use_cython:
     ]
     cythonised_files = cythonize(ext_modules)
 else:
-    ext_modules += [
+    cythonised_files += [
         Extension(name="genetic_functions", sources=["genopt/genetic_functions.c"]),
     ]
 
