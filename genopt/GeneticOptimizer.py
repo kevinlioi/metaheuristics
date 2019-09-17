@@ -1,8 +1,7 @@
 import numpy as np
 from collections import defaultdict
-from .genetic_functions import *
+import genetic_functions
 np.seterr(all='ignore')
-
 
 #################################################
 #################################################
