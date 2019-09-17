@@ -38,7 +38,6 @@ setup(
     include_dirs=include_dirs,
     install_requires=[
         'numpy',
-        'Cython',
     ],
     zip_safe=False
 )
