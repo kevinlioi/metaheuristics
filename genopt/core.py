@@ -1,6 +1,6 @@
 import numpy as np
 from collections import defaultdict
-import genetic_functions
+from .genetic_functions import *
 np.seterr(all='ignore')
 
 
