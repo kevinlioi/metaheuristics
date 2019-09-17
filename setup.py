@@ -10,14 +10,10 @@ else:
 
 cythonised_files = {}
 ext_modules = []
-include_dirs = []
 
 if use_cython:
     ext_modules += [
         Extension(name="genetic_functions", sources=["genopt/genetic_functions.pyx"]),
-    ]
-    include_dirs += [
-        numpy.get_include()
     ]
     cythonised_files = cythonize(ext_modules)
 else:
@@ -35,7 +31,7 @@ setup(
     license='unlicense',
     packages=['genopt'],
     ext_modules=cythonised_files,
-    include_dirs=include_dirs,
+    include_dirs=[numpy.get_include()],
     install_requires=[
         'numpy',
     ],
