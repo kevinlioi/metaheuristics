@@ -106,6 +106,8 @@ class GeneticOptimizer:
                                            for var_index in range(self.num_vars)]
                                           for _ in range(self.num_solutions)]
                                          for __ in range(self.num_islands)]).astype(np.float32)
+            if self.integer_solution:
+                island_solutions = np.round(island_solutions)
 
         if self.args is None:
             island_fitnesses = [[self.objective(solution) for solution in solutions] for solutions in island_solutions]
@@ -118,7 +120,8 @@ class GeneticOptimizer:
         iterations = 0
         while iterations < self.max_iterations:
             if iterations % 1000 == 0:
-                # Should consider making a "random number factory" function. Then alter on it could be adopted to take a stream or something clever.
+                # Should consider making a "random number factory" function.
+                # Then alter on it could be adopted to take a stream or something clever.
                 other_island_indices, parent_indices, crossover_random_nums, mutations = self.random_number_factory()
                 if iterations > 0:
                     print(self.metrics[-1])
@@ -162,7 +165,8 @@ class GeneticOptimizer:
                                                                    lb=self.lb,
                                                                    ub=self.ub,
                                                                    needs_mutation=mutations['needs_mutation'][iterations % 1000])
-
+                if self.integer_solution:
+                    mutated_children = np.round(mutated_children)
             next_gen_solutions = mutated_children.reshape(self.num_islands, self.death_count, self.num_vars)
             mutations['current_mutations_count'] += L
 
