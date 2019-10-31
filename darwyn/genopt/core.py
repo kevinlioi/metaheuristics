@@ -3,10 +3,6 @@ from collections import defaultdict
 import genetic_functions
 np.seterr(all='ignore')
 
-#################################################
-#################################################
-# Island Genetic Algorithm
-
 
 def networkx_topology(G):
     """Common Graphs
@@ -31,7 +27,6 @@ def networkx_topology(G):
     return topology_network
 
 
-# crossover_heuristic, mutate_random, and create random solutions require integer_solution. Just round stuffs.
 class GeneticOptimizer:
     def __init__(self,
                  objective,
@@ -47,7 +42,8 @@ class GeneticOptimizer:
                  death_rate=.5,
                  min_target=None,
                  args=None,
-                 integer_solution=False):
+                 integer_solution=False,
+                 log_metrics=True):
 
         self.objective = objective
         self.G = G
@@ -67,23 +63,25 @@ class GeneticOptimizer:
             self.num_vars = len(self.lb)
         elif self.problem_type == 'sequence':
             self.num_vars = len(variables)
+        self.log_metrics = log_metrics
 
         self.death_count = int(self.num_solutions*self.death_rate)
         self.topology_network = networkx_topology(self.G)
 
     def random_number_factory(self):
+        size = min(self.max_iterations, 1000)
         other_island_indices = {island_index: (x for x in np.random.choice(self.topology_network[island_index],
-                                                                           size=int((1-self.death_rate)*self.num_solutions*1000),
+                                                                           size=int((1-self.death_rate)*self.num_solutions*size),
                                                                            replace=True).astype(np.int32))
                                 for island_index in range(self.num_islands)}
 
         # Compute parent indices ahead of time
         indices = [item for item in range(self.num_solutions-self.death_count)]
-        parent_indices = np.random.choice(indices, size=(1000, self.death_count*self.num_islands, 2), replace=True).astype(np.int32)
+        parent_indices = np.random.choice(indices, size=(size, self.death_count*self.num_islands, 2), replace=True).astype(np.int32)
 
         # Compute mutation ahead of time
         mutations = {}
-        random_uniforms = np.random.uniform(size=(1000, self.num_islands*self.death_count, self.num_vars))
+        random_uniforms = np.random.uniform(size=(size, self.num_islands*self.death_count, self.num_vars))
         mutations['needs_mutation'] = [np.array(np.where(x < self.mutation_rate)).T.astype(np.int32) for x in random_uniforms]
         mutations['lengths'] = [len(x) for x in mutations['needs_mutation']]
         mutations['random_mutation_var_indices'] = np.random.choice(range(self.num_vars), replace=True, size=sum(mutations['lengths'])).astype(np.int32)
@@ -91,9 +89,9 @@ class GeneticOptimizer:
 
         # Compute ordered_crossover_indices ahead of time
         if self.problem_type == 'real_valued':
-            crossover_random_nums = np.random.uniform(low=0, high=1, size=(1000, self.num_islands*self.death_count, self.num_vars)).astype(np.float32)
+            crossover_random_nums = np.random.uniform(low=0, high=1, size=(size, self.num_islands*self.death_count, self.num_vars)).astype(np.float32)
         elif self.problem_type == 'sequence':
-            crossover_random_nums = np.sort(np.random.choice(range(self.num_vars), replace=True, size=(1000, self.num_islands*self.death_count, 2))).astype(np.int32)
+            crossover_random_nums = np.sort(np.random.choice(range(self.num_vars), replace=True, size=(size, self.num_islands*self.death_count, 2))).astype(np.int32)
         return other_island_indices, parent_indices, crossover_random_nums, mutations
 
     def GA(self):
@@ -196,9 +194,9 @@ class GeneticOptimizer:
                                 for island_index in range(self.num_islands)]
 
             # Record results of generation
-            self.metrics.append((np.min(island_fitnesses), np.percentile(island_fitnesses, 25), np.percentile(island_fitnesses, 50)))
+            if self.log_metrics:
+                self.metrics.append((np.min(island_fitnesses), np.percentile(island_fitnesses, 25), np.percentile(island_fitnesses, 50)))
             iterations += 1
-
         all_fitnesses = np.vstack(island_fitnesses)
         ind = np.unravel_index(np.argmin(all_fitnesses, axis=None), all_fitnesses.shape)
         best_solution = island_solutions[ind[0]][ind[1]]

@@ -32,6 +32,9 @@ setup(
     packages=['darwyn.genopt'],
     ext_modules=cythonised_files,
     include_dirs=[numpy.get_include()],
+    setup_requires=[
+        'wheel'
+    ],
     install_requires=[
         'numpy',
     ],
