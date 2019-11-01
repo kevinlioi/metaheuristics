@@ -6,7 +6,7 @@
         "depends": [],
         "name": "genetic_functions",
         "sources": [
-            "genopt/genetic_functions.pyx"
+            "darwyn/genopt/genetic_functions.pyx"
         ]
     },
     "module_name": "genetic_functions"
@@ -840,7 +840,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "genopt/genetic_functions.pyx",
+  "darwyn/genopt/genetic_functions.pyx",
   "__init__.pxd",
   "type.pxd",
 };
@@ -1224,24 +1224,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
-/* RaiseArgTupleInvalid.proto */
-static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
-    Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
-
-/* RaiseDoubleKeywords.proto */
-static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
-
-/* ParseKeywords.proto */
-static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
-    PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
-    const char* function_name);
-
-/* ArgTypeTest.proto */
-#define __Pyx_ArgTypeTest(obj, type, none_allowed, name, exact)\
-    ((likely((Py_TYPE(obj) == type) | (none_allowed && (obj == Py_None)))) ? 1 :\
-        __Pyx__ArgTypeTest(obj, type, name, exact))
-static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact);
-
 /* IsLittleEndian.proto */
 static CYTHON_INLINE int __Pyx_Is_Little_Endian(void);
 
@@ -1389,6 +1371,24 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 #define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
 #define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
 #endif
+
+/* RaiseArgTupleInvalid.proto */
+static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
+    Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found);
+
+/* RaiseDoubleKeywords.proto */
+static void __Pyx_RaiseDoubleKeywordsError(const char* func_name, PyObject* kw_name);
+
+/* ParseKeywords.proto */
+static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[],\
+    PyObject *kwds2, PyObject *values[], Py_ssize_t num_pos_args,\
+    const char* function_name);
+
+/* ArgTypeTest.proto */
+#define __Pyx_ArgTypeTest(obj, type, none_allowed, name, exact)\
+    ((likely((Py_TYPE(obj) == type) | (none_allowed && (obj == Py_None)))) ? 1 :\
+        __Pyx__ArgTypeTest(obj, type, name, exact))
+static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact);
 
 /* BufferFallbackError.proto */
 static void __Pyx_RaiseBufferFallbackError(void);
@@ -1756,6 +1756,14 @@ static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
 static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, char *, char *, int *); /*proto*/
 
 /* Module declarations from 'genetic_functions' */
+static PyObject *__pyx_f_17genetic_functions_ordered_crossover(PyArrayObject *, PyArrayObject *, Py_ssize_t, Py_ssize_t, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_heuristic_crossover(PyArrayObject *, PyArrayObject *, __pyx_t_17genetic_functions_double_t, __pyx_t_17genetic_functions_double_t, PyArrayObject *, PyArrayObject *, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *, PyArrayObject *, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *, PyArrayObject *, PyArrayObject *, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, PyObject *, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, PyObject *, PyArrayObject *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t = { "int_t", NULL, sizeof(__pyx_t_17genetic_functions_int_t), { 0 }, 0, IS_UNSIGNED(__pyx_t_17genetic_functions_int_t) ? 'U' : 'I', IS_UNSIGNED(__pyx_t_17genetic_functions_int_t), 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t = { "double_t", NULL, sizeof(__pyx_t_17genetic_functions_double_t), { 0 }, 0, 'R', 0, 0 };
 #define __Pyx_MODULE_NAME "genetic_functions"
@@ -1768,26 +1776,16 @@ static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_RuntimeError;
 static PyObject *__pyx_builtin_ImportError;
 static const char __pyx_k_R[] = "R";
-static const char __pyx_k_i[] = "i";
-static const char __pyx_k_j[] = "j";
-static const char __pyx_k_k[] = "k";
-static const char __pyx_k_r[] = "r";
-static const char __pyx_k_w[] = "w";
 static const char __pyx_k_lb[] = "lb";
 static const char __pyx_k_np[] = "np";
 static const char __pyx_k_ub[] = "ub";
 static const char __pyx_k_low[] = "low";
-static const char __pyx_k_row[] = "row";
 static const char __pyx_k_copy[] = "copy";
 static const char __pyx_k_high[] = "high";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
-static const char __pyx_k_num1[] = "num1";
-static const char __pyx_k_num2[] = "num2";
-static const char __pyx_k_rows[] = "rows";
 static const char __pyx_k_size[] = "size";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_child[] = "child";
 static const char __pyx_k_int32[] = "int32";
 static const char __pyx_k_numpy[] = "numpy";
 static const char __pyx_k_range[] = "range";
@@ -1801,64 +1799,31 @@ static const char __pyx_k_index1[] = "index1";
 static const char __pyx_k_random[] = "random";
 static const char __pyx_k_unique[] = "unique";
 static const char __pyx_k_float32[] = "float32";
-static const char __pyx_k_indices[] = "indices";
-static const char __pyx_k_parent1[] = "parent1";
-static const char __pyx_k_parent2[] = "parent2";
 static const char __pyx_k_parents[] = "parents";
 static const char __pyx_k_uniform[] = "uniform";
-static const char __pyx_k_uniques[] = "uniques";
-static const char __pyx_k_children[] = "children";
 static const char __pyx_k_fitness1[] = "fitness1";
 static const char __pyx_k_fitness2[] = "fitness2";
 static const char __pyx_k_solution1[] = "solution1";
 static const char __pyx_k_solution2[] = "solution2";
 static const char __pyx_k_solutions[] = "solutions";
-static const char __pyx_k_var_index[] = "var_index";
 static const char __pyx_k_ValueError[] = "ValueError";
-static const char __pyx_k_this_value[] = "this_value";
 static const char __pyx_k_ImportError[] = "ImportError";
-static const char __pyx_k_child_index[] = "child_index";
-static const char __pyx_k_child_value[] = "child_value";
 static const char __pyx_k_death_count[] = "death_count";
 static const char __pyx_k_num_islands[] = "num_islands";
-static const char __pyx_k_other_value[] = "other_value";
-static const char __pyx_k_subsequence[] = "subsequence";
-static const char __pyx_k_swap_mutate[] = "swap_mutate";
-static const char __pyx_k_worse_value[] = "worse_value";
 static const char __pyx_k_RuntimeError[] = "RuntimeError";
-static const char __pyx_k_better_value[] = "better_value";
-static const char __pyx_k_island_index[] = "island_index";
-static const char __pyx_k_variable_len[] = "variable_len";
-static const char __pyx_k_mutate_random[] = "mutate_random";
 static const char __pyx_k_num_solutions[] = "num_solutions";
-static const char __pyx_k_parent_index1[] = "parent_index1";
-static const char __pyx_k_parent_index2[] = "parent_index2";
 static const char __pyx_k_variables_len[] = "variables_len";
 static const char __pyx_k_needs_mutation[] = "needs_mutation";
 static const char __pyx_k_parent_indices[] = "parent_indices";
-static const char __pyx_k_worse_solution[] = "worse_solution";
-static const char __pyx_k_better_solution[] = "better_solution";
-static const char __pyx_k_subsequence_set[] = "subsequence_set";
 static const char __pyx_k_island_fitnesses[] = "island_fitnesses";
 static const char __pyx_k_island_solutions[] = "island_solutions";
-static const char __pyx_k_random_selection[] = "random_selection";
-static const char __pyx_k_random_var_index[] = "random_var_index";
 static const char __pyx_k_topology_network[] = "topology_network";
-static const char __pyx_k_genetic_functions[] = "genetic_functions";
-static const char __pyx_k_ordered_crossover[] = "ordered_crossover";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_procreate_sequence[] = "procreate_sequence";
 static const char __pyx_k_random_var_indices[] = "random_var_indices";
-static const char __pyx_k_heuristic_crossover[] = "heuristic_crossover";
-static const char __pyx_k_random_selection_v2[] = "random_selection_v2";
 static const char __pyx_k_other_island_indices[] = "other_island_indices";
-static const char __pyx_k_parent_island_index1[] = "parent_island_index1";
-static const char __pyx_k_parent_island_index2[] = "parent_island_index2";
-static const char __pyx_k_procreate_real_valued[] = "procreate_real_valued";
 static const char __pyx_k_ordered_crossover_indices[] = "ordered_crossover_indices";
 static const char __pyx_k_heuristic_crossover_randoms[] = "heuristic_crossover_randoms";
 static const char __pyx_k_ndarray_is_not_C_contiguous[] = "ndarray is not C contiguous";
-static const char __pyx_k_genopt_genetic_functions_pyx[] = "genopt/genetic_functions.pyx";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
 static const char __pyx_k_unknown_dtype_code_in_numpy_pxd[] = "unknown dtype code in numpy.pxd (%d)";
 static const char __pyx_k_Format_string_allocated_too_shor[] = "Format string allocated too short, see comment in numpy.pxd";
@@ -1875,95 +1840,52 @@ static PyObject *__pyx_n_s_RuntimeError;
 static PyObject *__pyx_n_s_ValueError;
 static PyObject *__pyx_n_s_arange;
 static PyObject *__pyx_n_s_astype;
-static PyObject *__pyx_n_s_better_solution;
-static PyObject *__pyx_n_s_better_value;
-static PyObject *__pyx_n_s_child;
-static PyObject *__pyx_n_s_child_index;
-static PyObject *__pyx_n_s_child_value;
-static PyObject *__pyx_n_s_children;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_copy;
 static PyObject *__pyx_n_s_death_count;
 static PyObject *__pyx_n_s_fitness1;
 static PyObject *__pyx_n_s_fitness2;
 static PyObject *__pyx_n_s_float32;
-static PyObject *__pyx_n_s_genetic_functions;
-static PyObject *__pyx_kp_s_genopt_genetic_functions_pyx;
-static PyObject *__pyx_n_s_heuristic_crossover;
 static PyObject *__pyx_n_s_heuristic_crossover_randoms;
 static PyObject *__pyx_n_s_high;
-static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_index0;
 static PyObject *__pyx_n_s_index1;
-static PyObject *__pyx_n_s_indices;
 static PyObject *__pyx_n_s_int32;
 static PyObject *__pyx_n_s_island_fitnesses;
-static PyObject *__pyx_n_s_island_index;
 static PyObject *__pyx_n_s_island_solutions;
-static PyObject *__pyx_n_s_j;
-static PyObject *__pyx_n_s_k;
 static PyObject *__pyx_n_s_lb;
 static PyObject *__pyx_n_s_low;
 static PyObject *__pyx_n_s_main;
-static PyObject *__pyx_n_s_mutate_random;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_kp_u_ndarray_is_not_C_contiguous;
 static PyObject *__pyx_kp_u_ndarray_is_not_Fortran_contiguou;
 static PyObject *__pyx_n_s_needs_mutation;
 static PyObject *__pyx_n_s_np;
-static PyObject *__pyx_n_s_num1;
-static PyObject *__pyx_n_s_num2;
 static PyObject *__pyx_n_s_num_islands;
 static PyObject *__pyx_n_s_num_solutions;
 static PyObject *__pyx_n_s_numpy;
 static PyObject *__pyx_kp_s_numpy_core_multiarray_failed_to;
 static PyObject *__pyx_kp_s_numpy_core_umath_failed_to_impor;
-static PyObject *__pyx_n_s_ordered_crossover;
 static PyObject *__pyx_n_s_ordered_crossover_indices;
 static PyObject *__pyx_n_s_other_island_indices;
-static PyObject *__pyx_n_s_other_value;
-static PyObject *__pyx_n_s_parent1;
-static PyObject *__pyx_n_s_parent2;
-static PyObject *__pyx_n_s_parent_index1;
-static PyObject *__pyx_n_s_parent_index2;
 static PyObject *__pyx_n_s_parent_indices;
-static PyObject *__pyx_n_s_parent_island_index1;
-static PyObject *__pyx_n_s_parent_island_index2;
 static PyObject *__pyx_n_s_parents;
-static PyObject *__pyx_n_s_procreate_real_valued;
-static PyObject *__pyx_n_s_procreate_sequence;
-static PyObject *__pyx_n_s_r;
 static PyObject *__pyx_n_s_random;
-static PyObject *__pyx_n_s_random_selection;
-static PyObject *__pyx_n_s_random_selection_v2;
-static PyObject *__pyx_n_s_random_var_index;
 static PyObject *__pyx_n_s_random_var_indices;
 static PyObject *__pyx_n_s_range;
-static PyObject *__pyx_n_s_row;
-static PyObject *__pyx_n_s_rows;
 static PyObject *__pyx_n_s_shape;
 static PyObject *__pyx_n_s_size;
 static PyObject *__pyx_n_s_solution1;
 static PyObject *__pyx_n_s_solution2;
 static PyObject *__pyx_n_s_solutions;
-static PyObject *__pyx_n_s_subsequence;
-static PyObject *__pyx_n_s_subsequence_set;
-static PyObject *__pyx_n_s_swap_mutate;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_n_s_this_value;
 static PyObject *__pyx_n_s_topology_network;
 static PyObject *__pyx_n_s_ub;
 static PyObject *__pyx_n_s_uniform;
 static PyObject *__pyx_n_s_unique;
-static PyObject *__pyx_n_s_uniques;
 static PyObject *__pyx_kp_u_unknown_dtype_code_in_numpy_pxd;
-static PyObject *__pyx_n_s_var_index;
-static PyObject *__pyx_n_s_variable_len;
 static PyObject *__pyx_n_s_variables_len;
-static PyObject *__pyx_n_s_w;
-static PyObject *__pyx_n_s_worse_solution;
-static PyObject *__pyx_n_s_worse_value;
 static PyObject *__pyx_n_s_zeros;
 static PyObject *__pyx_pf_17genetic_functions_ordered_crossover(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, Py_ssize_t __pyx_v_index0, Py_ssize_t __pyx_v_index1); /* proto */
 static PyObject *__pyx_pf_17genetic_functions_2heuristic_crossover(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, __pyx_t_17genetic_functions_double_t __pyx_v_fitness1, __pyx_t_17genetic_functions_double_t __pyx_v_fitness2, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_R); /* proto */
@@ -1988,123 +1910,18 @@ static PyObject *__pyx_tuple__7;
 static PyObject *__pyx_tuple__8;
 static PyObject *__pyx_tuple__9;
 static PyObject *__pyx_tuple__10;
-static PyObject *__pyx_tuple__11;
-static PyObject *__pyx_tuple__13;
-static PyObject *__pyx_tuple__15;
-static PyObject *__pyx_tuple__17;
-static PyObject *__pyx_tuple__19;
-static PyObject *__pyx_tuple__21;
-static PyObject *__pyx_tuple__23;
-static PyObject *__pyx_tuple__25;
-static PyObject *__pyx_codeobj__12;
-static PyObject *__pyx_codeobj__14;
-static PyObject *__pyx_codeobj__16;
-static PyObject *__pyx_codeobj__18;
-static PyObject *__pyx_codeobj__20;
-static PyObject *__pyx_codeobj__22;
-static PyObject *__pyx_codeobj__24;
-static PyObject *__pyx_codeobj__26;
 /* Late includes */
 
 /* "genetic_functions.pyx":10
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def ordered_crossover(np.ndarray[int_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
- *                       np.ndarray[int_t, ndim=1] solution2,
- *                       Py_ssize_t index0,
+ * cpdef ordered_crossover(np.ndarray[int_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
+ *                         np.ndarray[int_t, ndim=1] solution2,
+ *                         Py_ssize_t index0,
  */
 
-/* Python wrapper */
 static PyObject *__pyx_pw_17genetic_functions_1ordered_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17genetic_functions_1ordered_crossover = {"ordered_crossover", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_1ordered_crossover, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17genetic_functions_1ordered_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyArrayObject *__pyx_v_solution1 = 0;
-  PyArrayObject *__pyx_v_solution2 = 0;
-  Py_ssize_t __pyx_v_index0;
-  Py_ssize_t __pyx_v_index1;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("ordered_crossover (wrapper)", 0);
-  {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solution1,&__pyx_n_s_solution2,&__pyx_n_s_index0,&__pyx_n_s_index1,0};
-    PyObject* values[4] = {0,0,0,0};
-    if (unlikely(__pyx_kwds)) {
-      Py_ssize_t kw_args;
-      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
-      switch (pos_args) {
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-        CYTHON_FALLTHROUGH;
-        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-        CYTHON_FALLTHROUGH;
-        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-        CYTHON_FALLTHROUGH;
-        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      kw_args = PyDict_Size(__pyx_kwds);
-      switch (pos_args) {
-        case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_solution1)) != 0)) kw_args--;
-        else goto __pyx_L5_argtuple_error;
-        CYTHON_FALLTHROUGH;
-        case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_solution2)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("ordered_crossover", 1, 4, 4, 1); __PYX_ERR(0, 10, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_index0)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("ordered_crossover", 1, 4, 4, 2); __PYX_ERR(0, 10, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_index1)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("ordered_crossover", 1, 4, 4, 3); __PYX_ERR(0, 10, __pyx_L3_error)
-        }
-      }
-      if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ordered_crossover") < 0)) __PYX_ERR(0, 10, __pyx_L3_error)
-      }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
-      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
-      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-    }
-    __pyx_v_solution1 = ((PyArrayObject *)values[0]);
-    __pyx_v_solution2 = ((PyArrayObject *)values[1]);
-    __pyx_v_index0 = __Pyx_PyIndex_AsSsize_t(values[2]); if (unlikely((__pyx_v_index0 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
-    __pyx_v_index1 = __Pyx_PyIndex_AsSsize_t(values[3]); if (unlikely((__pyx_v_index1 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
-  }
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ordered_crossover", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 10, __pyx_L3_error)
-  __pyx_L3_error:;
-  __Pyx_AddTraceback("genetic_functions.ordered_crossover", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solution1), __pyx_ptype_5numpy_ndarray, 1, "solution1", 0))) __PYX_ERR(0, 10, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solution2), __pyx_ptype_5numpy_ndarray, 1, "solution2", 0))) __PYX_ERR(0, 11, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_ordered_crossover(__pyx_self, __pyx_v_solution1, __pyx_v_solution2, __pyx_v_index0, __pyx_v_index1);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_17genetic_functions_ordered_crossover(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, Py_ssize_t __pyx_v_index0, Py_ssize_t __pyx_v_index1) {
+static PyObject *__pyx_f_17genetic_functions_ordered_crossover(PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, Py_ssize_t __pyx_v_index0, Py_ssize_t __pyx_v_index1, CYTHON_UNUSED int __pyx_skip_dispatch) {
   Py_ssize_t __pyx_v_i;
   Py_ssize_t __pyx_v_j;
   Py_ssize_t __pyx_v_k;
@@ -2479,9 +2296,9 @@ static PyObject *__pyx_pf_17genetic_functions_ordered_crossover(CYTHON_UNUSED Py
   /* "genetic_functions.pyx":10
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def ordered_crossover(np.ndarray[int_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
- *                       np.ndarray[int_t, ndim=1] solution2,
- *                       Py_ssize_t index0,
+ * cpdef ordered_crossover(np.ndarray[int_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
+ *                         np.ndarray[int_t, ndim=1] solution2,
+ *                         Py_ssize_t index0,
  */
 
   /* function exit code */
@@ -2499,7 +2316,7 @@ static PyObject *__pyx_pf_17genetic_functions_ordered_crossover(CYTHON_UNUSED Py
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_subsequence.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("genetic_functions.ordered_crossover", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_child.rcbuffer->pybuffer);
@@ -2515,41 +2332,23 @@ static PyObject *__pyx_pf_17genetic_functions_ordered_crossover(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":42
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
- *                         np.ndarray[double_t, ndim=1] solution2,
- *                         double_t fitness1,
- */
-
 /* Python wrapper */
-static PyObject *__pyx_pw_17genetic_functions_3heuristic_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17genetic_functions_3heuristic_crossover = {"heuristic_crossover", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_3heuristic_crossover, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17genetic_functions_3heuristic_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_17genetic_functions_1ordered_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_17genetic_functions_1ordered_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_solution1 = 0;
   PyArrayObject *__pyx_v_solution2 = 0;
-  __pyx_t_17genetic_functions_double_t __pyx_v_fitness1;
-  __pyx_t_17genetic_functions_double_t __pyx_v_fitness2;
-  PyArrayObject *__pyx_v_lb = 0;
-  PyArrayObject *__pyx_v_ub = 0;
-  PyArrayObject *__pyx_v_R = 0;
+  Py_ssize_t __pyx_v_index0;
+  Py_ssize_t __pyx_v_index1;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("heuristic_crossover (wrapper)", 0);
+  __Pyx_RefNannySetupContext("ordered_crossover (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solution1,&__pyx_n_s_solution2,&__pyx_n_s_fitness1,&__pyx_n_s_fitness2,&__pyx_n_s_lb,&__pyx_n_s_ub,&__pyx_n_s_R,0};
-    PyObject* values[7] = {0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solution1,&__pyx_n_s_solution2,&__pyx_n_s_index0,&__pyx_n_s_index1,0};
+    PyObject* values[4] = {0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
-        CYTHON_FALLTHROUGH;
-        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
-        CYTHON_FALLTHROUGH;
-        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
-        CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
@@ -2570,75 +2369,48 @@ static PyObject *__pyx_pw_17genetic_functions_3heuristic_crossover(PyObject *__p
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_solution2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 1); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ordered_crossover", 1, 4, 4, 1); __PYX_ERR(0, 10, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_fitness1)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_index0)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 2); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ordered_crossover", 1, 4, 4, 2); __PYX_ERR(0, 10, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_fitness2)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_index1)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 3); __PYX_ERR(0, 42, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  4:
-        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lb)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 4); __PYX_ERR(0, 42, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  5:
-        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ub)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 5); __PYX_ERR(0, 42, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  6:
-        if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_R)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 6); __PYX_ERR(0, 42, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("ordered_crossover", 1, 4, 4, 3); __PYX_ERR(0, 10, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "heuristic_crossover") < 0)) __PYX_ERR(0, 42, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "ordered_crossover") < 0)) __PYX_ERR(0, 10, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 7) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
-      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
-      values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
     }
     __pyx_v_solution1 = ((PyArrayObject *)values[0]);
     __pyx_v_solution2 = ((PyArrayObject *)values[1]);
-    __pyx_v_fitness1 = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v_fitness1 == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L3_error)
-    __pyx_v_fitness2 = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_fitness2 == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L3_error)
-    __pyx_v_lb = ((PyArrayObject *)values[4]);
-    __pyx_v_ub = ((PyArrayObject *)values[5]);
-    __pyx_v_R = ((PyArrayObject *)values[6]);
+    __pyx_v_index0 = __Pyx_PyIndex_AsSsize_t(values[2]); if (unlikely((__pyx_v_index0 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 12, __pyx_L3_error)
+    __pyx_v_index1 = __Pyx_PyIndex_AsSsize_t(values[3]); if (unlikely((__pyx_v_index1 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 13, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 42, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("ordered_crossover", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 10, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("genetic_functions.heuristic_crossover", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("genetic_functions.ordered_crossover", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solution1), __pyx_ptype_5numpy_ndarray, 1, "solution1", 0))) __PYX_ERR(0, 42, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solution2), __pyx_ptype_5numpy_ndarray, 1, "solution2", 0))) __PYX_ERR(0, 43, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 46, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 47, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_R), __pyx_ptype_5numpy_ndarray, 1, "R", 0))) __PYX_ERR(0, 48, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_2heuristic_crossover(__pyx_self, __pyx_v_solution1, __pyx_v_solution2, __pyx_v_fitness1, __pyx_v_fitness2, __pyx_v_lb, __pyx_v_ub, __pyx_v_R);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solution1), __pyx_ptype_5numpy_ndarray, 1, "solution1", 0))) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solution2), __pyx_ptype_5numpy_ndarray, 1, "solution2", 0))) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_r = __pyx_pf_17genetic_functions_ordered_crossover(__pyx_self, __pyx_v_solution1, __pyx_v_solution2, __pyx_v_index0, __pyx_v_index1);
 
   /* function exit code */
   goto __pyx_L0;
@@ -2649,7 +2421,72 @@ static PyObject *__pyx_pw_17genetic_functions_3heuristic_crossover(PyObject *__p
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17genetic_functions_2heuristic_crossover(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, __pyx_t_17genetic_functions_double_t __pyx_v_fitness1, __pyx_t_17genetic_functions_double_t __pyx_v_fitness2, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_R) {
+static PyObject *__pyx_pf_17genetic_functions_ordered_crossover(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, Py_ssize_t __pyx_v_index0, Py_ssize_t __pyx_v_index1) {
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_solution1;
+  __Pyx_Buffer __pyx_pybuffer_solution1;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_solution2;
+  __Pyx_Buffer __pyx_pybuffer_solution2;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("ordered_crossover", 0);
+  __pyx_pybuffer_solution1.pybuffer.buf = NULL;
+  __pyx_pybuffer_solution1.refcount = 0;
+  __pyx_pybuffernd_solution1.data = NULL;
+  __pyx_pybuffernd_solution1.rcbuffer = &__pyx_pybuffer_solution1;
+  __pyx_pybuffer_solution2.pybuffer.buf = NULL;
+  __pyx_pybuffer_solution2.refcount = 0;
+  __pyx_pybuffernd_solution2.data = NULL;
+  __pyx_pybuffernd_solution2.rcbuffer = &__pyx_pybuffer_solution2;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solution1.rcbuffer->pybuffer, (PyObject*)__pyx_v_solution1, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 10, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_solution1.diminfo[0].strides = __pyx_pybuffernd_solution1.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_solution1.diminfo[0].shape = __pyx_pybuffernd_solution1.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solution2.rcbuffer->pybuffer, (PyObject*)__pyx_v_solution2, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 10, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_solution2.diminfo[0].strides = __pyx_pybuffernd_solution2.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_solution2.diminfo[0].shape = __pyx_pybuffernd_solution2.rcbuffer->pybuffer.shape[0];
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_17genetic_functions_ordered_crossover(__pyx_v_solution1, __pyx_v_solution2, __pyx_v_index0, __pyx_v_index1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solution1.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solution2.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("genetic_functions.ordered_crossover", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solution1.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solution2.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "genetic_functions.pyx":42
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cpdef heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
+ *                           np.ndarray[double_t, ndim=1] solution2,
+ *                           double_t fitness1,
+ */
+
+static PyObject *__pyx_pw_17genetic_functions_3heuristic_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_heuristic_crossover(PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, __pyx_t_17genetic_functions_double_t __pyx_v_fitness1, __pyx_t_17genetic_functions_double_t __pyx_v_fitness2, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_R, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyArrayObject *__pyx_v_child = 0;
   PyArrayObject *__pyx_v_better_solution = 0;
   PyArrayObject *__pyx_v_worse_solution = 0;
@@ -3118,9 +2955,9 @@ static PyObject *__pyx_pf_17genetic_functions_2heuristic_crossover(CYTHON_UNUSED
   /* "genetic_functions.pyx":42
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
- *                         np.ndarray[double_t, ndim=1] solution2,
- *                         double_t fitness1,
+ * cpdef heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
+ *                           np.ndarray[double_t, ndim=1] solution2,
+ *                           double_t fitness1,
  */
 
   /* function exit code */
@@ -3142,7 +2979,7 @@ static PyObject *__pyx_pf_17genetic_functions_2heuristic_crossover(CYTHON_UNUSED
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_worse_solution.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("genetic_functions.heuristic_crossover", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_R.rcbuffer->pybuffer);
@@ -3162,32 +2999,32 @@ static PyObject *__pyx_pf_17genetic_functions_2heuristic_crossover(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":83
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def mutate_random(np.ndarray[double_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
- *                   np.ndarray[double_t, ndim=1] lb,
- *                   np.ndarray[double_t, ndim=1] ub,
- */
-
 /* Python wrapper */
-static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17genetic_functions_5mutate_random = {"mutate_random", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_5mutate_random, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyArrayObject *__pyx_v_solutions = 0;
+static PyObject *__pyx_pw_17genetic_functions_3heuristic_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_17genetic_functions_3heuristic_crossover(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyArrayObject *__pyx_v_solution1 = 0;
+  PyArrayObject *__pyx_v_solution2 = 0;
+  __pyx_t_17genetic_functions_double_t __pyx_v_fitness1;
+  __pyx_t_17genetic_functions_double_t __pyx_v_fitness2;
   PyArrayObject *__pyx_v_lb = 0;
   PyArrayObject *__pyx_v_ub = 0;
-  PyArrayObject *__pyx_v_needs_mutation = 0;
+  PyArrayObject *__pyx_v_R = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("mutate_random (wrapper)", 0);
+  __Pyx_RefNannySetupContext("heuristic_crossover (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solutions,&__pyx_n_s_lb,&__pyx_n_s_ub,&__pyx_n_s_needs_mutation,0};
-    PyObject* values[4] = {0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solution1,&__pyx_n_s_solution2,&__pyx_n_s_fitness1,&__pyx_n_s_fitness2,&__pyx_n_s_lb,&__pyx_n_s_ub,&__pyx_n_s_R,0};
+    PyObject* values[7] = {0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        CYTHON_FALLTHROUGH;
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        CYTHON_FALLTHROUGH;
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
@@ -3202,56 +3039,81 @@ static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_sel
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_solutions)) != 0)) kw_args--;
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_solution1)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lb)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_solution2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 1); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 1); __PYX_ERR(0, 42, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ub)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_fitness1)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 2); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 2); __PYX_ERR(0, 42, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_needs_mutation)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_fitness2)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 3); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 3); __PYX_ERR(0, 42, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  4:
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lb)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 4); __PYX_ERR(0, 42, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  5:
+        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ub)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 5); __PYX_ERR(0, 42, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  6:
+        if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_R)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, 6); __PYX_ERR(0, 42, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mutate_random") < 0)) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "heuristic_crossover") < 0)) __PYX_ERR(0, 42, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 7) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+      values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
     }
-    __pyx_v_solutions = ((PyArrayObject *)values[0]);
-    __pyx_v_lb = ((PyArrayObject *)values[1]);
-    __pyx_v_ub = ((PyArrayObject *)values[2]);
-    __pyx_v_needs_mutation = ((PyArrayObject *)values[3]);
+    __pyx_v_solution1 = ((PyArrayObject *)values[0]);
+    __pyx_v_solution2 = ((PyArrayObject *)values[1]);
+    __pyx_v_fitness1 = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v_fitness1 == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L3_error)
+    __pyx_v_fitness2 = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_fitness2 == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L3_error)
+    __pyx_v_lb = ((PyArrayObject *)values[4]);
+    __pyx_v_ub = ((PyArrayObject *)values[5]);
+    __pyx_v_R = ((PyArrayObject *)values[6]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 83, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("heuristic_crossover", 1, 7, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 42, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("genetic_functions.mutate_random", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("genetic_functions.heuristic_crossover", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solutions), __pyx_ptype_5numpy_ndarray, 1, "solutions", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 84, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 85, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_needs_mutation), __pyx_ptype_5numpy_ndarray, 1, "needs_mutation", 0))) __PYX_ERR(0, 86, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_4mutate_random(__pyx_self, __pyx_v_solutions, __pyx_v_lb, __pyx_v_ub, __pyx_v_needs_mutation);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solution1), __pyx_ptype_5numpy_ndarray, 1, "solution1", 0))) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solution2), __pyx_ptype_5numpy_ndarray, 1, "solution2", 0))) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 46, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 47, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_R), __pyx_ptype_5numpy_ndarray, 1, "R", 0))) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_r = __pyx_pf_17genetic_functions_2heuristic_crossover(__pyx_self, __pyx_v_solution1, __pyx_v_solution2, __pyx_v_fitness1, __pyx_v_fitness2, __pyx_v_lb, __pyx_v_ub, __pyx_v_R);
 
   /* function exit code */
   goto __pyx_L0;
@@ -3262,7 +3124,111 @@ static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_sel
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation) {
+static PyObject *__pyx_pf_17genetic_functions_2heuristic_crossover(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, __pyx_t_17genetic_functions_double_t __pyx_v_fitness1, __pyx_t_17genetic_functions_double_t __pyx_v_fitness2, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_R) {
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_R;
+  __Pyx_Buffer __pyx_pybuffer_R;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_lb;
+  __Pyx_Buffer __pyx_pybuffer_lb;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_solution1;
+  __Pyx_Buffer __pyx_pybuffer_solution1;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_solution2;
+  __Pyx_Buffer __pyx_pybuffer_solution2;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_ub;
+  __Pyx_Buffer __pyx_pybuffer_ub;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("heuristic_crossover", 0);
+  __pyx_pybuffer_solution1.pybuffer.buf = NULL;
+  __pyx_pybuffer_solution1.refcount = 0;
+  __pyx_pybuffernd_solution1.data = NULL;
+  __pyx_pybuffernd_solution1.rcbuffer = &__pyx_pybuffer_solution1;
+  __pyx_pybuffer_solution2.pybuffer.buf = NULL;
+  __pyx_pybuffer_solution2.refcount = 0;
+  __pyx_pybuffernd_solution2.data = NULL;
+  __pyx_pybuffernd_solution2.rcbuffer = &__pyx_pybuffer_solution2;
+  __pyx_pybuffer_lb.pybuffer.buf = NULL;
+  __pyx_pybuffer_lb.refcount = 0;
+  __pyx_pybuffernd_lb.data = NULL;
+  __pyx_pybuffernd_lb.rcbuffer = &__pyx_pybuffer_lb;
+  __pyx_pybuffer_ub.pybuffer.buf = NULL;
+  __pyx_pybuffer_ub.refcount = 0;
+  __pyx_pybuffernd_ub.data = NULL;
+  __pyx_pybuffernd_ub.rcbuffer = &__pyx_pybuffer_ub;
+  __pyx_pybuffer_R.pybuffer.buf = NULL;
+  __pyx_pybuffer_R.refcount = 0;
+  __pyx_pybuffernd_R.data = NULL;
+  __pyx_pybuffernd_R.rcbuffer = &__pyx_pybuffer_R;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solution1.rcbuffer->pybuffer, (PyObject*)__pyx_v_solution1, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_solution1.diminfo[0].strides = __pyx_pybuffernd_solution1.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_solution1.diminfo[0].shape = __pyx_pybuffernd_solution1.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solution2.rcbuffer->pybuffer, (PyObject*)__pyx_v_solution2, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_solution2.diminfo[0].strides = __pyx_pybuffernd_solution2.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_solution2.diminfo[0].shape = __pyx_pybuffernd_solution2.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lb.rcbuffer->pybuffer, (PyObject*)__pyx_v_lb, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_lb.diminfo[0].strides = __pyx_pybuffernd_lb.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_lb.diminfo[0].shape = __pyx_pybuffernd_lb.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ub.rcbuffer->pybuffer, (PyObject*)__pyx_v_ub, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_ub.diminfo[0].strides = __pyx_pybuffernd_ub.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ub.diminfo[0].shape = __pyx_pybuffernd_ub.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_R.rcbuffer->pybuffer, (PyObject*)__pyx_v_R, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_R.diminfo[0].strides = __pyx_pybuffernd_R.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_R.diminfo[0].shape = __pyx_pybuffernd_R.rcbuffer->pybuffer.shape[0];
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_17genetic_functions_heuristic_crossover(__pyx_v_solution1, __pyx_v_solution2, __pyx_v_fitness1, __pyx_v_fitness2, __pyx_v_lb, __pyx_v_ub, __pyx_v_R, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_R.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_lb.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solution1.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solution2.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ub.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("genetic_functions.heuristic_crossover", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_R.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_lb.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solution1.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solution2.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ub.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "genetic_functions.pyx":83
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cpdef mutate_random(np.ndarray[double_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
+ *                     np.ndarray[double_t, ndim=1] lb,
+ *                     np.ndarray[double_t, ndim=1] ub,
+ */
+
+static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyArrayObject *__pyx_v_uniques = 0;
   __pyx_t_17genetic_functions_int_t __pyx_v_i;
   __pyx_t_17genetic_functions_int_t __pyx_v_var_index;
@@ -3344,8 +3310,8 @@ static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObj
   __pyx_pybuffernd_needs_mutation.diminfo[0].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_needs_mutation.diminfo[0].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_needs_mutation.diminfo[1].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_needs_mutation.diminfo[1].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[1];
 
   /* "genetic_functions.pyx":87
- *                   np.ndarray[double_t, ndim=1] ub,
- *                   np.ndarray[int_t, ndim=2] needs_mutation):
+ *                     np.ndarray[double_t, ndim=1] ub,
+ *                     np.ndarray[int_t, ndim=2] needs_mutation):
  *     cdef np.ndarray[int_t, ndim=1] uniques = np.unique(needs_mutation[:, 1])             # <<<<<<<<<<<<<<
  *     cdef int_t i, var_index
  *     cdef np.ndarray[int_t, ndim=1] rows
@@ -3541,9 +3507,9 @@ static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObj
   /* "genetic_functions.pyx":83
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def mutate_random(np.ndarray[double_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
- *                   np.ndarray[double_t, ndim=1] lb,
- *                   np.ndarray[double_t, ndim=1] ub,
+ * cpdef mutate_random(np.ndarray[double_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
+ *                     np.ndarray[double_t, ndim=1] lb,
+ *                     np.ndarray[double_t, ndim=1] ub,
  */
 
   /* function exit code */
@@ -3564,7 +3530,7 @@ static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObj
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_uniques.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("genetic_functions.mutate_random", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_lb.rcbuffer->pybuffer);
@@ -3581,31 +3547,25 @@ static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":102
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def swap_mutate(np.ndarray[int_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
- *                 np.ndarray[int_t, ndim=2] needs_mutation,
- *                 np.ndarray[int_t, ndim=1] random_var_indices):
- */
-
 /* Python wrapper */
-static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17genetic_functions_7swap_mutate = {"swap_mutate", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_7swap_mutate, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_solutions = 0;
+  PyArrayObject *__pyx_v_lb = 0;
+  PyArrayObject *__pyx_v_ub = 0;
   PyArrayObject *__pyx_v_needs_mutation = 0;
-  PyArrayObject *__pyx_v_random_var_indices = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("swap_mutate (wrapper)", 0);
+  __Pyx_RefNannySetupContext("mutate_random (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solutions,&__pyx_n_s_needs_mutation,&__pyx_n_s_random_var_indices,0};
-    PyObject* values[3] = {0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solutions,&__pyx_n_s_lb,&__pyx_n_s_ub,&__pyx_n_s_needs_mutation,0};
+    PyObject* values[4] = {0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         CYTHON_FALLTHROUGH;
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
@@ -3622,43 +3582,52 @@ static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self,
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_needs_mutation)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lb)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, 1); __PYX_ERR(0, 102, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 1); __PYX_ERR(0, 83, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_random_var_indices)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ub)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, 2); __PYX_ERR(0, 102, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 2); __PYX_ERR(0, 83, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  3:
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_needs_mutation)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 3); __PYX_ERR(0, 83, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "swap_mutate") < 0)) __PYX_ERR(0, 102, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mutate_random") < 0)) __PYX_ERR(0, 83, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
     }
     __pyx_v_solutions = ((PyArrayObject *)values[0]);
-    __pyx_v_needs_mutation = ((PyArrayObject *)values[1]);
-    __pyx_v_random_var_indices = ((PyArrayObject *)values[2]);
+    __pyx_v_lb = ((PyArrayObject *)values[1]);
+    __pyx_v_ub = ((PyArrayObject *)values[2]);
+    __pyx_v_needs_mutation = ((PyArrayObject *)values[3]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 102, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 83, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("genetic_functions.swap_mutate", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("genetic_functions.mutate_random", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solutions), __pyx_ptype_5numpy_ndarray, 1, "solutions", 0))) __PYX_ERR(0, 102, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_needs_mutation), __pyx_ptype_5numpy_ndarray, 1, "needs_mutation", 0))) __PYX_ERR(0, 103, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_random_var_indices), __pyx_ptype_5numpy_ndarray, 1, "random_var_indices", 0))) __PYX_ERR(0, 104, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_6swap_mutate(__pyx_self, __pyx_v_solutions, __pyx_v_needs_mutation, __pyx_v_random_var_indices);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solutions), __pyx_ptype_5numpy_ndarray, 1, "solutions", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 84, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_needs_mutation), __pyx_ptype_5numpy_ndarray, 1, "needs_mutation", 0))) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_r = __pyx_pf_17genetic_functions_4mutate_random(__pyx_self, __pyx_v_solutions, __pyx_v_lb, __pyx_v_ub, __pyx_v_needs_mutation);
 
   /* function exit code */
   goto __pyx_L0;
@@ -3669,7 +3638,98 @@ static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self,
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17genetic_functions_6swap_mutate(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_needs_mutation, PyArrayObject *__pyx_v_random_var_indices) {
+static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation) {
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_lb;
+  __Pyx_Buffer __pyx_pybuffer_lb;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_needs_mutation;
+  __Pyx_Buffer __pyx_pybuffer_needs_mutation;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_solutions;
+  __Pyx_Buffer __pyx_pybuffer_solutions;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_ub;
+  __Pyx_Buffer __pyx_pybuffer_ub;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("mutate_random", 0);
+  __pyx_pybuffer_solutions.pybuffer.buf = NULL;
+  __pyx_pybuffer_solutions.refcount = 0;
+  __pyx_pybuffernd_solutions.data = NULL;
+  __pyx_pybuffernd_solutions.rcbuffer = &__pyx_pybuffer_solutions;
+  __pyx_pybuffer_lb.pybuffer.buf = NULL;
+  __pyx_pybuffer_lb.refcount = 0;
+  __pyx_pybuffernd_lb.data = NULL;
+  __pyx_pybuffernd_lb.rcbuffer = &__pyx_pybuffer_lb;
+  __pyx_pybuffer_ub.pybuffer.buf = NULL;
+  __pyx_pybuffer_ub.refcount = 0;
+  __pyx_pybuffernd_ub.data = NULL;
+  __pyx_pybuffernd_ub.rcbuffer = &__pyx_pybuffer_ub;
+  __pyx_pybuffer_needs_mutation.pybuffer.buf = NULL;
+  __pyx_pybuffer_needs_mutation.refcount = 0;
+  __pyx_pybuffernd_needs_mutation.data = NULL;
+  __pyx_pybuffernd_needs_mutation.rcbuffer = &__pyx_pybuffer_needs_mutation;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_solutions.diminfo[0].strides = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_solutions.diminfo[0].shape = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_solutions.diminfo[1].strides = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_solutions.diminfo[1].shape = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.shape[1];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lb.rcbuffer->pybuffer, (PyObject*)__pyx_v_lb, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_lb.diminfo[0].strides = __pyx_pybuffernd_lb.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_lb.diminfo[0].shape = __pyx_pybuffernd_lb.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ub.rcbuffer->pybuffer, (PyObject*)__pyx_v_ub, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_ub.diminfo[0].strides = __pyx_pybuffernd_ub.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ub.diminfo[0].shape = __pyx_pybuffernd_ub.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer, (PyObject*)__pyx_v_needs_mutation, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_needs_mutation.diminfo[0].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_needs_mutation.diminfo[0].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_needs_mutation.diminfo[1].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_needs_mutation.diminfo[1].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[1];
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_17genetic_functions_mutate_random(__pyx_v_solutions, __pyx_v_lb, __pyx_v_ub, __pyx_v_needs_mutation, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_lb.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ub.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("genetic_functions.mutate_random", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_lb.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ub.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "genetic_functions.pyx":102
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cpdef swap_mutate(np.ndarray[int_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
+ *                   np.ndarray[int_t, ndim=2] needs_mutation,
+ *                   np.ndarray[int_t, ndim=1] random_var_indices):
+ */
+
+static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_needs_mutation, PyArrayObject *__pyx_v_random_var_indices, CYTHON_UNUSED int __pyx_skip_dispatch) {
   Py_ssize_t __pyx_v_i;
   Py_ssize_t __pyx_v_j;
   Py_ssize_t __pyx_v_k;
@@ -4006,9 +4066,9 @@ static PyObject *__pyx_pf_17genetic_functions_6swap_mutate(CYTHON_UNUSED PyObjec
   /* "genetic_functions.pyx":102
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def swap_mutate(np.ndarray[int_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
- *                 np.ndarray[int_t, ndim=2] needs_mutation,
- *                 np.ndarray[int_t, ndim=1] random_var_indices):
+ * cpdef swap_mutate(np.ndarray[int_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
+ *                   np.ndarray[int_t, ndim=2] needs_mutation,
+ *                   np.ndarray[int_t, ndim=1] random_var_indices):
  */
 
   /* function exit code */
@@ -4028,7 +4088,7 @@ static PyObject *__pyx_pf_17genetic_functions_6swap_mutate(CYTHON_UNUSED PyObjec
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_uniques.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("genetic_functions.swap_mutate", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer);
@@ -4044,40 +4104,22 @@ static PyObject *__pyx_pf_17genetic_functions_6swap_mutate(CYTHON_UNUSED PyObjec
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":130
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def procreate_sequence(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
- *                        np.ndarray[int_t, ndim=3] island_solutions,
- *                        np.ndarray[int_t, ndim=2] ordered_crossover_indices,
- */
-
 /* Python wrapper */
-static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17genetic_functions_9procreate_sequence = {"procreate_sequence", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_9procreate_sequence, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  PyArrayObject *__pyx_v_parents = 0;
-  PyArrayObject *__pyx_v_island_solutions = 0;
-  PyArrayObject *__pyx_v_ordered_crossover_indices = 0;
-  __pyx_t_17genetic_functions_int_t __pyx_v_num_islands;
-  __pyx_t_17genetic_functions_int_t __pyx_v_death_count;
-  __pyx_t_17genetic_functions_int_t __pyx_v_variables_len;
+static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyArrayObject *__pyx_v_solutions = 0;
+  PyArrayObject *__pyx_v_needs_mutation = 0;
+  PyArrayObject *__pyx_v_random_var_indices = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("procreate_sequence (wrapper)", 0);
+  __Pyx_RefNannySetupContext("swap_mutate (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_parents,&__pyx_n_s_island_solutions,&__pyx_n_s_ordered_crossover_indices,&__pyx_n_s_num_islands,&__pyx_n_s_death_count,&__pyx_n_s_variables_len,0};
-    PyObject* values[6] = {0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solutions,&__pyx_n_s_needs_mutation,&__pyx_n_s_random_var_indices,0};
+    PyObject* values[3] = {0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
-        CYTHON_FALLTHROUGH;
-        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
-        CYTHON_FALLTHROUGH;
-        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-        CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         CYTHON_FALLTHROUGH;
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
@@ -4090,71 +4132,47 @@ static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__py
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_parents)) != 0)) kw_args--;
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_solutions)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_island_solutions)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_needs_mutation)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 1); __PYX_ERR(0, 130, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, 1); __PYX_ERR(0, 102, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ordered_crossover_indices)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_random_var_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 2); __PYX_ERR(0, 130, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 3); __PYX_ERR(0, 130, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  4:
-        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 4); __PYX_ERR(0, 130, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  5:
-        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_variables_len)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 5); __PYX_ERR(0, 130, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, 2); __PYX_ERR(0, 102, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "procreate_sequence") < 0)) __PYX_ERR(0, 130, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "swap_mutate") < 0)) __PYX_ERR(0, 102, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
-      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
-      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
-      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
-    __pyx_v_parents = ((PyArrayObject *)values[0]);
-    __pyx_v_island_solutions = ((PyArrayObject *)values[1]);
-    __pyx_v_ordered_crossover_indices = ((PyArrayObject *)values[2]);
-    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[3]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L3_error)
-    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[4]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 134, __pyx_L3_error)
-    __pyx_v_variables_len = __Pyx_PyInt_As_npy_int32(values[5]); if (unlikely((__pyx_v_variables_len == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 135, __pyx_L3_error)
+    __pyx_v_solutions = ((PyArrayObject *)values[0]);
+    __pyx_v_needs_mutation = ((PyArrayObject *)values[1]);
+    __pyx_v_random_var_indices = ((PyArrayObject *)values[2]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 130, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 102, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("genetic_functions.procreate_sequence", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("genetic_functions.swap_mutate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parents), __pyx_ptype_5numpy_ndarray, 1, "parents", 0))) __PYX_ERR(0, 130, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_solutions), __pyx_ptype_5numpy_ndarray, 1, "island_solutions", 0))) __PYX_ERR(0, 131, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ordered_crossover_indices), __pyx_ptype_5numpy_ndarray, 1, "ordered_crossover_indices", 0))) __PYX_ERR(0, 132, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_8procreate_sequence(__pyx_self, __pyx_v_parents, __pyx_v_island_solutions, __pyx_v_ordered_crossover_indices, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solutions), __pyx_ptype_5numpy_ndarray, 1, "solutions", 0))) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_needs_mutation), __pyx_ptype_5numpy_ndarray, 1, "needs_mutation", 0))) __PYX_ERR(0, 103, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_random_var_indices), __pyx_ptype_5numpy_ndarray, 1, "random_var_indices", 0))) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_r = __pyx_pf_17genetic_functions_6swap_mutate(__pyx_self, __pyx_v_solutions, __pyx_v_needs_mutation, __pyx_v_random_var_indices);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4165,7 +4183,85 @@ static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__py
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_parents, PyArrayObject *__pyx_v_island_solutions, PyArrayObject *__pyx_v_ordered_crossover_indices, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_variables_len) {
+static PyObject *__pyx_pf_17genetic_functions_6swap_mutate(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_needs_mutation, PyArrayObject *__pyx_v_random_var_indices) {
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_needs_mutation;
+  __Pyx_Buffer __pyx_pybuffer_needs_mutation;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_random_var_indices;
+  __Pyx_Buffer __pyx_pybuffer_random_var_indices;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_solutions;
+  __Pyx_Buffer __pyx_pybuffer_solutions;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("swap_mutate", 0);
+  __pyx_pybuffer_solutions.pybuffer.buf = NULL;
+  __pyx_pybuffer_solutions.refcount = 0;
+  __pyx_pybuffernd_solutions.data = NULL;
+  __pyx_pybuffernd_solutions.rcbuffer = &__pyx_pybuffer_solutions;
+  __pyx_pybuffer_needs_mutation.pybuffer.buf = NULL;
+  __pyx_pybuffer_needs_mutation.refcount = 0;
+  __pyx_pybuffernd_needs_mutation.data = NULL;
+  __pyx_pybuffernd_needs_mutation.rcbuffer = &__pyx_pybuffer_needs_mutation;
+  __pyx_pybuffer_random_var_indices.pybuffer.buf = NULL;
+  __pyx_pybuffer_random_var_indices.refcount = 0;
+  __pyx_pybuffernd_random_var_indices.data = NULL;
+  __pyx_pybuffernd_random_var_indices.rcbuffer = &__pyx_pybuffer_random_var_indices;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_solutions.diminfo[0].strides = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_solutions.diminfo[0].shape = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_solutions.diminfo[1].strides = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_solutions.diminfo[1].shape = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.shape[1];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer, (PyObject*)__pyx_v_needs_mutation, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_needs_mutation.diminfo[0].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_needs_mutation.diminfo[0].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_needs_mutation.diminfo[1].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_needs_mutation.diminfo[1].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[1];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_random_var_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_random_var_indices.diminfo[0].strides = __pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_random_var_indices.diminfo[0].shape = __pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer.shape[0];
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_17genetic_functions_swap_mutate(__pyx_v_solutions, __pyx_v_needs_mutation, __pyx_v_random_var_indices, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("genetic_functions.swap_mutate", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "genetic_functions.pyx":130
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cpdef procreate_sequence(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
+ *                          np.ndarray[int_t, ndim=3] island_solutions,
+ *                          np.ndarray[int_t, ndim=2] ordered_crossover_indices,
+ */
+
+static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *__pyx_v_parents, PyArrayObject *__pyx_v_island_solutions, PyArrayObject *__pyx_v_ordered_crossover_indices, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_variables_len, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyArrayObject *__pyx_v_children = 0;
   PyArrayObject *__pyx_v_parent1 = 0;
   PyArrayObject *__pyx_v_parent2 = 0;
@@ -4262,8 +4358,8 @@ static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED 
   __pyx_pybuffernd_ordered_crossover_indices.diminfo[0].strides = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[0].shape = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[1].strides = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[1].shape = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.shape[1];
 
   /* "genetic_functions.pyx":136
- *                        int_t death_count,
- *                        int_t variables_len):
+ *                          int_t death_count,
+ *                          int_t variables_len):
  *     cdef np.ndarray[int_t, ndim=2] children = np.zeros((num_islands*death_count, variables_len)).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[int_t, ndim=1] parent1, parent2, child
  *     cdef int_t index0, index1, i, island_index, child_index, parent_island_index1, parent_index1, parent_island_index2, parent_index2
@@ -4683,67 +4779,8 @@ static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED 
  *             children[i] = child
  *             i += 1
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ordered_crossover); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_6 = __Pyx_PyInt_From_npy_int32(__pyx_v_index0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 147, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_2 = __Pyx_PyInt_From_npy_int32(__pyx_v_index1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = NULL;
-      __pyx_t_18 = 0;
-      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
-        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
-        if (likely(__pyx_t_5)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-          __Pyx_INCREF(__pyx_t_5);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_1, function);
-          __pyx_t_18 = 1;
-        }
-      }
-      #if CYTHON_FAST_PYCALL
-      if (PyFunction_Check(__pyx_t_1)) {
-        PyObject *__pyx_temp[5] = {__pyx_t_5, ((PyObject *)__pyx_v_parent1), ((PyObject *)__pyx_v_parent2), __pyx_t_6, __pyx_t_2};
-        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_18, 4+__pyx_t_18); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      } else
-      #endif
-      #if CYTHON_FAST_PYCCALL
-      if (__Pyx_PyFastCFunction_Check(__pyx_t_1)) {
-        PyObject *__pyx_temp[5] = {__pyx_t_5, ((PyObject *)__pyx_v_parent1), ((PyObject *)__pyx_v_parent2), __pyx_t_6, __pyx_t_2};
-        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_1, __pyx_temp+1-__pyx_t_18, 4+__pyx_t_18); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      } else
-      #endif
-      {
-        __pyx_t_3 = PyTuple_New(4+__pyx_t_18); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_3);
-        if (__pyx_t_5) {
-          __Pyx_GIVEREF(__pyx_t_5); PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5); __pyx_t_5 = NULL;
-        }
-        __Pyx_INCREF(((PyObject *)__pyx_v_parent1));
-        __Pyx_GIVEREF(((PyObject *)__pyx_v_parent1));
-        PyTuple_SET_ITEM(__pyx_t_3, 0+__pyx_t_18, ((PyObject *)__pyx_v_parent1));
-        __Pyx_INCREF(((PyObject *)__pyx_v_parent2));
-        __Pyx_GIVEREF(((PyObject *)__pyx_v_parent2));
-        PyTuple_SET_ITEM(__pyx_t_3, 1+__pyx_t_18, ((PyObject *)__pyx_v_parent2));
-        __Pyx_GIVEREF(__pyx_t_6);
-        PyTuple_SET_ITEM(__pyx_t_3, 2+__pyx_t_18, __pyx_t_6);
-        __Pyx_GIVEREF(__pyx_t_2);
-        PyTuple_SET_ITEM(__pyx_t_3, 3+__pyx_t_18, __pyx_t_2);
-        __pyx_t_6 = 0;
-        __pyx_t_2 = 0;
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      }
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __pyx_t_4 = __pyx_f_17genetic_functions_ordered_crossover(((PyArrayObject *)__pyx_v_parent1), ((PyArrayObject *)__pyx_v_parent2), __pyx_v_index0, __pyx_v_index1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
       if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 147, __pyx_L1_error)
       __pyx_t_17 = ((PyArrayObject *)__pyx_t_4);
       {
@@ -4802,9 +4839,9 @@ static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED 
   /* "genetic_functions.pyx":130
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def procreate_sequence(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
- *                        np.ndarray[int_t, ndim=3] island_solutions,
- *                        np.ndarray[int_t, ndim=2] ordered_crossover_indices,
+ * cpdef procreate_sequence(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
+ *                          np.ndarray[int_t, ndim=3] island_solutions,
+ *                          np.ndarray[int_t, ndim=2] ordered_crossover_indices,
  */
 
   /* function exit code */
@@ -4828,7 +4865,7 @@ static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED 
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parents.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("genetic_functions.procreate_sequence", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_child.rcbuffer->pybuffer);
@@ -4848,43 +4885,25 @@ static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":155
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def procreate_real_valued(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
- *                           np.ndarray[double_t, ndim=3] island_solutions,
- *                           np.ndarray[double_t, ndim=2] island_fitnesses,
- */
-
 /* Python wrapper */
-static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17genetic_functions_11procreate_real_valued = {"procreate_real_valued", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_11procreate_real_valued, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_parents = 0;
   PyArrayObject *__pyx_v_island_solutions = 0;
-  PyArrayObject *__pyx_v_island_fitnesses = 0;
-  PyArrayObject *__pyx_v_heuristic_crossover_randoms = 0;
-  PyArrayObject *__pyx_v_lb = 0;
-  PyArrayObject *__pyx_v_ub = 0;
+  PyArrayObject *__pyx_v_ordered_crossover_indices = 0;
   __pyx_t_17genetic_functions_int_t __pyx_v_num_islands;
   __pyx_t_17genetic_functions_int_t __pyx_v_death_count;
   __pyx_t_17genetic_functions_int_t __pyx_v_variables_len;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("procreate_real_valued (wrapper)", 0);
+  __Pyx_RefNannySetupContext("procreate_sequence (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_parents,&__pyx_n_s_island_solutions,&__pyx_n_s_island_fitnesses,&__pyx_n_s_heuristic_crossover_randoms,&__pyx_n_s_lb,&__pyx_n_s_ub,&__pyx_n_s_num_islands,&__pyx_n_s_death_count,&__pyx_n_s_variables_len,0};
-    PyObject* values[9] = {0,0,0,0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_parents,&__pyx_n_s_island_solutions,&__pyx_n_s_ordered_crossover_indices,&__pyx_n_s_num_islands,&__pyx_n_s_death_count,&__pyx_n_s_variables_len,0};
+    PyObject* values[6] = {0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  9: values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
-        CYTHON_FALLTHROUGH;
-        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
-        CYTHON_FALLTHROUGH;
-        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
-        CYTHON_FALLTHROUGH;
         case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
         CYTHON_FALLTHROUGH;
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
@@ -4909,55 +4928,37 @@ static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_island_solutions)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 1); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 1); __PYX_ERR(0, 130, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_island_fitnesses)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ordered_crossover_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 2); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 2); __PYX_ERR(0, 130, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_heuristic_crossover_randoms)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 3); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 3); __PYX_ERR(0, 130, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
-        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lb)) != 0)) kw_args--;
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 4); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 4); __PYX_ERR(0, 130, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
-        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ub)) != 0)) kw_args--;
+        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_variables_len)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 5); __PYX_ERR(0, 155, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  6:
-        if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 6); __PYX_ERR(0, 155, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  7:
-        if (likely((values[7] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 7); __PYX_ERR(0, 155, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  8:
-        if (likely((values[8] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_variables_len)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 8); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 5); __PYX_ERR(0, 130, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "procreate_real_valued") < 0)) __PYX_ERR(0, 155, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "procreate_sequence") < 0)) __PYX_ERR(0, 130, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 9) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -4966,35 +4967,26 @@ static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
-      values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
-      values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
-      values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
     }
     __pyx_v_parents = ((PyArrayObject *)values[0]);
     __pyx_v_island_solutions = ((PyArrayObject *)values[1]);
-    __pyx_v_island_fitnesses = ((PyArrayObject *)values[2]);
-    __pyx_v_heuristic_crossover_randoms = ((PyArrayObject *)values[3]);
-    __pyx_v_lb = ((PyArrayObject *)values[4]);
-    __pyx_v_ub = ((PyArrayObject *)values[5]);
-    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[6]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 161, __pyx_L3_error)
-    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[7]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 162, __pyx_L3_error)
-    __pyx_v_variables_len = __Pyx_PyInt_As_npy_int32(values[8]); if (unlikely((__pyx_v_variables_len == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 163, __pyx_L3_error)
+    __pyx_v_ordered_crossover_indices = ((PyArrayObject *)values[2]);
+    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[3]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L3_error)
+    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[4]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 134, __pyx_L3_error)
+    __pyx_v_variables_len = __Pyx_PyInt_As_npy_int32(values[5]); if (unlikely((__pyx_v_variables_len == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 135, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 155, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 130, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("genetic_functions.procreate_real_valued", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("genetic_functions.procreate_sequence", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parents), __pyx_ptype_5numpy_ndarray, 1, "parents", 0))) __PYX_ERR(0, 155, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_solutions), __pyx_ptype_5numpy_ndarray, 1, "island_solutions", 0))) __PYX_ERR(0, 156, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_fitnesses), __pyx_ptype_5numpy_ndarray, 1, "island_fitnesses", 0))) __PYX_ERR(0, 157, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_heuristic_crossover_randoms), __pyx_ptype_5numpy_ndarray, 1, "heuristic_crossover_randoms", 0))) __PYX_ERR(0, 158, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 159, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 160, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_10procreate_real_valued(__pyx_self, __pyx_v_parents, __pyx_v_island_solutions, __pyx_v_island_fitnesses, __pyx_v_heuristic_crossover_randoms, __pyx_v_lb, __pyx_v_ub, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parents), __pyx_ptype_5numpy_ndarray, 1, "parents", 0))) __PYX_ERR(0, 130, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_solutions), __pyx_ptype_5numpy_ndarray, 1, "island_solutions", 0))) __PYX_ERR(0, 131, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ordered_crossover_indices), __pyx_ptype_5numpy_ndarray, 1, "ordered_crossover_indices", 0))) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_r = __pyx_pf_17genetic_functions_8procreate_sequence(__pyx_self, __pyx_v_parents, __pyx_v_island_solutions, __pyx_v_ordered_crossover_indices, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5005,7 +4997,85 @@ static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_parents, PyArrayObject *__pyx_v_island_solutions, PyArrayObject *__pyx_v_island_fitnesses, PyArrayObject *__pyx_v_heuristic_crossover_randoms, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_variables_len) {
+static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_parents, PyArrayObject *__pyx_v_island_solutions, PyArrayObject *__pyx_v_ordered_crossover_indices, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_variables_len) {
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_island_solutions;
+  __Pyx_Buffer __pyx_pybuffer_island_solutions;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_ordered_crossover_indices;
+  __Pyx_Buffer __pyx_pybuffer_ordered_crossover_indices;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_parents;
+  __Pyx_Buffer __pyx_pybuffer_parents;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("procreate_sequence", 0);
+  __pyx_pybuffer_parents.pybuffer.buf = NULL;
+  __pyx_pybuffer_parents.refcount = 0;
+  __pyx_pybuffernd_parents.data = NULL;
+  __pyx_pybuffernd_parents.rcbuffer = &__pyx_pybuffer_parents;
+  __pyx_pybuffer_island_solutions.pybuffer.buf = NULL;
+  __pyx_pybuffer_island_solutions.refcount = 0;
+  __pyx_pybuffernd_island_solutions.data = NULL;
+  __pyx_pybuffernd_island_solutions.rcbuffer = &__pyx_pybuffer_island_solutions;
+  __pyx_pybuffer_ordered_crossover_indices.pybuffer.buf = NULL;
+  __pyx_pybuffer_ordered_crossover_indices.refcount = 0;
+  __pyx_pybuffernd_ordered_crossover_indices.data = NULL;
+  __pyx_pybuffernd_ordered_crossover_indices.rcbuffer = &__pyx_pybuffer_ordered_crossover_indices;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_parents.diminfo[0].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parents.diminfo[0].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parents.diminfo[1].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parents.diminfo[1].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_parents.diminfo[2].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_parents.diminfo[2].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[2]; __pyx_pybuffernd_parents.diminfo[3].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[3]; __pyx_pybuffernd_parents.diminfo[3].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[3];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_island_solutions.diminfo[0].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_solutions.diminfo[0].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_solutions.diminfo[1].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_solutions.diminfo[1].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_island_solutions.diminfo[2].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_island_solutions.diminfo[2].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[2];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_ordered_crossover_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_ordered_crossover_indices.diminfo[0].strides = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[0].shape = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[1].strides = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[1].shape = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.shape[1];
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_17genetic_functions_procreate_sequence(__pyx_v_parents, __pyx_v_island_solutions, __pyx_v_ordered_crossover_indices, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parents.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("genetic_functions.procreate_sequence", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parents.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "genetic_functions.pyx":155
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cpdef procreate_real_valued(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
+ *                             np.ndarray[double_t, ndim=3] island_solutions,
+ *                             np.ndarray[double_t, ndim=2] island_fitnesses,
+ */
+
+static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject *__pyx_v_parents, PyArrayObject *__pyx_v_island_solutions, PyArrayObject *__pyx_v_island_fitnesses, PyArrayObject *__pyx_v_heuristic_crossover_randoms, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_variables_len, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyArrayObject *__pyx_v_children = 0;
   PyArrayObject *__pyx_v_parent1 = 0;
   PyArrayObject *__pyx_v_parent2 = 0;
@@ -5062,7 +5132,6 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
   PyObject *__pyx_t_19 = NULL;
   PyObject *__pyx_t_20 = NULL;
   PyObject *__pyx_t_21 = NULL;
-  PyObject *__pyx_t_22 = NULL;
   __Pyx_RefNannySetupContext("procreate_real_valued", 0);
   __pyx_pybuffer_children.pybuffer.buf = NULL;
   __pyx_pybuffer_children.refcount = 0;
@@ -5136,8 +5205,8 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
   __pyx_pybuffernd_ub.diminfo[0].strides = __pyx_pybuffernd_ub.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ub.diminfo[0].shape = __pyx_pybuffernd_ub.rcbuffer->pybuffer.shape[0];
 
   /* "genetic_functions.pyx":164
- *                           int_t death_count,
- *                           int_t variables_len):
+ *                             int_t death_count,
+ *                             int_t variables_len):
  *     cdef np.ndarray[double_t, ndim=2] children = np.zeros((num_islands*death_count, variables_len)).astype(np.float32)             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[double_t, ndim=1] parent1, parent2, child
  *     cdef int_t fitness1, fitness2, i, island_index, child_index, parent_island_index1, parent_index1, parent_island_index2, parent_index2
@@ -5527,82 +5596,14 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
  *             children[i] = child
  *             i += 1
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_heuristic_crossover); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 178, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_1 = __Pyx_PyInt_From_npy_int32(__pyx_v_fitness1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyInt_From_npy_int32(__pyx_v_fitness2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 178, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_5 = __Pyx_GetItemInt(((PyObject *)__pyx_v_heuristic_crossover_randoms), __pyx_v_i, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 178, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_3 = NULL;
-      __pyx_t_18 = 0;
-      if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
-        __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_6);
-        if (likely(__pyx_t_3)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-          __Pyx_INCREF(__pyx_t_3);
-          __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_6, function);
-          __pyx_t_18 = 1;
-        }
-      }
-      #if CYTHON_FAST_PYCALL
-      if (PyFunction_Check(__pyx_t_6)) {
-        PyObject *__pyx_temp[8] = {__pyx_t_3, ((PyObject *)__pyx_v_parent1), ((PyObject *)__pyx_v_parent2), __pyx_t_1, __pyx_t_2, ((PyObject *)__pyx_v_lb), ((PyObject *)__pyx_v_ub), __pyx_t_5};
-        __pyx_t_4 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_18, 7+__pyx_t_18); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      } else
-      #endif
-      #if CYTHON_FAST_PYCCALL
-      if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
-        PyObject *__pyx_temp[8] = {__pyx_t_3, ((PyObject *)__pyx_v_parent1), ((PyObject *)__pyx_v_parent2), __pyx_t_1, __pyx_t_2, ((PyObject *)__pyx_v_lb), ((PyObject *)__pyx_v_ub), __pyx_t_5};
-        __pyx_t_4 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_18, 7+__pyx_t_18); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
-        __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      } else
-      #endif
-      {
-        __pyx_t_22 = PyTuple_New(7+__pyx_t_18); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 178, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_22);
-        if (__pyx_t_3) {
-          __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_22, 0, __pyx_t_3); __pyx_t_3 = NULL;
-        }
-        __Pyx_INCREF(((PyObject *)__pyx_v_parent1));
-        __Pyx_GIVEREF(((PyObject *)__pyx_v_parent1));
-        PyTuple_SET_ITEM(__pyx_t_22, 0+__pyx_t_18, ((PyObject *)__pyx_v_parent1));
-        __Pyx_INCREF(((PyObject *)__pyx_v_parent2));
-        __Pyx_GIVEREF(((PyObject *)__pyx_v_parent2));
-        PyTuple_SET_ITEM(__pyx_t_22, 1+__pyx_t_18, ((PyObject *)__pyx_v_parent2));
-        __Pyx_GIVEREF(__pyx_t_1);
-        PyTuple_SET_ITEM(__pyx_t_22, 2+__pyx_t_18, __pyx_t_1);
-        __Pyx_GIVEREF(__pyx_t_2);
-        PyTuple_SET_ITEM(__pyx_t_22, 3+__pyx_t_18, __pyx_t_2);
-        __Pyx_INCREF(((PyObject *)__pyx_v_lb));
-        __Pyx_GIVEREF(((PyObject *)__pyx_v_lb));
-        PyTuple_SET_ITEM(__pyx_t_22, 4+__pyx_t_18, ((PyObject *)__pyx_v_lb));
-        __Pyx_INCREF(((PyObject *)__pyx_v_ub));
-        __Pyx_GIVEREF(((PyObject *)__pyx_v_ub));
-        PyTuple_SET_ITEM(__pyx_t_22, 5+__pyx_t_18, ((PyObject *)__pyx_v_ub));
-        __Pyx_GIVEREF(__pyx_t_5);
-        PyTuple_SET_ITEM(__pyx_t_22, 6+__pyx_t_18, __pyx_t_5);
-        __pyx_t_1 = 0;
-        __pyx_t_2 = 0;
-        __pyx_t_5 = 0;
-        __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_22, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
-      }
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_heuristic_crossover_randoms), __pyx_v_i, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
       if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 178, __pyx_L1_error)
-      __pyx_t_17 = ((PyArrayObject *)__pyx_t_4);
+      __pyx_t_6 = __pyx_f_17genetic_functions_heuristic_crossover(((PyArrayObject *)__pyx_v_parent1), ((PyArrayObject *)__pyx_v_parent2), __pyx_v_fitness1, __pyx_v_fitness2, ((PyArrayObject *)__pyx_v_lb), ((PyArrayObject *)__pyx_v_ub), ((PyArrayObject *)__pyx_t_4), 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 178, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 178, __pyx_L1_error)
+      __pyx_t_17 = ((PyArrayObject *)__pyx_t_6);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
         __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_child.rcbuffer->pybuffer);
@@ -5621,8 +5622,8 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
         if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 178, __pyx_L1_error)
       }
       __pyx_t_17 = 0;
-      __Pyx_XDECREF_SET(__pyx_v_child, ((PyArrayObject *)__pyx_t_4));
-      __pyx_t_4 = 0;
+      __Pyx_XDECREF_SET(__pyx_v_child, ((PyArrayObject *)__pyx_t_6));
+      __pyx_t_6 = 0;
 
       /* "genetic_functions.pyx":179
  * 
@@ -5659,9 +5660,9 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
   /* "genetic_functions.pyx":155
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def procreate_real_valued(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
- *                           np.ndarray[double_t, ndim=3] island_solutions,
- *                           np.ndarray[double_t, ndim=2] island_fitnesses,
+ * cpdef procreate_real_valued(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
+ *                             np.ndarray[double_t, ndim=3] island_solutions,
+ *                             np.ndarray[double_t, ndim=2] island_fitnesses,
  */
 
   /* function exit code */
@@ -5672,7 +5673,6 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_22);
   { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
     __Pyx_PyThreadState_declare
     __Pyx_PyThreadState_assign
@@ -5689,7 +5689,7 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ub.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("genetic_functions.procreate_real_valued", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_child.rcbuffer->pybuffer);
@@ -5712,33 +5712,36 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":186
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def random_selection(int_t num_solutions,             # <<<<<<<<<<<<<<
- *                      int_t death_count,
- *                      int_t num_islands,
- */
-
 /* Python wrapper */
-static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17genetic_functions_13random_selection = {"random_selection", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_13random_selection, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  __pyx_t_17genetic_functions_int_t __pyx_v_num_solutions;
-  __pyx_t_17genetic_functions_int_t __pyx_v_death_count;
+static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyArrayObject *__pyx_v_parents = 0;
+  PyArrayObject *__pyx_v_island_solutions = 0;
+  PyArrayObject *__pyx_v_island_fitnesses = 0;
+  PyArrayObject *__pyx_v_heuristic_crossover_randoms = 0;
+  PyArrayObject *__pyx_v_lb = 0;
+  PyArrayObject *__pyx_v_ub = 0;
   __pyx_t_17genetic_functions_int_t __pyx_v_num_islands;
-  PyObject *__pyx_v_other_island_indices = 0;
-  PyArrayObject *__pyx_v_parent_indices = 0;
+  __pyx_t_17genetic_functions_int_t __pyx_v_death_count;
+  __pyx_t_17genetic_functions_int_t __pyx_v_variables_len;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("random_selection (wrapper)", 0);
+  __Pyx_RefNannySetupContext("procreate_real_valued (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_num_solutions,&__pyx_n_s_death_count,&__pyx_n_s_num_islands,&__pyx_n_s_other_island_indices,&__pyx_n_s_parent_indices,0};
-    PyObject* values[5] = {0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_parents,&__pyx_n_s_island_solutions,&__pyx_n_s_island_fitnesses,&__pyx_n_s_heuristic_crossover_randoms,&__pyx_n_s_lb,&__pyx_n_s_ub,&__pyx_n_s_num_islands,&__pyx_n_s_death_count,&__pyx_n_s_variables_len,0};
+    PyObject* values[9] = {0,0,0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  9: values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
+        CYTHON_FALLTHROUGH;
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
+        CYTHON_FALLTHROUGH;
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        CYTHON_FALLTHROUGH;
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        CYTHON_FALLTHROUGH;
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
@@ -5755,37 +5758,61 @@ static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_solutions)) != 0)) kw_args--;
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_parents)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_island_solutions)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 1); __PYX_ERR(0, 186, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 1); __PYX_ERR(0, 155, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_island_fitnesses)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 2); __PYX_ERR(0, 186, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 2); __PYX_ERR(0, 155, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other_island_indices)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_heuristic_crossover_randoms)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 3); __PYX_ERR(0, 186, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 3); __PYX_ERR(0, 155, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
-        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_parent_indices)) != 0)) kw_args--;
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lb)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 4); __PYX_ERR(0, 186, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 4); __PYX_ERR(0, 155, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  5:
+        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ub)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 5); __PYX_ERR(0, 155, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  6:
+        if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 6); __PYX_ERR(0, 155, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  7:
+        if (likely((values[7] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 7); __PYX_ERR(0, 155, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  8:
+        if (likely((values[8] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_variables_len)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 8); __PYX_ERR(0, 155, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "random_selection") < 0)) __PYX_ERR(0, 186, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "procreate_real_valued") < 0)) __PYX_ERR(0, 155, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 9) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -5793,24 +5820,36 @@ static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+      values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+      values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
+      values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
     }
-    __pyx_v_num_solutions = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_num_solutions == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 186, __pyx_L3_error)
-    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 187, __pyx_L3_error)
-    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 188, __pyx_L3_error)
-    __pyx_v_other_island_indices = ((PyObject*)values[3]);
-    __pyx_v_parent_indices = ((PyArrayObject *)values[4]);
+    __pyx_v_parents = ((PyArrayObject *)values[0]);
+    __pyx_v_island_solutions = ((PyArrayObject *)values[1]);
+    __pyx_v_island_fitnesses = ((PyArrayObject *)values[2]);
+    __pyx_v_heuristic_crossover_randoms = ((PyArrayObject *)values[3]);
+    __pyx_v_lb = ((PyArrayObject *)values[4]);
+    __pyx_v_ub = ((PyArrayObject *)values[5]);
+    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[6]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 161, __pyx_L3_error)
+    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[7]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 162, __pyx_L3_error)
+    __pyx_v_variables_len = __Pyx_PyInt_As_npy_int32(values[8]); if (unlikely((__pyx_v_variables_len == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 163, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 186, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 155, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("genetic_functions.random_selection", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("genetic_functions.procreate_real_valued", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other_island_indices), (&PyDict_Type), 1, "other_island_indices", 1))) __PYX_ERR(0, 189, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent_indices), __pyx_ptype_5numpy_ndarray, 1, "parent_indices", 0))) __PYX_ERR(0, 190, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_12random_selection(__pyx_self, __pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parents), __pyx_ptype_5numpy_ndarray, 1, "parents", 0))) __PYX_ERR(0, 155, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_solutions), __pyx_ptype_5numpy_ndarray, 1, "island_solutions", 0))) __PYX_ERR(0, 156, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_fitnesses), __pyx_ptype_5numpy_ndarray, 1, "island_fitnesses", 0))) __PYX_ERR(0, 157, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_heuristic_crossover_randoms), __pyx_ptype_5numpy_ndarray, 1, "heuristic_crossover_randoms", 0))) __PYX_ERR(0, 158, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 159, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_r = __pyx_pf_17genetic_functions_10procreate_real_valued(__pyx_self, __pyx_v_parents, __pyx_v_island_solutions, __pyx_v_island_fitnesses, __pyx_v_heuristic_crossover_randoms, __pyx_v_lb, __pyx_v_ub, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5821,7 +5860,124 @@ static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED PyObject *__pyx_self, __pyx_t_17genetic_functions_int_t __pyx_v_num_solutions, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, PyObject *__pyx_v_other_island_indices, PyArrayObject *__pyx_v_parent_indices) {
+static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_parents, PyArrayObject *__pyx_v_island_solutions, PyArrayObject *__pyx_v_island_fitnesses, PyArrayObject *__pyx_v_heuristic_crossover_randoms, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_variables_len) {
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_heuristic_crossover_randoms;
+  __Pyx_Buffer __pyx_pybuffer_heuristic_crossover_randoms;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_island_fitnesses;
+  __Pyx_Buffer __pyx_pybuffer_island_fitnesses;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_island_solutions;
+  __Pyx_Buffer __pyx_pybuffer_island_solutions;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_lb;
+  __Pyx_Buffer __pyx_pybuffer_lb;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_parents;
+  __Pyx_Buffer __pyx_pybuffer_parents;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_ub;
+  __Pyx_Buffer __pyx_pybuffer_ub;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("procreate_real_valued", 0);
+  __pyx_pybuffer_parents.pybuffer.buf = NULL;
+  __pyx_pybuffer_parents.refcount = 0;
+  __pyx_pybuffernd_parents.data = NULL;
+  __pyx_pybuffernd_parents.rcbuffer = &__pyx_pybuffer_parents;
+  __pyx_pybuffer_island_solutions.pybuffer.buf = NULL;
+  __pyx_pybuffer_island_solutions.refcount = 0;
+  __pyx_pybuffernd_island_solutions.data = NULL;
+  __pyx_pybuffernd_island_solutions.rcbuffer = &__pyx_pybuffer_island_solutions;
+  __pyx_pybuffer_island_fitnesses.pybuffer.buf = NULL;
+  __pyx_pybuffer_island_fitnesses.refcount = 0;
+  __pyx_pybuffernd_island_fitnesses.data = NULL;
+  __pyx_pybuffernd_island_fitnesses.rcbuffer = &__pyx_pybuffer_island_fitnesses;
+  __pyx_pybuffer_heuristic_crossover_randoms.pybuffer.buf = NULL;
+  __pyx_pybuffer_heuristic_crossover_randoms.refcount = 0;
+  __pyx_pybuffernd_heuristic_crossover_randoms.data = NULL;
+  __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer = &__pyx_pybuffer_heuristic_crossover_randoms;
+  __pyx_pybuffer_lb.pybuffer.buf = NULL;
+  __pyx_pybuffer_lb.refcount = 0;
+  __pyx_pybuffernd_lb.data = NULL;
+  __pyx_pybuffernd_lb.rcbuffer = &__pyx_pybuffer_lb;
+  __pyx_pybuffer_ub.pybuffer.buf = NULL;
+  __pyx_pybuffer_ub.refcount = 0;
+  __pyx_pybuffernd_ub.data = NULL;
+  __pyx_pybuffernd_ub.rcbuffer = &__pyx_pybuffer_ub;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_parents.diminfo[0].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parents.diminfo[0].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parents.diminfo[1].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parents.diminfo[1].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_parents.diminfo[2].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_parents.diminfo[2].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[2]; __pyx_pybuffernd_parents.diminfo[3].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[3]; __pyx_pybuffernd_parents.diminfo[3].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[3];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_island_solutions.diminfo[0].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_solutions.diminfo[0].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_solutions.diminfo[1].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_solutions.diminfo[1].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_island_solutions.diminfo[2].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_island_solutions.diminfo[2].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[2];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_fitnesses, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_island_fitnesses.diminfo[0].strides = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_fitnesses.diminfo[0].shape = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_fitnesses.diminfo[1].strides = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_fitnesses.diminfo[1].shape = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.shape[1];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer, (PyObject*)__pyx_v_heuristic_crossover_randoms, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[0].strides = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[0].shape = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[1].strides = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[1].shape = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.shape[1];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lb.rcbuffer->pybuffer, (PyObject*)__pyx_v_lb, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_lb.diminfo[0].strides = __pyx_pybuffernd_lb.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_lb.diminfo[0].shape = __pyx_pybuffernd_lb.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ub.rcbuffer->pybuffer, (PyObject*)__pyx_v_ub, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_ub.diminfo[0].strides = __pyx_pybuffernd_ub.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ub.diminfo[0].shape = __pyx_pybuffernd_ub.rcbuffer->pybuffer.shape[0];
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_17genetic_functions_procreate_real_valued(__pyx_v_parents, __pyx_v_island_solutions, __pyx_v_island_fitnesses, __pyx_v_heuristic_crossover_randoms, __pyx_v_lb, __pyx_v_ub, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_lb.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parents.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ub.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("genetic_functions.procreate_real_valued", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_lb.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parents.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ub.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "genetic_functions.pyx":186
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cpdef random_selection(int_t num_solutions,             # <<<<<<<<<<<<<<
+ *                        int_t death_count,
+ *                        int_t num_islands,
+ */
+
+static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_functions_int_t __pyx_v_num_solutions, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, PyObject *__pyx_v_other_island_indices, PyArrayObject *__pyx_v_parent_indices, CYTHON_UNUSED int __pyx_skip_dispatch) {
   CYTHON_UNUSED PyArrayObject *__pyx_v_indices = 0;
   PyArrayObject *__pyx_v_parents = 0;
   Py_ssize_t __pyx_v_i;
@@ -5869,8 +6025,8 @@ static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED P
   __pyx_pybuffernd_parent_indices.diminfo[0].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent_indices.diminfo[0].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parent_indices.diminfo[1].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parent_indices.diminfo[1].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[1];
 
   /* "genetic_functions.pyx":191
- *                      dict other_island_indices,
- *                      np.ndarray[int_t, ndim=2] parent_indices):
+ *                        dict other_island_indices,
+ *                        np.ndarray[int_t, ndim=2] parent_indices):
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
  *     cdef Py_ssize_t i = 0
@@ -5937,7 +6093,7 @@ static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED P
   __pyx_t_1 = 0;
 
   /* "genetic_functions.pyx":192
- *                      np.ndarray[int_t, ndim=2] parent_indices):
+ *                        np.ndarray[int_t, ndim=2] parent_indices):
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t i = 0
@@ -6179,9 +6335,9 @@ static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED P
   /* "genetic_functions.pyx":186
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def random_selection(int_t num_solutions,             # <<<<<<<<<<<<<<
- *                      int_t death_count,
- *                      int_t num_islands,
+ * cpdef random_selection(int_t num_solutions,             # <<<<<<<<<<<<<<
+ *                        int_t death_count,
+ *                        int_t num_islands,
  */
 
   /* function exit code */
@@ -6201,7 +6357,7 @@ static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED P
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parents.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("genetic_functions.random_selection", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_indices.rcbuffer->pybuffer);
@@ -6215,36 +6371,24 @@ static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":213
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def random_selection_v2(int_t num_solutions,             # <<<<<<<<<<<<<<
- *                         int_t death_count,
- *                         int_t num_islands,
- */
-
 /* Python wrapper */
-static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_17genetic_functions_15random_selection_v2 = {"random_selection_v2", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_15random_selection_v2, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __pyx_t_17genetic_functions_int_t __pyx_v_num_solutions;
   __pyx_t_17genetic_functions_int_t __pyx_v_death_count;
   __pyx_t_17genetic_functions_int_t __pyx_v_num_islands;
   PyObject *__pyx_v_other_island_indices = 0;
   PyArrayObject *__pyx_v_parent_indices = 0;
-  PyObject *__pyx_v_topology_network = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("random_selection_v2 (wrapper)", 0);
+  __Pyx_RefNannySetupContext("random_selection (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_num_solutions,&__pyx_n_s_death_count,&__pyx_n_s_num_islands,&__pyx_n_s_other_island_indices,&__pyx_n_s_parent_indices,&__pyx_n_s_topology_network,0};
-    PyObject* values[6] = {0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_num_solutions,&__pyx_n_s_death_count,&__pyx_n_s_num_islands,&__pyx_n_s_other_island_indices,&__pyx_n_s_parent_indices,0};
+    PyObject* values[5] = {0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
-        CYTHON_FALLTHROUGH;
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
@@ -6267,37 +6411,31 @@ static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 1); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 1); __PYX_ERR(0, 186, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 2); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 2); __PYX_ERR(0, 186, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other_island_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 3); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 3); __PYX_ERR(0, 186, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_parent_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 4); __PYX_ERR(0, 213, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  5:
-        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_topology_network)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 5); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 4); __PYX_ERR(0, 186, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "random_selection_v2") < 0)) __PYX_ERR(0, 213, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "random_selection") < 0)) __PYX_ERR(0, 186, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -6305,27 +6443,24 @@ static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
-      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
-    __pyx_v_num_solutions = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_num_solutions == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 213, __pyx_L3_error)
-    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 214, __pyx_L3_error)
-    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L3_error)
+    __pyx_v_num_solutions = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_num_solutions == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 186, __pyx_L3_error)
+    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 187, __pyx_L3_error)
+    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 188, __pyx_L3_error)
     __pyx_v_other_island_indices = ((PyObject*)values[3]);
     __pyx_v_parent_indices = ((PyArrayObject *)values[4]);
-    __pyx_v_topology_network = ((PyObject*)values[5]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 213, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 186, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("genetic_functions.random_selection_v2", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("genetic_functions.random_selection", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other_island_indices), (&PyDict_Type), 1, "other_island_indices", 1))) __PYX_ERR(0, 216, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent_indices), __pyx_ptype_5numpy_ndarray, 1, "parent_indices", 0))) __PYX_ERR(0, 217, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_topology_network), (&PyDict_Type), 1, "topology_network", 1))) __PYX_ERR(0, 218, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_14random_selection_v2(__pyx_self, __pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, __pyx_v_topology_network);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other_island_indices), (&PyDict_Type), 1, "other_island_indices", 1))) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent_indices), __pyx_ptype_5numpy_ndarray, 1, "parent_indices", 0))) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_r = __pyx_pf_17genetic_functions_12random_selection(__pyx_self, __pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6336,7 +6471,59 @@ static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17genetic_functions_14random_selection_v2(CYTHON_UNUSED PyObject *__pyx_self, __pyx_t_17genetic_functions_int_t __pyx_v_num_solutions, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, PyObject *__pyx_v_other_island_indices, PyArrayObject *__pyx_v_parent_indices, PyObject *__pyx_v_topology_network) {
+static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED PyObject *__pyx_self, __pyx_t_17genetic_functions_int_t __pyx_v_num_solutions, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, PyObject *__pyx_v_other_island_indices, PyArrayObject *__pyx_v_parent_indices) {
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_parent_indices;
+  __Pyx_Buffer __pyx_pybuffer_parent_indices;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("random_selection", 0);
+  __pyx_pybuffer_parent_indices.pybuffer.buf = NULL;
+  __pyx_pybuffer_parent_indices.refcount = 0;
+  __pyx_pybuffernd_parent_indices.data = NULL;
+  __pyx_pybuffernd_parent_indices.rcbuffer = &__pyx_pybuffer_parent_indices;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 186, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_parent_indices.diminfo[0].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent_indices.diminfo[0].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parent_indices.diminfo[1].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parent_indices.diminfo[1].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[1];
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_17genetic_functions_random_selection(__pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("genetic_functions.random_selection", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer);
+  __pyx_L2:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "genetic_functions.pyx":213
+ * @cython.boundscheck(False)
+ * @cython.wraparound(False)
+ * cpdef random_selection_v2(int_t num_solutions,             # <<<<<<<<<<<<<<
+ *                           int_t death_count,
+ *                           int_t num_islands,
+ */
+
+static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genetic_functions_int_t __pyx_v_num_solutions, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, PyObject *__pyx_v_other_island_indices, PyArrayObject *__pyx_v_parent_indices, PyObject *__pyx_v_topology_network, CYTHON_UNUSED int __pyx_skip_dispatch) {
   CYTHON_UNUSED PyArrayObject *__pyx_v_indices = 0;
   PyArrayObject *__pyx_v_parents = 0;
   Py_ssize_t __pyx_v_i;
@@ -6384,8 +6571,8 @@ static PyObject *__pyx_pf_17genetic_functions_14random_selection_v2(CYTHON_UNUSE
   __pyx_pybuffernd_parent_indices.diminfo[0].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent_indices.diminfo[0].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parent_indices.diminfo[1].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parent_indices.diminfo[1].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[1];
 
   /* "genetic_functions.pyx":219
- *                         np.ndarray[int_t, ndim=2] parent_indices,
- *                         dict topology_network):
+ *                           np.ndarray[int_t, ndim=2] parent_indices,
+ *                           dict topology_network):
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
  *     cdef Py_ssize_t i = 0
@@ -6452,7 +6639,7 @@ static PyObject *__pyx_pf_17genetic_functions_14random_selection_v2(CYTHON_UNUSE
   __pyx_t_1 = 0;
 
   /* "genetic_functions.pyx":220
- *                         dict topology_network):
+ *                           dict topology_network):
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t i = 0
@@ -6704,9 +6891,9 @@ static PyObject *__pyx_pf_17genetic_functions_14random_selection_v2(CYTHON_UNUSE
   /* "genetic_functions.pyx":213
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
- * def random_selection_v2(int_t num_solutions,             # <<<<<<<<<<<<<<
- *                         int_t death_count,
- *                         int_t num_islands,
+ * cpdef random_selection_v2(int_t num_solutions,             # <<<<<<<<<<<<<<
+ *                           int_t death_count,
+ *                           int_t num_islands,
  */
 
   /* function exit code */
@@ -6726,7 +6913,7 @@ static PyObject *__pyx_pf_17genetic_functions_14random_selection_v2(CYTHON_UNUSE
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parents.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("genetic_functions.random_selection_v2", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   goto __pyx_L2;
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_indices.rcbuffer->pybuffer);
@@ -6735,6 +6922,161 @@ static PyObject *__pyx_pf_17genetic_functions_14random_selection_v2(CYTHON_UNUSE
   __pyx_L2:;
   __Pyx_XDECREF((PyObject *)__pyx_v_indices);
   __Pyx_XDECREF((PyObject *)__pyx_v_parents);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  __pyx_t_17genetic_functions_int_t __pyx_v_num_solutions;
+  __pyx_t_17genetic_functions_int_t __pyx_v_death_count;
+  __pyx_t_17genetic_functions_int_t __pyx_v_num_islands;
+  PyObject *__pyx_v_other_island_indices = 0;
+  PyArrayObject *__pyx_v_parent_indices = 0;
+  PyObject *__pyx_v_topology_network = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("random_selection_v2 (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_num_solutions,&__pyx_n_s_death_count,&__pyx_n_s_num_islands,&__pyx_n_s_other_island_indices,&__pyx_n_s_parent_indices,&__pyx_n_s_topology_network,0};
+    PyObject* values[6] = {0,0,0,0,0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        CYTHON_FALLTHROUGH;
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
+        case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_solutions)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 1); __PYX_ERR(0, 213, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 2); __PYX_ERR(0, 213, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  3:
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other_island_indices)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 3); __PYX_ERR(0, 213, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  4:
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_parent_indices)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 4); __PYX_ERR(0, 213, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  5:
+        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_topology_network)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 5); __PYX_ERR(0, 213, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "random_selection_v2") < 0)) __PYX_ERR(0, 213, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+      values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+    }
+    __pyx_v_num_solutions = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_num_solutions == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 213, __pyx_L3_error)
+    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 214, __pyx_L3_error)
+    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L3_error)
+    __pyx_v_other_island_indices = ((PyObject*)values[3]);
+    __pyx_v_parent_indices = ((PyArrayObject *)values[4]);
+    __pyx_v_topology_network = ((PyObject*)values[5]);
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 213, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("genetic_functions.random_selection_v2", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other_island_indices), (&PyDict_Type), 1, "other_island_indices", 1))) __PYX_ERR(0, 216, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent_indices), __pyx_ptype_5numpy_ndarray, 1, "parent_indices", 0))) __PYX_ERR(0, 217, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_topology_network), (&PyDict_Type), 1, "topology_network", 1))) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_r = __pyx_pf_17genetic_functions_14random_selection_v2(__pyx_self, __pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, __pyx_v_topology_network);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_17genetic_functions_14random_selection_v2(CYTHON_UNUSED PyObject *__pyx_self, __pyx_t_17genetic_functions_int_t __pyx_v_num_solutions, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, PyObject *__pyx_v_other_island_indices, PyArrayObject *__pyx_v_parent_indices, PyObject *__pyx_v_topology_network) {
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_parent_indices;
+  __Pyx_Buffer __pyx_pybuffer_parent_indices;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("random_selection_v2", 0);
+  __pyx_pybuffer_parent_indices.pybuffer.buf = NULL;
+  __pyx_pybuffer_parent_indices.refcount = 0;
+  __pyx_pybuffernd_parent_indices.data = NULL;
+  __pyx_pybuffernd_parent_indices.rcbuffer = &__pyx_pybuffer_parent_indices;
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 213, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_parent_indices.diminfo[0].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent_indices.diminfo[0].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parent_indices.diminfo[1].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parent_indices.diminfo[1].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[1];
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_17genetic_functions_random_selection_v2(__pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, __pyx_v_topology_network, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
+    __Pyx_PyThreadState_declare
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer);
+  __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
+  __Pyx_AddTraceback("genetic_functions.random_selection_v2", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  goto __pyx_L2;
+  __pyx_L0:;
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer);
+  __pyx_L2:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -9159,6 +9501,14 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_ufunc(void) {
 }
 
 static PyMethodDef __pyx_methods[] = {
+  {"ordered_crossover", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_1ordered_crossover, METH_VARARGS|METH_KEYWORDS, 0},
+  {"heuristic_crossover", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_3heuristic_crossover, METH_VARARGS|METH_KEYWORDS, 0},
+  {"mutate_random", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_5mutate_random, METH_VARARGS|METH_KEYWORDS, 0},
+  {"swap_mutate", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_7swap_mutate, METH_VARARGS|METH_KEYWORDS, 0},
+  {"procreate_sequence", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_9procreate_sequence, METH_VARARGS|METH_KEYWORDS, 0},
+  {"procreate_real_valued", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_11procreate_real_valued, METH_VARARGS|METH_KEYWORDS, 0},
+  {"random_selection", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_13random_selection, METH_VARARGS|METH_KEYWORDS, 0},
+  {"random_selection_v2", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_17genetic_functions_15random_selection_v2, METH_VARARGS|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -9213,95 +9563,52 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
   {&__pyx_n_s_arange, __pyx_k_arange, sizeof(__pyx_k_arange), 0, 0, 1, 1},
   {&__pyx_n_s_astype, __pyx_k_astype, sizeof(__pyx_k_astype), 0, 0, 1, 1},
-  {&__pyx_n_s_better_solution, __pyx_k_better_solution, sizeof(__pyx_k_better_solution), 0, 0, 1, 1},
-  {&__pyx_n_s_better_value, __pyx_k_better_value, sizeof(__pyx_k_better_value), 0, 0, 1, 1},
-  {&__pyx_n_s_child, __pyx_k_child, sizeof(__pyx_k_child), 0, 0, 1, 1},
-  {&__pyx_n_s_child_index, __pyx_k_child_index, sizeof(__pyx_k_child_index), 0, 0, 1, 1},
-  {&__pyx_n_s_child_value, __pyx_k_child_value, sizeof(__pyx_k_child_value), 0, 0, 1, 1},
-  {&__pyx_n_s_children, __pyx_k_children, sizeof(__pyx_k_children), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_copy, __pyx_k_copy, sizeof(__pyx_k_copy), 0, 0, 1, 1},
   {&__pyx_n_s_death_count, __pyx_k_death_count, sizeof(__pyx_k_death_count), 0, 0, 1, 1},
   {&__pyx_n_s_fitness1, __pyx_k_fitness1, sizeof(__pyx_k_fitness1), 0, 0, 1, 1},
   {&__pyx_n_s_fitness2, __pyx_k_fitness2, sizeof(__pyx_k_fitness2), 0, 0, 1, 1},
   {&__pyx_n_s_float32, __pyx_k_float32, sizeof(__pyx_k_float32), 0, 0, 1, 1},
-  {&__pyx_n_s_genetic_functions, __pyx_k_genetic_functions, sizeof(__pyx_k_genetic_functions), 0, 0, 1, 1},
-  {&__pyx_kp_s_genopt_genetic_functions_pyx, __pyx_k_genopt_genetic_functions_pyx, sizeof(__pyx_k_genopt_genetic_functions_pyx), 0, 0, 1, 0},
-  {&__pyx_n_s_heuristic_crossover, __pyx_k_heuristic_crossover, sizeof(__pyx_k_heuristic_crossover), 0, 0, 1, 1},
   {&__pyx_n_s_heuristic_crossover_randoms, __pyx_k_heuristic_crossover_randoms, sizeof(__pyx_k_heuristic_crossover_randoms), 0, 0, 1, 1},
   {&__pyx_n_s_high, __pyx_k_high, sizeof(__pyx_k_high), 0, 0, 1, 1},
-  {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_index0, __pyx_k_index0, sizeof(__pyx_k_index0), 0, 0, 1, 1},
   {&__pyx_n_s_index1, __pyx_k_index1, sizeof(__pyx_k_index1), 0, 0, 1, 1},
-  {&__pyx_n_s_indices, __pyx_k_indices, sizeof(__pyx_k_indices), 0, 0, 1, 1},
   {&__pyx_n_s_int32, __pyx_k_int32, sizeof(__pyx_k_int32), 0, 0, 1, 1},
   {&__pyx_n_s_island_fitnesses, __pyx_k_island_fitnesses, sizeof(__pyx_k_island_fitnesses), 0, 0, 1, 1},
-  {&__pyx_n_s_island_index, __pyx_k_island_index, sizeof(__pyx_k_island_index), 0, 0, 1, 1},
   {&__pyx_n_s_island_solutions, __pyx_k_island_solutions, sizeof(__pyx_k_island_solutions), 0, 0, 1, 1},
-  {&__pyx_n_s_j, __pyx_k_j, sizeof(__pyx_k_j), 0, 0, 1, 1},
-  {&__pyx_n_s_k, __pyx_k_k, sizeof(__pyx_k_k), 0, 0, 1, 1},
   {&__pyx_n_s_lb, __pyx_k_lb, sizeof(__pyx_k_lb), 0, 0, 1, 1},
   {&__pyx_n_s_low, __pyx_k_low, sizeof(__pyx_k_low), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
-  {&__pyx_n_s_mutate_random, __pyx_k_mutate_random, sizeof(__pyx_k_mutate_random), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_kp_u_ndarray_is_not_C_contiguous, __pyx_k_ndarray_is_not_C_contiguous, sizeof(__pyx_k_ndarray_is_not_C_contiguous), 0, 1, 0, 0},
   {&__pyx_kp_u_ndarray_is_not_Fortran_contiguou, __pyx_k_ndarray_is_not_Fortran_contiguou, sizeof(__pyx_k_ndarray_is_not_Fortran_contiguou), 0, 1, 0, 0},
   {&__pyx_n_s_needs_mutation, __pyx_k_needs_mutation, sizeof(__pyx_k_needs_mutation), 0, 0, 1, 1},
   {&__pyx_n_s_np, __pyx_k_np, sizeof(__pyx_k_np), 0, 0, 1, 1},
-  {&__pyx_n_s_num1, __pyx_k_num1, sizeof(__pyx_k_num1), 0, 0, 1, 1},
-  {&__pyx_n_s_num2, __pyx_k_num2, sizeof(__pyx_k_num2), 0, 0, 1, 1},
   {&__pyx_n_s_num_islands, __pyx_k_num_islands, sizeof(__pyx_k_num_islands), 0, 0, 1, 1},
   {&__pyx_n_s_num_solutions, __pyx_k_num_solutions, sizeof(__pyx_k_num_solutions), 0, 0, 1, 1},
   {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
   {&__pyx_kp_s_numpy_core_multiarray_failed_to, __pyx_k_numpy_core_multiarray_failed_to, sizeof(__pyx_k_numpy_core_multiarray_failed_to), 0, 0, 1, 0},
   {&__pyx_kp_s_numpy_core_umath_failed_to_impor, __pyx_k_numpy_core_umath_failed_to_impor, sizeof(__pyx_k_numpy_core_umath_failed_to_impor), 0, 0, 1, 0},
-  {&__pyx_n_s_ordered_crossover, __pyx_k_ordered_crossover, sizeof(__pyx_k_ordered_crossover), 0, 0, 1, 1},
   {&__pyx_n_s_ordered_crossover_indices, __pyx_k_ordered_crossover_indices, sizeof(__pyx_k_ordered_crossover_indices), 0, 0, 1, 1},
   {&__pyx_n_s_other_island_indices, __pyx_k_other_island_indices, sizeof(__pyx_k_other_island_indices), 0, 0, 1, 1},
-  {&__pyx_n_s_other_value, __pyx_k_other_value, sizeof(__pyx_k_other_value), 0, 0, 1, 1},
-  {&__pyx_n_s_parent1, __pyx_k_parent1, sizeof(__pyx_k_parent1), 0, 0, 1, 1},
-  {&__pyx_n_s_parent2, __pyx_k_parent2, sizeof(__pyx_k_parent2), 0, 0, 1, 1},
-  {&__pyx_n_s_parent_index1, __pyx_k_parent_index1, sizeof(__pyx_k_parent_index1), 0, 0, 1, 1},
-  {&__pyx_n_s_parent_index2, __pyx_k_parent_index2, sizeof(__pyx_k_parent_index2), 0, 0, 1, 1},
   {&__pyx_n_s_parent_indices, __pyx_k_parent_indices, sizeof(__pyx_k_parent_indices), 0, 0, 1, 1},
-  {&__pyx_n_s_parent_island_index1, __pyx_k_parent_island_index1, sizeof(__pyx_k_parent_island_index1), 0, 0, 1, 1},
-  {&__pyx_n_s_parent_island_index2, __pyx_k_parent_island_index2, sizeof(__pyx_k_parent_island_index2), 0, 0, 1, 1},
   {&__pyx_n_s_parents, __pyx_k_parents, sizeof(__pyx_k_parents), 0, 0, 1, 1},
-  {&__pyx_n_s_procreate_real_valued, __pyx_k_procreate_real_valued, sizeof(__pyx_k_procreate_real_valued), 0, 0, 1, 1},
-  {&__pyx_n_s_procreate_sequence, __pyx_k_procreate_sequence, sizeof(__pyx_k_procreate_sequence), 0, 0, 1, 1},
-  {&__pyx_n_s_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 0, 1, 1},
   {&__pyx_n_s_random, __pyx_k_random, sizeof(__pyx_k_random), 0, 0, 1, 1},
-  {&__pyx_n_s_random_selection, __pyx_k_random_selection, sizeof(__pyx_k_random_selection), 0, 0, 1, 1},
-  {&__pyx_n_s_random_selection_v2, __pyx_k_random_selection_v2, sizeof(__pyx_k_random_selection_v2), 0, 0, 1, 1},
-  {&__pyx_n_s_random_var_index, __pyx_k_random_var_index, sizeof(__pyx_k_random_var_index), 0, 0, 1, 1},
   {&__pyx_n_s_random_var_indices, __pyx_k_random_var_indices, sizeof(__pyx_k_random_var_indices), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
-  {&__pyx_n_s_row, __pyx_k_row, sizeof(__pyx_k_row), 0, 0, 1, 1},
-  {&__pyx_n_s_rows, __pyx_k_rows, sizeof(__pyx_k_rows), 0, 0, 1, 1},
   {&__pyx_n_s_shape, __pyx_k_shape, sizeof(__pyx_k_shape), 0, 0, 1, 1},
   {&__pyx_n_s_size, __pyx_k_size, sizeof(__pyx_k_size), 0, 0, 1, 1},
   {&__pyx_n_s_solution1, __pyx_k_solution1, sizeof(__pyx_k_solution1), 0, 0, 1, 1},
   {&__pyx_n_s_solution2, __pyx_k_solution2, sizeof(__pyx_k_solution2), 0, 0, 1, 1},
   {&__pyx_n_s_solutions, __pyx_k_solutions, sizeof(__pyx_k_solutions), 0, 0, 1, 1},
-  {&__pyx_n_s_subsequence, __pyx_k_subsequence, sizeof(__pyx_k_subsequence), 0, 0, 1, 1},
-  {&__pyx_n_s_subsequence_set, __pyx_k_subsequence_set, sizeof(__pyx_k_subsequence_set), 0, 0, 1, 1},
-  {&__pyx_n_s_swap_mutate, __pyx_k_swap_mutate, sizeof(__pyx_k_swap_mutate), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-  {&__pyx_n_s_this_value, __pyx_k_this_value, sizeof(__pyx_k_this_value), 0, 0, 1, 1},
   {&__pyx_n_s_topology_network, __pyx_k_topology_network, sizeof(__pyx_k_topology_network), 0, 0, 1, 1},
   {&__pyx_n_s_ub, __pyx_k_ub, sizeof(__pyx_k_ub), 0, 0, 1, 1},
   {&__pyx_n_s_uniform, __pyx_k_uniform, sizeof(__pyx_k_uniform), 0, 0, 1, 1},
   {&__pyx_n_s_unique, __pyx_k_unique, sizeof(__pyx_k_unique), 0, 0, 1, 1},
-  {&__pyx_n_s_uniques, __pyx_k_uniques, sizeof(__pyx_k_uniques), 0, 0, 1, 1},
   {&__pyx_kp_u_unknown_dtype_code_in_numpy_pxd, __pyx_k_unknown_dtype_code_in_numpy_pxd, sizeof(__pyx_k_unknown_dtype_code_in_numpy_pxd), 0, 1, 0, 0},
-  {&__pyx_n_s_var_index, __pyx_k_var_index, sizeof(__pyx_k_var_index), 0, 0, 1, 1},
-  {&__pyx_n_s_variable_len, __pyx_k_variable_len, sizeof(__pyx_k_variable_len), 0, 0, 1, 1},
   {&__pyx_n_s_variables_len, __pyx_k_variables_len, sizeof(__pyx_k_variables_len), 0, 0, 1, 1},
-  {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
-  {&__pyx_n_s_worse_solution, __pyx_k_worse_solution, sizeof(__pyx_k_worse_solution), 0, 0, 1, 1},
-  {&__pyx_n_s_worse_value, __pyx_k_worse_value, sizeof(__pyx_k_worse_value), 0, 0, 1, 1},
   {&__pyx_n_s_zeros, __pyx_k_zeros, sizeof(__pyx_k_zeros), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
@@ -9320,8 +9627,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "genetic_functions.pyx":87
- *                   np.ndarray[double_t, ndim=1] ub,
- *                   np.ndarray[int_t, ndim=2] needs_mutation):
+ *                     np.ndarray[double_t, ndim=1] ub,
+ *                     np.ndarray[int_t, ndim=2] needs_mutation):
  *     cdef np.ndarray[int_t, ndim=1] uniques = np.unique(needs_mutation[:, 1])             # <<<<<<<<<<<<<<
  *     cdef int_t i, var_index
  *     cdef np.ndarray[int_t, ndim=1] rows
@@ -9420,102 +9727,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_s_numpy_core_umath_failed_to_impor); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(1, 1044, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-
-  /* "genetic_functions.pyx":10
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def ordered_crossover(np.ndarray[int_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
- *                       np.ndarray[int_t, ndim=1] solution2,
- *                       Py_ssize_t index0,
- */
-  __pyx_tuple__11 = PyTuple_Pack(12, __pyx_n_s_solution1, __pyx_n_s_solution2, __pyx_n_s_index0, __pyx_n_s_index1, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_k, __pyx_n_s_num1, __pyx_n_s_num2, __pyx_n_s_subsequence_set, __pyx_n_s_child, __pyx_n_s_subsequence); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(4, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_genopt_genetic_functions_pyx, __pyx_n_s_ordered_crossover, 10, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 10, __pyx_L1_error)
-
-  /* "genetic_functions.pyx":42
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
- *                         np.ndarray[double_t, ndim=1] solution2,
- *                         double_t fitness1,
- */
-  __pyx_tuple__13 = PyTuple_Pack(17, __pyx_n_s_solution1, __pyx_n_s_solution2, __pyx_n_s_fitness1, __pyx_n_s_fitness2, __pyx_n_s_lb, __pyx_n_s_ub, __pyx_n_s_R, __pyx_n_s_child, __pyx_n_s_better_solution, __pyx_n_s_worse_solution, __pyx_n_s_variable_len, __pyx_n_s_w, __pyx_n_s_r, __pyx_n_s_child_value, __pyx_n_s_better_value, __pyx_n_s_worse_value, __pyx_n_s_var_index); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 42, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(7, 0, 17, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_genopt_genetic_functions_pyx, __pyx_n_s_heuristic_crossover, 42, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 42, __pyx_L1_error)
-
-  /* "genetic_functions.pyx":83
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def mutate_random(np.ndarray[double_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
- *                   np.ndarray[double_t, ndim=1] lb,
- *                   np.ndarray[double_t, ndim=1] ub,
- */
-  __pyx_tuple__15 = PyTuple_Pack(8, __pyx_n_s_solutions, __pyx_n_s_lb, __pyx_n_s_ub, __pyx_n_s_needs_mutation, __pyx_n_s_uniques, __pyx_n_s_i, __pyx_n_s_var_index, __pyx_n_s_rows); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 83, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(4, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_genopt_genetic_functions_pyx, __pyx_n_s_mutate_random, 83, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 83, __pyx_L1_error)
-
-  /* "genetic_functions.pyx":102
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def swap_mutate(np.ndarray[int_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
- *                 np.ndarray[int_t, ndim=2] needs_mutation,
- *                 np.ndarray[int_t, ndim=1] random_var_indices):
- */
-  __pyx_tuple__17 = PyTuple_Pack(13, __pyx_n_s_solutions, __pyx_n_s_needs_mutation, __pyx_n_s_random_var_indices, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_k, __pyx_n_s_var_index, __pyx_n_s_other_value, __pyx_n_s_this_value, __pyx_n_s_random_var_index, __pyx_n_s_row, __pyx_n_s_rows, __pyx_n_s_uniques); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(3, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_genopt_genetic_functions_pyx, __pyx_n_s_swap_mutate, 102, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 102, __pyx_L1_error)
-
-  /* "genetic_functions.pyx":130
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def procreate_sequence(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
- *                        np.ndarray[int_t, ndim=3] island_solutions,
- *                        np.ndarray[int_t, ndim=2] ordered_crossover_indices,
- */
-  __pyx_tuple__19 = PyTuple_Pack(19, __pyx_n_s_parents, __pyx_n_s_island_solutions, __pyx_n_s_ordered_crossover_indices, __pyx_n_s_num_islands, __pyx_n_s_death_count, __pyx_n_s_variables_len, __pyx_n_s_children, __pyx_n_s_parent1, __pyx_n_s_parent2, __pyx_n_s_child, __pyx_n_s_index0, __pyx_n_s_index1, __pyx_n_s_i, __pyx_n_s_island_index, __pyx_n_s_child_index, __pyx_n_s_parent_island_index1, __pyx_n_s_parent_index1, __pyx_n_s_parent_island_index2, __pyx_n_s_parent_index2); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 130, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(6, 0, 19, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_genopt_genetic_functions_pyx, __pyx_n_s_procreate_sequence, 130, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 130, __pyx_L1_error)
-
-  /* "genetic_functions.pyx":155
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def procreate_real_valued(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
- *                           np.ndarray[double_t, ndim=3] island_solutions,
- *                           np.ndarray[double_t, ndim=2] island_fitnesses,
- */
-  __pyx_tuple__21 = PyTuple_Pack(22, __pyx_n_s_parents, __pyx_n_s_island_solutions, __pyx_n_s_island_fitnesses, __pyx_n_s_heuristic_crossover_randoms, __pyx_n_s_lb, __pyx_n_s_ub, __pyx_n_s_num_islands, __pyx_n_s_death_count, __pyx_n_s_variables_len, __pyx_n_s_children, __pyx_n_s_parent1, __pyx_n_s_parent2, __pyx_n_s_child, __pyx_n_s_fitness1, __pyx_n_s_fitness2, __pyx_n_s_i, __pyx_n_s_island_index, __pyx_n_s_child_index, __pyx_n_s_parent_island_index1, __pyx_n_s_parent_index1, __pyx_n_s_parent_island_index2, __pyx_n_s_parent_index2); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 155, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(9, 0, 22, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_genopt_genetic_functions_pyx, __pyx_n_s_procreate_real_valued, 155, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 155, __pyx_L1_error)
-
-  /* "genetic_functions.pyx":186
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def random_selection(int_t num_solutions,             # <<<<<<<<<<<<<<
- *                      int_t death_count,
- *                      int_t num_islands,
- */
-  __pyx_tuple__23 = PyTuple_Pack(10, __pyx_n_s_num_solutions, __pyx_n_s_death_count, __pyx_n_s_num_islands, __pyx_n_s_other_island_indices, __pyx_n_s_parent_indices, __pyx_n_s_indices, __pyx_n_s_parents, __pyx_n_s_i, __pyx_n_s_child_index, __pyx_n_s_island_index); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 186, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__23);
-  __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(5, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_genopt_genetic_functions_pyx, __pyx_n_s_random_selection, 186, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 186, __pyx_L1_error)
-
-  /* "genetic_functions.pyx":213
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def random_selection_v2(int_t num_solutions,             # <<<<<<<<<<<<<<
- *                         int_t death_count,
- *                         int_t num_islands,
- */
-  __pyx_tuple__25 = PyTuple_Pack(11, __pyx_n_s_num_solutions, __pyx_n_s_death_count, __pyx_n_s_num_islands, __pyx_n_s_other_island_indices, __pyx_n_s_parent_indices, __pyx_n_s_topology_network, __pyx_n_s_indices, __pyx_n_s_parents, __pyx_n_s_i, __pyx_n_s_child_index, __pyx_n_s_island_index); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(6, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_genopt_genetic_functions_pyx, __pyx_n_s_random_selection_v2, 213, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -9834,102 +10045,6 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":10
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def ordered_crossover(np.ndarray[int_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
- *                       np.ndarray[int_t, ndim=1] solution2,
- *                       Py_ssize_t index0,
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17genetic_functions_1ordered_crossover, NULL, __pyx_n_s_genetic_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ordered_crossover, __pyx_t_1) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "genetic_functions.pyx":42
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,             # <<<<<<<<<<<<<<
- *                         np.ndarray[double_t, ndim=1] solution2,
- *                         double_t fitness1,
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17genetic_functions_3heuristic_crossover, NULL, __pyx_n_s_genetic_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_heuristic_crossover, __pyx_t_1) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "genetic_functions.pyx":83
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def mutate_random(np.ndarray[double_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
- *                   np.ndarray[double_t, ndim=1] lb,
- *                   np.ndarray[double_t, ndim=1] ub,
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17genetic_functions_5mutate_random, NULL, __pyx_n_s_genetic_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_mutate_random, __pyx_t_1) < 0) __PYX_ERR(0, 83, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "genetic_functions.pyx":102
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def swap_mutate(np.ndarray[int_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
- *                 np.ndarray[int_t, ndim=2] needs_mutation,
- *                 np.ndarray[int_t, ndim=1] random_var_indices):
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17genetic_functions_7swap_mutate, NULL, __pyx_n_s_genetic_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_swap_mutate, __pyx_t_1) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "genetic_functions.pyx":130
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def procreate_sequence(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
- *                        np.ndarray[int_t, ndim=3] island_solutions,
- *                        np.ndarray[int_t, ndim=2] ordered_crossover_indices,
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17genetic_functions_9procreate_sequence, NULL, __pyx_n_s_genetic_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_procreate_sequence, __pyx_t_1) < 0) __PYX_ERR(0, 130, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "genetic_functions.pyx":155
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def procreate_real_valued(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
- *                           np.ndarray[double_t, ndim=3] island_solutions,
- *                           np.ndarray[double_t, ndim=2] island_fitnesses,
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17genetic_functions_11procreate_real_valued, NULL, __pyx_n_s_genetic_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_procreate_real_valued, __pyx_t_1) < 0) __PYX_ERR(0, 155, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "genetic_functions.pyx":186
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def random_selection(int_t num_solutions,             # <<<<<<<<<<<<<<
- *                      int_t death_count,
- *                      int_t num_islands,
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17genetic_functions_13random_selection, NULL, __pyx_n_s_genetic_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_random_selection, __pyx_t_1) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "genetic_functions.pyx":213
- * @cython.boundscheck(False)
- * @cython.wraparound(False)
- * def random_selection_v2(int_t num_solutions,             # <<<<<<<<<<<<<<
- *                         int_t death_count,
- *                         int_t num_islands,
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_17genetic_functions_15random_selection_v2, NULL, __pyx_n_s_genetic_functions); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_random_selection_v2, __pyx_t_1) < 0) __PYX_ERR(0, 213, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
   /* "genetic_functions.pyx":1
  * cimport cython             # <<<<<<<<<<<<<<
  * import numpy as np
@@ -10016,169 +10131,6 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
 #endif
     }
     return result;
-}
-
-/* RaiseArgTupleInvalid */
-static void __Pyx_RaiseArgtupleInvalid(
-    const char* func_name,
-    int exact,
-    Py_ssize_t num_min,
-    Py_ssize_t num_max,
-    Py_ssize_t num_found)
-{
-    Py_ssize_t num_expected;
-    const char *more_or_less;
-    if (num_found < num_min) {
-        num_expected = num_min;
-        more_or_less = "at least";
-    } else {
-        num_expected = num_max;
-        more_or_less = "at most";
-    }
-    if (exact) {
-        more_or_less = "exactly";
-    }
-    PyErr_Format(PyExc_TypeError,
-                 "%.200s() takes %.8s %" CYTHON_FORMAT_SSIZE_T "d positional argument%.1s (%" CYTHON_FORMAT_SSIZE_T "d given)",
-                 func_name, more_or_less, num_expected,
-                 (num_expected == 1) ? "" : "s", num_found);
-}
-
-/* RaiseDoubleKeywords */
-static void __Pyx_RaiseDoubleKeywordsError(
-    const char* func_name,
-    PyObject* kw_name)
-{
-    PyErr_Format(PyExc_TypeError,
-        #if PY_MAJOR_VERSION >= 3
-        "%s() got multiple values for keyword argument '%U'", func_name, kw_name);
-        #else
-        "%s() got multiple values for keyword argument '%s'", func_name,
-        PyString_AsString(kw_name));
-        #endif
-}
-
-/* ParseKeywords */
-static int __Pyx_ParseOptionalKeywords(
-    PyObject *kwds,
-    PyObject **argnames[],
-    PyObject *kwds2,
-    PyObject *values[],
-    Py_ssize_t num_pos_args,
-    const char* function_name)
-{
-    PyObject *key = 0, *value = 0;
-    Py_ssize_t pos = 0;
-    PyObject*** name;
-    PyObject*** first_kw_arg = argnames + num_pos_args;
-    while (PyDict_Next(kwds, &pos, &key, &value)) {
-        name = first_kw_arg;
-        while (*name && (**name != key)) name++;
-        if (*name) {
-            values[name-argnames] = value;
-            continue;
-        }
-        name = first_kw_arg;
-        #if PY_MAJOR_VERSION < 3
-        if (likely(PyString_CheckExact(key)) || likely(PyString_Check(key))) {
-            while (*name) {
-                if ((CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**name) == PyString_GET_SIZE(key))
-                        && _PyString_Eq(**name, key)) {
-                    values[name-argnames] = value;
-                    break;
-                }
-                name++;
-            }
-            if (*name) continue;
-            else {
-                PyObject*** argname = argnames;
-                while (argname != first_kw_arg) {
-                    if ((**argname == key) || (
-                            (CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**argname) == PyString_GET_SIZE(key))
-                             && _PyString_Eq(**argname, key))) {
-                        goto arg_passed_twice;
-                    }
-                    argname++;
-                }
-            }
-        } else
-        #endif
-        if (likely(PyUnicode_Check(key))) {
-            while (*name) {
-                int cmp = (**name == key) ? 0 :
-                #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
-                    (PyUnicode_GET_SIZE(**name) != PyUnicode_GET_SIZE(key)) ? 1 :
-                #endif
-                    PyUnicode_Compare(**name, key);
-                if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
-                if (cmp == 0) {
-                    values[name-argnames] = value;
-                    break;
-                }
-                name++;
-            }
-            if (*name) continue;
-            else {
-                PyObject*** argname = argnames;
-                while (argname != first_kw_arg) {
-                    int cmp = (**argname == key) ? 0 :
-                    #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
-                        (PyUnicode_GET_SIZE(**argname) != PyUnicode_GET_SIZE(key)) ? 1 :
-                    #endif
-                        PyUnicode_Compare(**argname, key);
-                    if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
-                    if (cmp == 0) goto arg_passed_twice;
-                    argname++;
-                }
-            }
-        } else
-            goto invalid_keyword_type;
-        if (kwds2) {
-            if (unlikely(PyDict_SetItem(kwds2, key, value))) goto bad;
-        } else {
-            goto invalid_keyword;
-        }
-    }
-    return 0;
-arg_passed_twice:
-    __Pyx_RaiseDoubleKeywordsError(function_name, key);
-    goto bad;
-invalid_keyword_type:
-    PyErr_Format(PyExc_TypeError,
-        "%.200s() keywords must be strings", function_name);
-    goto bad;
-invalid_keyword:
-    PyErr_Format(PyExc_TypeError,
-    #if PY_MAJOR_VERSION < 3
-        "%.200s() got an unexpected keyword argument '%.200s'",
-        function_name, PyString_AsString(key));
-    #else
-        "%s() got an unexpected keyword argument '%U'",
-        function_name, key);
-    #endif
-bad:
-    return -1;
-}
-
-/* ArgTypeTest */
-static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact)
-{
-    if (unlikely(!type)) {
-        PyErr_SetString(PyExc_SystemError, "Missing type object");
-        return 0;
-    }
-    else if (exact) {
-        #if PY_MAJOR_VERSION == 2
-        if ((type == &PyBaseString_Type) && likely(__Pyx_PyBaseString_CheckExact(obj))) return 1;
-        #endif
-    }
-    else {
-        if (likely(__Pyx_TypeCheck(obj, type))) return 1;
-    }
-    PyErr_Format(PyExc_TypeError,
-        "Argument '%.200s' has incorrect type (expected %.200s, got %.200s)",
-        name, type->tp_name, Py_TYPE(obj)->tp_name);
-    return 0;
 }
 
 /* IsLittleEndian */
@@ -11191,6 +11143,169 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
     tstate->curexc_traceback = 0;
 }
 #endif
+
+/* RaiseArgTupleInvalid */
+  static void __Pyx_RaiseArgtupleInvalid(
+    const char* func_name,
+    int exact,
+    Py_ssize_t num_min,
+    Py_ssize_t num_max,
+    Py_ssize_t num_found)
+{
+    Py_ssize_t num_expected;
+    const char *more_or_less;
+    if (num_found < num_min) {
+        num_expected = num_min;
+        more_or_less = "at least";
+    } else {
+        num_expected = num_max;
+        more_or_less = "at most";
+    }
+    if (exact) {
+        more_or_less = "exactly";
+    }
+    PyErr_Format(PyExc_TypeError,
+                 "%.200s() takes %.8s %" CYTHON_FORMAT_SSIZE_T "d positional argument%.1s (%" CYTHON_FORMAT_SSIZE_T "d given)",
+                 func_name, more_or_less, num_expected,
+                 (num_expected == 1) ? "" : "s", num_found);
+}
+
+/* RaiseDoubleKeywords */
+  static void __Pyx_RaiseDoubleKeywordsError(
+    const char* func_name,
+    PyObject* kw_name)
+{
+    PyErr_Format(PyExc_TypeError,
+        #if PY_MAJOR_VERSION >= 3
+        "%s() got multiple values for keyword argument '%U'", func_name, kw_name);
+        #else
+        "%s() got multiple values for keyword argument '%s'", func_name,
+        PyString_AsString(kw_name));
+        #endif
+}
+
+/* ParseKeywords */
+  static int __Pyx_ParseOptionalKeywords(
+    PyObject *kwds,
+    PyObject **argnames[],
+    PyObject *kwds2,
+    PyObject *values[],
+    Py_ssize_t num_pos_args,
+    const char* function_name)
+{
+    PyObject *key = 0, *value = 0;
+    Py_ssize_t pos = 0;
+    PyObject*** name;
+    PyObject*** first_kw_arg = argnames + num_pos_args;
+    while (PyDict_Next(kwds, &pos, &key, &value)) {
+        name = first_kw_arg;
+        while (*name && (**name != key)) name++;
+        if (*name) {
+            values[name-argnames] = value;
+            continue;
+        }
+        name = first_kw_arg;
+        #if PY_MAJOR_VERSION < 3
+        if (likely(PyString_CheckExact(key)) || likely(PyString_Check(key))) {
+            while (*name) {
+                if ((CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**name) == PyString_GET_SIZE(key))
+                        && _PyString_Eq(**name, key)) {
+                    values[name-argnames] = value;
+                    break;
+                }
+                name++;
+            }
+            if (*name) continue;
+            else {
+                PyObject*** argname = argnames;
+                while (argname != first_kw_arg) {
+                    if ((**argname == key) || (
+                            (CYTHON_COMPILING_IN_PYPY || PyString_GET_SIZE(**argname) == PyString_GET_SIZE(key))
+                             && _PyString_Eq(**argname, key))) {
+                        goto arg_passed_twice;
+                    }
+                    argname++;
+                }
+            }
+        } else
+        #endif
+        if (likely(PyUnicode_Check(key))) {
+            while (*name) {
+                int cmp = (**name == key) ? 0 :
+                #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
+                    (PyUnicode_GET_SIZE(**name) != PyUnicode_GET_SIZE(key)) ? 1 :
+                #endif
+                    PyUnicode_Compare(**name, key);
+                if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
+                if (cmp == 0) {
+                    values[name-argnames] = value;
+                    break;
+                }
+                name++;
+            }
+            if (*name) continue;
+            else {
+                PyObject*** argname = argnames;
+                while (argname != first_kw_arg) {
+                    int cmp = (**argname == key) ? 0 :
+                    #if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION >= 3
+                        (PyUnicode_GET_SIZE(**argname) != PyUnicode_GET_SIZE(key)) ? 1 :
+                    #endif
+                        PyUnicode_Compare(**argname, key);
+                    if (cmp < 0 && unlikely(PyErr_Occurred())) goto bad;
+                    if (cmp == 0) goto arg_passed_twice;
+                    argname++;
+                }
+            }
+        } else
+            goto invalid_keyword_type;
+        if (kwds2) {
+            if (unlikely(PyDict_SetItem(kwds2, key, value))) goto bad;
+        } else {
+            goto invalid_keyword;
+        }
+    }
+    return 0;
+arg_passed_twice:
+    __Pyx_RaiseDoubleKeywordsError(function_name, key);
+    goto bad;
+invalid_keyword_type:
+    PyErr_Format(PyExc_TypeError,
+        "%.200s() keywords must be strings", function_name);
+    goto bad;
+invalid_keyword:
+    PyErr_Format(PyExc_TypeError,
+    #if PY_MAJOR_VERSION < 3
+        "%.200s() got an unexpected keyword argument '%.200s'",
+        function_name, PyString_AsString(key));
+    #else
+        "%s() got an unexpected keyword argument '%U'",
+        function_name, key);
+    #endif
+bad:
+    return -1;
+}
+
+/* ArgTypeTest */
+  static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact)
+{
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
+    }
+    else if (exact) {
+        #if PY_MAJOR_VERSION == 2
+        if ((type == &PyBaseString_Type) && likely(__Pyx_PyBaseString_CheckExact(obj))) return 1;
+        #endif
+    }
+    else {
+        if (likely(__Pyx_TypeCheck(obj, type))) return 1;
+    }
+    PyErr_Format(PyExc_TypeError,
+        "Argument '%.200s' has incorrect type (expected %.200s, got %.200s)",
+        name, type->tp_name, Py_TYPE(obj)->tp_name);
+    return 0;
+}
 
 /* BufferFallbackError */
   static void __Pyx_RaiseBufferFallbackError(void) {

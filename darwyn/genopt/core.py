@@ -105,7 +105,7 @@ class GeneticOptimizer:
                                           for _ in range(self.num_solutions)]
                                          for __ in range(self.num_islands)]).astype(np.float32)
             if self.integer_solution:
-                island_solutions = np.round(island_solutions)
+                island_solutions = np.round(island_solutions).astype(np.int32)
 
         if self.args is None:
             island_fitnesses = [[self.objective(solution) for solution in solutions] for solutions in island_solutions]
@@ -164,7 +164,7 @@ class GeneticOptimizer:
                                                                    ub=self.ub,
                                                                    needs_mutation=mutations['needs_mutation'][iterations % 1000])
                 if self.integer_solution:
-                    mutated_children = np.round(mutated_children)
+                    mutated_children = np.round(mutated_children).astype(np.int32)
             next_gen_solutions = mutated_children.reshape(self.num_islands, self.death_count, self.num_vars)
             mutations['current_mutations_count'] += L
 

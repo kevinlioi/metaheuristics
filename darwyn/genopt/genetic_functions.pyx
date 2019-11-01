@@ -7,10 +7,10 @@ ctypedef np.float32_t double_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def ordered_crossover(np.ndarray[int_t, ndim=1] solution1,
-                      np.ndarray[int_t, ndim=1] solution2,
-                      Py_ssize_t index0,
-                      Py_ssize_t index1):
+cpdef ordered_crossover(np.ndarray[int_t, ndim=1] solution1,
+                        np.ndarray[int_t, ndim=1] solution2,
+                        Py_ssize_t index0,
+                        Py_ssize_t index1):
     cdef Py_ssize_t i, j, k
     cdef int_t num1, num2
     cdef set subsequence_set = set(solution1[index0:index1])
@@ -39,13 +39,13 @@ def ordered_crossover(np.ndarray[int_t, ndim=1] solution1,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def heuristic_crossover(np.ndarray[double_t, ndim=1] solution1, 
-                        np.ndarray[double_t, ndim=1] solution2, 
-                        double_t fitness1, 
-                        double_t fitness2, 
-                        np.ndarray[double_t, ndim=1] lb, 
-                        np.ndarray[double_t, ndim=1] ub,
-                        np.ndarray[double_t, ndim=1] R):
+cpdef heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,
+                          np.ndarray[double_t, ndim=1] solution2,
+                          double_t fitness1,
+                          double_t fitness2,
+                          np.ndarray[double_t, ndim=1] lb,
+                          np.ndarray[double_t, ndim=1] ub,
+                          np.ndarray[double_t, ndim=1] R):
     cdef np.ndarray[double_t, ndim=1] child, better_solution, worse_solution    
     cdef int_t variable_len, w
     cdef double_t r, child_value, better_value, worse_value
@@ -80,10 +80,10 @@ def heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def mutate_random(np.ndarray[double_t, ndim=2] solutions, 
-                  np.ndarray[double_t, ndim=1] lb, 
-                  np.ndarray[double_t, ndim=1] ub, 
-                  np.ndarray[int_t, ndim=2] needs_mutation):
+cpdef mutate_random(np.ndarray[double_t, ndim=2] solutions,
+                    np.ndarray[double_t, ndim=1] lb,
+                    np.ndarray[double_t, ndim=1] ub,
+                    np.ndarray[int_t, ndim=2] needs_mutation):
     cdef np.ndarray[int_t, ndim=1] uniques = np.unique(needs_mutation[:, 1])
     cdef int_t i, var_index
     cdef np.ndarray[int_t, ndim=1] rows    
@@ -99,9 +99,9 @@ def mutate_random(np.ndarray[double_t, ndim=2] solutions,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def swap_mutate(np.ndarray[int_t, ndim=2] solutions, 
-                np.ndarray[int_t, ndim=2] needs_mutation,
-                np.ndarray[int_t, ndim=1] random_var_indices):
+cpdef swap_mutate(np.ndarray[int_t, ndim=2] solutions,
+                  np.ndarray[int_t, ndim=2] needs_mutation,
+                  np.ndarray[int_t, ndim=1] random_var_indices):
     cdef Py_ssize_t i, j, k
     cdef int_t var_index, other_value, this_value, random_var_index, row
     cdef np.ndarray[int_t, ndim=1] rows
@@ -127,12 +127,12 @@ def swap_mutate(np.ndarray[int_t, ndim=2] solutions,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def procreate_sequence(np.ndarray[int_t, ndim=4] parents, 
-                       np.ndarray[int_t, ndim=3] island_solutions,
-                       np.ndarray[int_t, ndim=2] ordered_crossover_indices,
-                       int_t num_islands,
-                       int_t death_count,
-                       int_t variables_len):
+cpdef procreate_sequence(np.ndarray[int_t, ndim=4] parents,
+                         np.ndarray[int_t, ndim=3] island_solutions,
+                         np.ndarray[int_t, ndim=2] ordered_crossover_indices,
+                         int_t num_islands,
+                         int_t death_count,
+                         int_t variables_len):
     cdef np.ndarray[int_t, ndim=2] children = np.zeros((num_islands*death_count, variables_len)).astype(np.int32)
     cdef np.ndarray[int_t, ndim=1] parent1, parent2, child
     cdef int_t index0, index1, i, island_index, child_index, parent_island_index1, parent_index1, parent_island_index2, parent_index2
@@ -152,15 +152,15 @@ def procreate_sequence(np.ndarray[int_t, ndim=4] parents,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def procreate_real_valued(np.ndarray[int_t, ndim=4] parents, 
-                          np.ndarray[double_t, ndim=3] island_solutions,
-                          np.ndarray[double_t, ndim=2] island_fitnesses,
-                          np.ndarray[double_t, ndim=2] heuristic_crossover_randoms,
-                          np.ndarray[double_t, ndim=1] lb,
-                          np.ndarray[double_t, ndim=1] ub,
-                          int_t num_islands,
-                          int_t death_count,
-                          int_t variables_len):
+cpdef procreate_real_valued(np.ndarray[int_t, ndim=4] parents,
+                            np.ndarray[double_t, ndim=3] island_solutions,
+                            np.ndarray[double_t, ndim=2] island_fitnesses,
+                            np.ndarray[double_t, ndim=2] heuristic_crossover_randoms,
+                            np.ndarray[double_t, ndim=1] lb,
+                            np.ndarray[double_t, ndim=1] ub,
+                            int_t num_islands,
+                            int_t death_count,
+                            int_t variables_len):
     cdef np.ndarray[double_t, ndim=2] children = np.zeros((num_islands*death_count, variables_len)).astype(np.float32)
     cdef np.ndarray[double_t, ndim=1] parent1, parent2, child
     cdef int_t fitness1, fitness2, i, island_index, child_index, parent_island_index1, parent_index1, parent_island_index2, parent_index2
@@ -183,11 +183,11 @@ def procreate_real_valued(np.ndarray[int_t, ndim=4] parents,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def random_selection(int_t num_solutions, 
-                     int_t death_count, 
-                     int_t num_islands, 
-                     dict other_island_indices,
-                     np.ndarray[int_t, ndim=2] parent_indices):
+cpdef random_selection(int_t num_solutions,
+                       int_t death_count,
+                       int_t num_islands,
+                       dict other_island_indices,
+                       np.ndarray[int_t, ndim=2] parent_indices):
     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
     cdef Py_ssize_t i = 0
@@ -210,12 +210,12 @@ def random_selection(int_t num_solutions,
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def random_selection_v2(int_t num_solutions, 
-                        int_t death_count, 
-                        int_t num_islands, 
-                        dict other_island_indices,
-                        np.ndarray[int_t, ndim=2] parent_indices,
-                        dict topology_network):
+cpdef random_selection_v2(int_t num_solutions,
+                          int_t death_count,
+                          int_t num_islands,
+                          dict other_island_indices,
+                          np.ndarray[int_t, ndim=2] parent_indices,
+                          dict topology_network):
     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
     cdef Py_ssize_t i = 0
