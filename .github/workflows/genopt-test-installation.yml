@@ -1,4 +1,4 @@
-name: Darwyn Genopt
+name: Test setup.py installation
 
 on: [push]
 
