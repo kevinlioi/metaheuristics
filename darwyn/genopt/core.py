@@ -177,7 +177,7 @@ class GeneticOptimizer:
             if self.args is None:
                 computed_fitnesses = self.objective(np.concatenate(solutions_to_compute_fitness_for))
             else:
-                solutions_to_compute_fitness_for = np.concatenate(solutions_to_compute_fitness_for).astype(np.int32)
+                solutions_to_compute_fitness_for = np.concatenate(solutions_to_compute_fitness_for)
                 computed_fitnesses = [self.objective(solution, **self.args)
                                       for solution in solutions_to_compute_fitness_for]
 
@@ -202,4 +202,3 @@ class GeneticOptimizer:
         best_solution = island_solutions[ind[0]][ind[1]]
         best_fitness = all_fitnesses[ind]
         return (best_solution, best_fitness), self.metrics
-
