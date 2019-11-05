@@ -1,6 +1,19 @@
-from setuptools import setup, Extension
-import numpy
+from setuptools import setup, Extension, find_packages
+from distutils.command.build_ext import build_ext
 
+class CustomBuildExtCommand(build_ext):
+    """build_ext command for use when numpy headers are needed."""
+    def run(self):
+
+        # Import numpy here, only when headers are needed
+        import numpy
+
+        # Add numpy headers to include_dirs
+        self.include_dirs.append(numpy.get_include())
+
+        # Call original build_ext command
+        build_ext.run(self)
+        
 try:
     from Cython.Build import cythonize
 except ImportError:
@@ -29,12 +42,15 @@ setup(
     author='Kevin Lioi',
     author_email='kevin@darwynhq.com',
     license='unlicense',
-    packages=['darwyn.genopt'],
-    ext_modules=cythonised_files,
-    include_dirs=[numpy.get_include()],
     setup_requires=[
-        'wheel'
+        # Setuptools 18.0 properly handles Cython extensions.
+        'setuptools>=18.0',
+        'cython',
+        'numpy'
     ],
+    packages=find_packages(),
+    ext_modules=cythonised_files,
+    cmdclass = {'build_ext': CustomBuildExtCommand},
     install_requires=[
         'numpy',
     ],
