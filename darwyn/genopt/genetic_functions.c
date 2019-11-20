@@ -1758,7 +1758,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, cha
 /* Module declarations from 'genetic_functions' */
 static PyObject *__pyx_f_17genetic_functions_ordered_crossover(PyArrayObject *, PyArrayObject *, Py_ssize_t, Py_ssize_t, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_17genetic_functions_heuristic_crossover(PyArrayObject *, PyArrayObject *, __pyx_t_17genetic_functions_double_t, __pyx_t_17genetic_functions_double_t, PyArrayObject *, PyArrayObject *, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
-static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
+static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, __pyx_t_17genetic_functions_double_t, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *, PyArrayObject *, PyArrayObject *, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *, PyArrayObject *, PyArrayObject *, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, PyArrayObject *, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, __pyx_t_17genetic_functions_int_t, int __pyx_skip_dispatch); /*proto*/
@@ -1815,6 +1815,7 @@ static const char __pyx_k_num_solutions[] = "num_solutions";
 static const char __pyx_k_variables_len[] = "variables_len";
 static const char __pyx_k_needs_mutation[] = "needs_mutation";
 static const char __pyx_k_parent_indices[] = "parent_indices";
+static const char __pyx_k_mutation_radius[] = "mutation_radius";
 static const char __pyx_k_island_fitnesses[] = "island_fitnesses";
 static const char __pyx_k_island_solutions[] = "island_solutions";
 static const char __pyx_k_topology_network[] = "topology_network";
@@ -1857,6 +1858,7 @@ static PyObject *__pyx_n_s_island_solutions;
 static PyObject *__pyx_n_s_lb;
 static PyObject *__pyx_n_s_low;
 static PyObject *__pyx_n_s_main;
+static PyObject *__pyx_n_s_mutation_radius;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_kp_u_ndarray_is_not_C_contiguous;
 static PyObject *__pyx_kp_u_ndarray_is_not_Fortran_contiguou;
@@ -1889,7 +1891,7 @@ static PyObject *__pyx_n_s_variables_len;
 static PyObject *__pyx_n_s_zeros;
 static PyObject *__pyx_pf_17genetic_functions_ordered_crossover(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, Py_ssize_t __pyx_v_index0, Py_ssize_t __pyx_v_index1); /* proto */
 static PyObject *__pyx_pf_17genetic_functions_2heuristic_crossover(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solution1, PyArrayObject *__pyx_v_solution2, __pyx_t_17genetic_functions_double_t __pyx_v_fitness1, __pyx_t_17genetic_functions_double_t __pyx_v_fitness2, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_R); /* proto */
-static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation); /* proto */
+static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation, __pyx_t_17genetic_functions_double_t __pyx_v_mutation_radius); /* proto */
 static PyObject *__pyx_pf_17genetic_functions_6swap_mutate(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_needs_mutation, PyArrayObject *__pyx_v_random_var_indices); /* proto */
 static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_parents, PyArrayObject *__pyx_v_island_solutions, PyArrayObject *__pyx_v_ordered_crossover_indices, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_variables_len); /* proto */
 static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_parents, PyArrayObject *__pyx_v_island_solutions, PyArrayObject *__pyx_v_island_fitnesses, PyArrayObject *__pyx_v_heuristic_crossover_randoms, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, __pyx_t_17genetic_functions_int_t __pyx_v_num_islands, __pyx_t_17genetic_functions_int_t __pyx_v_death_count, __pyx_t_17genetic_functions_int_t __pyx_v_variables_len); /* proto */
@@ -3228,11 +3230,12 @@ static PyObject *__pyx_pf_17genetic_functions_2heuristic_crossover(CYTHON_UNUSED
  */
 
 static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation, CYTHON_UNUSED int __pyx_skip_dispatch) {
+static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation, __pyx_t_17genetic_functions_double_t __pyx_v_mutation_radius, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyArrayObject *__pyx_v_uniques = 0;
   __pyx_t_17genetic_functions_int_t __pyx_v_i;
   __pyx_t_17genetic_functions_int_t __pyx_v_var_index;
   PyArrayObject *__pyx_v_rows = 0;
+  PyObject *__pyx_v_row = NULL;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_lb;
   __Pyx_Buffer __pyx_pybuffer_lb;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_needs_mutation;
@@ -3261,8 +3264,17 @@ static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_
   PyObject *__pyx_t_12 = NULL;
   PyObject *__pyx_t_13 = NULL;
   PyObject *__pyx_t_14 = NULL;
-  Py_ssize_t __pyx_t_15;
+  int __pyx_t_15;
   Py_ssize_t __pyx_t_16;
+  Py_ssize_t __pyx_t_17;
+  Py_ssize_t __pyx_t_18;
+  PyObject *(*__pyx_t_19)(PyObject *);
+  PyObject *__pyx_t_20 = NULL;
+  PyObject *__pyx_t_21 = NULL;
+  Py_ssize_t __pyx_t_22;
+  __pyx_t_17genetic_functions_double_t __pyx_t_23;
+  PyObject *__pyx_t_24 = NULL;
+  Py_ssize_t __pyx_t_25;
   __Pyx_RefNannySetupContext("mutate_random", 0);
   __pyx_pybuffer_uniques.pybuffer.buf = NULL;
   __pyx_pybuffer_uniques.refcount = 0;
@@ -3309,19 +3321,19 @@ static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_
   }
   __pyx_pybuffernd_needs_mutation.diminfo[0].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_needs_mutation.diminfo[0].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_needs_mutation.diminfo[1].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_needs_mutation.diminfo[1].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[1];
 
-  /* "genetic_functions.pyx":87
- *                     np.ndarray[double_t, ndim=1] ub,
- *                     np.ndarray[int_t, ndim=2] needs_mutation):
+  /* "genetic_functions.pyx":88
+ *                     np.ndarray[int_t, ndim=2] needs_mutation,
+ *                     double_t mutation_radius):
  *     cdef np.ndarray[int_t, ndim=1] uniques = np.unique(needs_mutation[:, 1])             # <<<<<<<<<<<<<<
  *     cdef int_t i, var_index
  *     cdef np.ndarray[int_t, ndim=1] rows
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_tuple__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_tuple__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -3336,16 +3348,16 @@ static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 88, __pyx_L1_error)
   __pyx_t_5 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_uniques.rcbuffer->pybuffer, (PyObject*)__pyx_t_5, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_uniques = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_uniques.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 87, __pyx_L1_error)
+      __PYX_ERR(0, 88, __pyx_L1_error)
     } else {__pyx_pybuffernd_uniques.diminfo[0].strides = __pyx_pybuffernd_uniques.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_uniques.diminfo[0].shape = __pyx_pybuffernd_uniques.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -3353,49 +3365,49 @@ static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_
   __pyx_v_uniques = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":91
+  /* "genetic_functions.pyx":92
  *     cdef np.ndarray[int_t, ndim=1] rows
  * 
  *     for i in range(len(uniques)):             # <<<<<<<<<<<<<<
  *         var_index = uniques[i]
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
  */
-  __pyx_t_6 = PyObject_Length(((PyObject *)__pyx_v_uniques)); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_6 = PyObject_Length(((PyObject *)__pyx_v_uniques)); if (unlikely(__pyx_t_6 == ((Py_ssize_t)-1))) __PYX_ERR(0, 92, __pyx_L1_error)
   __pyx_t_7 = __pyx_t_6;
   for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
     __pyx_v_i = __pyx_t_8;
 
-    /* "genetic_functions.pyx":92
+    /* "genetic_functions.pyx":93
  * 
  *     for i in range(len(uniques)):
  *         var_index = uniques[i]             # <<<<<<<<<<<<<<
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
- *         solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
+ *         if mutation_radius == 0:
  */
     __pyx_t_9 = __pyx_v_i;
     __pyx_v_var_index = (*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_int_t *, __pyx_pybuffernd_uniques.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_uniques.diminfo[0].strides));
 
-    /* "genetic_functions.pyx":93
+    /* "genetic_functions.pyx":94
  *     for i in range(len(uniques)):
  *         var_index = uniques[i]
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]             # <<<<<<<<<<<<<<
- *         solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
- *                                                        high=ub[var_index],
+ *         if mutation_radius == 0:
+ *             solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
  */
-    __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_tuple__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_tuple__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_tuple__3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_tuple__3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 93, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 94, __pyx_L1_error)
     __pyx_t_10 = ((PyArrayObject *)__pyx_t_2);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -3412,89 +3424,300 @@ static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_
         __pyx_t_12 = __pyx_t_13 = __pyx_t_14 = 0;
       }
       __pyx_pybuffernd_rows.diminfo[0].strides = __pyx_pybuffernd_rows.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rows.diminfo[0].shape = __pyx_pybuffernd_rows.rcbuffer->pybuffer.shape[0];
-      if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
+      if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
     }
     __pyx_t_10 = 0;
     __Pyx_XDECREF_SET(__pyx_v_rows, ((PyArrayObject *)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "genetic_functions.pyx":94
+    /* "genetic_functions.pyx":95
  *         var_index = uniques[i]
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
- *         solutions[rows, var_index] = np.random.uniform(low=lb[var_index],             # <<<<<<<<<<<<<<
- *                                                        high=ub[var_index],
- *                                                        size=rows.shape[0])
+ *         if mutation_radius == 0:             # <<<<<<<<<<<<<<
+ *             solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
+ *                                                            high=ub[var_index],
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_random); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_uniform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_15 = __pyx_v_var_index;
-    __pyx_t_1 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_double_t *, __pyx_pybuffernd_lb.rcbuffer->pybuffer.buf, __pyx_t_15, __pyx_pybuffernd_lb.diminfo[0].strides))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_low, __pyx_t_1) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_15 = ((__pyx_v_mutation_radius == 0.0) != 0);
+    if (__pyx_t_15) {
 
-    /* "genetic_functions.pyx":95
+      /* "genetic_functions.pyx":96
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
- *         solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
- *                                                        high=ub[var_index],             # <<<<<<<<<<<<<<
- *                                                        size=rows.shape[0])
+ *         if mutation_radius == 0:
+ *             solutions[rows, var_index] = np.random.uniform(low=lb[var_index],             # <<<<<<<<<<<<<<
+ *                                                            high=ub[var_index],
+ *                                                            size=rows.shape[0])
+ */
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_random); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_uniform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_16 = __pyx_v_var_index;
+      __pyx_t_1 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_double_t *, __pyx_pybuffernd_lb.rcbuffer->pybuffer.buf, __pyx_t_16, __pyx_pybuffernd_lb.diminfo[0].strides))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_low, __pyx_t_1) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "genetic_functions.pyx":97
+ *         if mutation_radius == 0:
+ *             solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
+ *                                                            high=ub[var_index],             # <<<<<<<<<<<<<<
+ *                                                            size=rows.shape[0])
+ *         else:
+ */
+      __pyx_t_17 = __pyx_v_var_index;
+      __pyx_t_1 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_double_t *, __pyx_pybuffernd_ub.rcbuffer->pybuffer.buf, __pyx_t_17, __pyx_pybuffernd_ub.diminfo[0].strides))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_high, __pyx_t_1) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "genetic_functions.pyx":98
+ *             solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
+ *                                                            high=ub[var_index],
+ *                                                            size=rows.shape[0])             # <<<<<<<<<<<<<<
+ *         else:
+ *             for row in rows:
+ */
+      __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_rows->dimensions[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_size, __pyx_t_1) < 0) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "genetic_functions.pyx":96
+ *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
+ *         if mutation_radius == 0:
+ *             solutions[rows, var_index] = np.random.uniform(low=lb[var_index],             # <<<<<<<<<<<<<<
+ *                                                            high=ub[var_index],
+ *                                                            size=rows.shape[0])
+ */
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+      __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_INCREF(((PyObject *)__pyx_v_rows));
+      __Pyx_GIVEREF(((PyObject *)__pyx_v_rows));
+      PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_v_rows));
+      __Pyx_GIVEREF(__pyx_t_3);
+      PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
+      __pyx_t_3 = 0;
+      if (unlikely(PyObject_SetItem(((PyObject *)__pyx_v_solutions), __pyx_t_2, __pyx_t_1) < 0)) __PYX_ERR(0, 96, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+      /* "genetic_functions.pyx":95
+ *         var_index = uniques[i]
+ *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
+ *         if mutation_radius == 0:             # <<<<<<<<<<<<<<
+ *             solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
+ *                                                            high=ub[var_index],
+ */
+      goto __pyx_L5;
+    }
+
+    /* "genetic_functions.pyx":100
+ *                                                            size=rows.shape[0])
+ *         else:
+ *             for row in rows:             # <<<<<<<<<<<<<<
+ *                 solutions[row, var_index] = np.random.uniform(low=max(lb[var_index], solutions[row, var_index] - mutation_radius),
+ *                                                               high=min(ub[var_index], solutions[row, var_index] + mutation_radius))
+ */
+    /*else*/ {
+      if (likely(PyList_CheckExact(((PyObject *)__pyx_v_rows))) || PyTuple_CheckExact(((PyObject *)__pyx_v_rows))) {
+        __pyx_t_1 = ((PyObject *)__pyx_v_rows); __Pyx_INCREF(__pyx_t_1); __pyx_t_18 = 0;
+        __pyx_t_19 = NULL;
+      } else {
+        __pyx_t_18 = -1; __pyx_t_1 = PyObject_GetIter(((PyObject *)__pyx_v_rows)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_1);
+        __pyx_t_19 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 100, __pyx_L1_error)
+      }
+      for (;;) {
+        if (likely(!__pyx_t_19)) {
+          if (likely(PyList_CheckExact(__pyx_t_1))) {
+            if (__pyx_t_18 >= PyList_GET_SIZE(__pyx_t_1)) break;
+            #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+            __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_18); __Pyx_INCREF(__pyx_t_2); __pyx_t_18++; if (unlikely(0 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+            #else
+            __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_18); __pyx_t_18++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_2);
+            #endif
+          } else {
+            if (__pyx_t_18 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
+            #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+            __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_18); __Pyx_INCREF(__pyx_t_2); __pyx_t_18++; if (unlikely(0 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+            #else
+            __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_18); __pyx_t_18++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_2);
+            #endif
+          }
+        } else {
+          __pyx_t_2 = __pyx_t_19(__pyx_t_1);
+          if (unlikely(!__pyx_t_2)) {
+            PyObject* exc_type = PyErr_Occurred();
+            if (exc_type) {
+              if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+              else __PYX_ERR(0, 100, __pyx_L1_error)
+            }
+            break;
+          }
+          __Pyx_GOTREF(__pyx_t_2);
+        }
+        __Pyx_XDECREF_SET(__pyx_v_row, __pyx_t_2);
+        __pyx_t_2 = 0;
+
+        /* "genetic_functions.pyx":101
+ *         else:
+ *             for row in rows:
+ *                 solutions[row, var_index] = np.random.uniform(low=max(lb[var_index], solutions[row, var_index] - mutation_radius),             # <<<<<<<<<<<<<<
+ *                                                               high=min(ub[var_index], solutions[row, var_index] + mutation_radius))
  *     return solutions
  */
-    __pyx_t_16 = __pyx_v_var_index;
-    __pyx_t_1 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_double_t *, __pyx_pybuffernd_ub.rcbuffer->pybuffer.buf, __pyx_t_16, __pyx_pybuffernd_ub.diminfo[0].strides))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_high, __pyx_t_1) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_random); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_uniform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __pyx_t_4 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __pyx_t_20 = PyTuple_New(2); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_20);
+        __Pyx_INCREF(__pyx_v_row);
+        __Pyx_GIVEREF(__pyx_v_row);
+        PyTuple_SET_ITEM(__pyx_t_20, 0, __pyx_v_row);
+        __Pyx_GIVEREF(__pyx_t_4);
+        PyTuple_SET_ITEM(__pyx_t_20, 1, __pyx_t_4);
+        __pyx_t_4 = 0;
+        __pyx_t_4 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_solutions), __pyx_t_20); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+        __pyx_t_20 = PyFloat_FromDouble(__pyx_v_mutation_radius); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_20);
+        __pyx_t_21 = PyNumber_Subtract(__pyx_t_4, __pyx_t_20); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_21);
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+        __pyx_t_22 = __pyx_v_var_index;
+        __pyx_t_23 = (*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_double_t *, __pyx_pybuffernd_lb.rcbuffer->pybuffer.buf, __pyx_t_22, __pyx_pybuffernd_lb.diminfo[0].strides));
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_t_23); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __pyx_t_24 = PyObject_RichCompare(__pyx_t_21, __pyx_t_4, Py_GT); __Pyx_XGOTREF(__pyx_t_24); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_24); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_24); __pyx_t_24 = 0;
+        if (__pyx_t_15) {
+          __Pyx_INCREF(__pyx_t_21);
+          __pyx_t_20 = __pyx_t_21;
+        } else {
+          __pyx_t_24 = PyFloat_FromDouble(__pyx_t_23); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 101, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_24);
+          __pyx_t_20 = __pyx_t_24;
+          __pyx_t_24 = 0;
+        }
+        __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
+        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_low, __pyx_t_20) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
 
-    /* "genetic_functions.pyx":96
- *         solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
- *                                                        high=ub[var_index],
- *                                                        size=rows.shape[0])             # <<<<<<<<<<<<<<
+        /* "genetic_functions.pyx":102
+ *             for row in rows:
+ *                 solutions[row, var_index] = np.random.uniform(low=max(lb[var_index], solutions[row, var_index] - mutation_radius),
+ *                                                               high=min(ub[var_index], solutions[row, var_index] + mutation_radius))             # <<<<<<<<<<<<<<
  *     return solutions
  * 
  */
-    __pyx_t_1 = __Pyx_PyInt_From_Py_intptr_t((__pyx_v_rows->dimensions[0])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_size, __pyx_t_1) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_20 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 102, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_20);
+        __pyx_t_21 = PyTuple_New(2); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 102, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_21);
+        __Pyx_INCREF(__pyx_v_row);
+        __Pyx_GIVEREF(__pyx_v_row);
+        PyTuple_SET_ITEM(__pyx_t_21, 0, __pyx_v_row);
+        __Pyx_GIVEREF(__pyx_t_20);
+        PyTuple_SET_ITEM(__pyx_t_21, 1, __pyx_t_20);
+        __pyx_t_20 = 0;
+        __pyx_t_20 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_solutions), __pyx_t_21); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 102, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_20);
+        __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
+        __pyx_t_21 = PyFloat_FromDouble(__pyx_v_mutation_radius); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 102, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_21);
+        __pyx_t_24 = PyNumber_Add(__pyx_t_20, __pyx_t_21); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 102, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_24);
+        __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+        __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
+        __pyx_t_25 = __pyx_v_var_index;
+        __pyx_t_23 = (*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_double_t *, __pyx_pybuffernd_ub.rcbuffer->pybuffer.buf, __pyx_t_25, __pyx_pybuffernd_ub.diminfo[0].strides));
+        __pyx_t_20 = PyFloat_FromDouble(__pyx_t_23); if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 102, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_20);
+        __pyx_t_4 = PyObject_RichCompare(__pyx_t_24, __pyx_t_20, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_20); __pyx_t_20 = 0;
+        __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 102, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (__pyx_t_15) {
+          __Pyx_INCREF(__pyx_t_24);
+          __pyx_t_21 = __pyx_t_24;
+        } else {
+          __pyx_t_4 = PyFloat_FromDouble(__pyx_t_23); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_4);
+          __pyx_t_21 = __pyx_t_4;
+          __pyx_t_4 = 0;
+        }
+        __Pyx_DECREF(__pyx_t_24); __pyx_t_24 = 0;
+        if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_high, __pyx_t_21) < 0) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
 
-    /* "genetic_functions.pyx":94
- *         var_index = uniques[i]
- *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
- *         solutions[rows, var_index] = np.random.uniform(low=lb[var_index],             # <<<<<<<<<<<<<<
- *                                                        high=ub[var_index],
- *                                                        size=rows.shape[0])
+        /* "genetic_functions.pyx":101
+ *         else:
+ *             for row in rows:
+ *                 solutions[row, var_index] = np.random.uniform(low=max(lb[var_index], solutions[row, var_index] - mutation_radius),             # <<<<<<<<<<<<<<
+ *                                                               high=min(ub[var_index], solutions[row, var_index] + mutation_radius))
+ *     return solutions
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(((PyObject *)__pyx_v_rows));
-    __Pyx_GIVEREF(((PyObject *)__pyx_v_rows));
-    PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_v_rows));
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
-    __pyx_t_3 = 0;
-    if (unlikely(PyObject_SetItem(((PyObject *)__pyx_v_solutions), __pyx_t_2, __pyx_t_1) < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __pyx_t_21 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, __pyx_t_3); if (unlikely(!__pyx_t_21)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_21);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
+        __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_INCREF(__pyx_v_row);
+        __Pyx_GIVEREF(__pyx_v_row);
+        PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_row);
+        __Pyx_GIVEREF(__pyx_t_3);
+        PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
+        __pyx_t_3 = 0;
+        if (unlikely(PyObject_SetItem(((PyObject *)__pyx_v_solutions), __pyx_t_2, __pyx_t_21) < 0)) __PYX_ERR(0, 101, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
+
+        /* "genetic_functions.pyx":100
+ *                                                            size=rows.shape[0])
+ *         else:
+ *             for row in rows:             # <<<<<<<<<<<<<<
+ *                 solutions[row, var_index] = np.random.uniform(low=max(lb[var_index], solutions[row, var_index] - mutation_radius),
+ *                                                               high=min(ub[var_index], solutions[row, var_index] + mutation_radius))
+ */
+      }
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
+    __pyx_L5:;
   }
 
-  /* "genetic_functions.pyx":97
- *                                                        high=ub[var_index],
- *                                                        size=rows.shape[0])
+  /* "genetic_functions.pyx":103
+ *                 solutions[row, var_index] = np.random.uniform(low=max(lb[var_index], solutions[row, var_index] - mutation_radius),
+ *                                                               high=min(ub[var_index], solutions[row, var_index] + mutation_radius))
  *     return solutions             # <<<<<<<<<<<<<<
  * 
  * 
@@ -3518,6 +3741,9 @@ static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_20);
+  __Pyx_XDECREF(__pyx_t_21);
+  __Pyx_XDECREF(__pyx_t_24);
   { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
     __Pyx_PyThreadState_declare
     __Pyx_PyThreadState_assign
@@ -3542,6 +3768,7 @@ static PyObject *__pyx_f_17genetic_functions_mutate_random(PyArrayObject *__pyx_
   __pyx_L2:;
   __Pyx_XDECREF((PyObject *)__pyx_v_uniques);
   __Pyx_XDECREF((PyObject *)__pyx_v_rows);
+  __Pyx_XDECREF(__pyx_v_row);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -3554,16 +3781,19 @@ static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_sel
   PyArrayObject *__pyx_v_lb = 0;
   PyArrayObject *__pyx_v_ub = 0;
   PyArrayObject *__pyx_v_needs_mutation = 0;
+  __pyx_t_17genetic_functions_double_t __pyx_v_mutation_radius;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("mutate_random (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solutions,&__pyx_n_s_lb,&__pyx_n_s_ub,&__pyx_n_s_needs_mutation,0};
-    PyObject* values[4] = {0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_solutions,&__pyx_n_s_lb,&__pyx_n_s_ub,&__pyx_n_s_needs_mutation,&__pyx_n_s_mutation_radius,0};
+    PyObject* values[5] = {0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         CYTHON_FALLTHROUGH;
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
@@ -3584,40 +3814,48 @@ static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lb)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 1); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 5, 5, 1); __PYX_ERR(0, 83, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ub)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 2); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 5, 5, 2); __PYX_ERR(0, 83, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_needs_mutation)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, 3); __PYX_ERR(0, 83, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 5, 5, 3); __PYX_ERR(0, 83, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  4:
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_mutation_radius)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 5, 5, 4); __PYX_ERR(0, 83, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "mutate_random") < 0)) __PYX_ERR(0, 83, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 4) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
     __pyx_v_solutions = ((PyArrayObject *)values[0]);
     __pyx_v_lb = ((PyArrayObject *)values[1]);
     __pyx_v_ub = ((PyArrayObject *)values[2]);
     __pyx_v_needs_mutation = ((PyArrayObject *)values[3]);
+    __pyx_v_mutation_radius = __pyx_PyFloat_AsFloat(values[4]); if (unlikely((__pyx_v_mutation_radius == ((npy_float32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 87, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 83, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("mutate_random", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 83, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("genetic_functions.mutate_random", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3627,7 +3865,7 @@ static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_sel
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 84, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 85, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_needs_mutation), __pyx_ptype_5numpy_ndarray, 1, "needs_mutation", 0))) __PYX_ERR(0, 86, __pyx_L1_error)
-  __pyx_r = __pyx_pf_17genetic_functions_4mutate_random(__pyx_self, __pyx_v_solutions, __pyx_v_lb, __pyx_v_ub, __pyx_v_needs_mutation);
+  __pyx_r = __pyx_pf_17genetic_functions_4mutate_random(__pyx_self, __pyx_v_solutions, __pyx_v_lb, __pyx_v_ub, __pyx_v_needs_mutation, __pyx_v_mutation_radius);
 
   /* function exit code */
   goto __pyx_L0;
@@ -3638,7 +3876,7 @@ static PyObject *__pyx_pw_17genetic_functions_5mutate_random(PyObject *__pyx_sel
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation) {
+static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_solutions, PyArrayObject *__pyx_v_lb, PyArrayObject *__pyx_v_ub, PyArrayObject *__pyx_v_needs_mutation, __pyx_t_17genetic_functions_double_t __pyx_v_mutation_radius) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_lb;
   __Pyx_Buffer __pyx_pybuffer_lb;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_needs_mutation;
@@ -3688,7 +3926,7 @@ static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObj
   }
   __pyx_pybuffernd_needs_mutation.diminfo[0].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_needs_mutation.diminfo[0].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_needs_mutation.diminfo[1].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_needs_mutation.diminfo[1].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[1];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_17genetic_functions_mutate_random(__pyx_v_solutions, __pyx_v_lb, __pyx_v_ub, __pyx_v_needs_mutation, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_17genetic_functions_mutate_random(__pyx_v_solutions, __pyx_v_lb, __pyx_v_ub, __pyx_v_needs_mutation, __pyx_v_mutation_radius, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3720,7 +3958,7 @@ static PyObject *__pyx_pf_17genetic_functions_4mutate_random(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":102
+/* "genetic_functions.pyx":108
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef swap_mutate(np.ndarray[int_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
@@ -3803,33 +4041,33 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
   __pyx_pybuffernd_random_var_indices.rcbuffer = &__pyx_pybuffer_random_var_indices;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 108, __pyx_L1_error)
   }
   __pyx_pybuffernd_solutions.diminfo[0].strides = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_solutions.diminfo[0].shape = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_solutions.diminfo[1].strides = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_solutions.diminfo[1].shape = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer, (PyObject*)__pyx_v_needs_mutation, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer, (PyObject*)__pyx_v_needs_mutation, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 108, __pyx_L1_error)
   }
   __pyx_pybuffernd_needs_mutation.diminfo[0].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_needs_mutation.diminfo[0].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_needs_mutation.diminfo[1].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_needs_mutation.diminfo[1].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_random_var_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_random_var_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 108, __pyx_L1_error)
   }
   __pyx_pybuffernd_random_var_indices.diminfo[0].strides = __pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_random_var_indices.diminfo[0].shape = __pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer.shape[0];
 
-  /* "genetic_functions.pyx":108
+  /* "genetic_functions.pyx":114
  *     cdef int_t var_index, other_value, this_value, random_var_index, row
  *     cdef np.ndarray[int_t, ndim=1] rows
  *     cdef np.ndarray[int_t, ndim=1] uniques = np.unique(needs_mutation[:, 1])             # <<<<<<<<<<<<<<
  * 
  *     i = 0
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_unique); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_tuple__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_tuple__2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -3844,16 +4082,16 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_t_2) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 114, __pyx_L1_error)
   __pyx_t_5 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_uniques.rcbuffer->pybuffer, (PyObject*)__pyx_t_5, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_uniques = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_uniques.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 108, __pyx_L1_error)
+      __PYX_ERR(0, 114, __pyx_L1_error)
     } else {__pyx_pybuffernd_uniques.diminfo[0].strides = __pyx_pybuffernd_uniques.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_uniques.diminfo[0].shape = __pyx_pybuffernd_uniques.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -3861,7 +4099,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
   __pyx_v_uniques = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":110
+  /* "genetic_functions.pyx":116
  *     cdef np.ndarray[int_t, ndim=1] uniques = np.unique(needs_mutation[:, 1])
  * 
  *     i = 0             # <<<<<<<<<<<<<<
@@ -3870,7 +4108,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
  */
   __pyx_v_i = 0;
 
-  /* "genetic_functions.pyx":111
+  /* "genetic_functions.pyx":117
  * 
  *     i = 0
  *     for k in range(uniques.shape[0]):             # <<<<<<<<<<<<<<
@@ -3882,7 +4120,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
   for (__pyx_t_8 = 0; __pyx_t_8 < __pyx_t_7; __pyx_t_8+=1) {
     __pyx_v_k = __pyx_t_8;
 
-    /* "genetic_functions.pyx":112
+    /* "genetic_functions.pyx":118
  *     i = 0
  *     for k in range(uniques.shape[0]):
  *         var_index = uniques[k]             # <<<<<<<<<<<<<<
@@ -3892,27 +4130,27 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
     __pyx_t_9 = __pyx_v_k;
     __pyx_v_var_index = (*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_int_t *, __pyx_pybuffernd_uniques.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_uniques.diminfo[0].strides));
 
-    /* "genetic_functions.pyx":113
+    /* "genetic_functions.pyx":119
  *     for k in range(uniques.shape[0]):
  *         var_index = uniques[k]
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]             # <<<<<<<<<<<<<<
  *         for j in range(rows.shape[0]):
  *             row = rows[j]
  */
-    __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_tuple__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_tuple__2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_var_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_needs_mutation), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_tuple__3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_tuple__3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 113, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 119, __pyx_L1_error)
     __pyx_t_10 = ((PyArrayObject *)__pyx_t_2);
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -3929,13 +4167,13 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
         __pyx_t_12 = __pyx_t_13 = __pyx_t_14 = 0;
       }
       __pyx_pybuffernd_rows.diminfo[0].strides = __pyx_pybuffernd_rows.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rows.diminfo[0].shape = __pyx_pybuffernd_rows.rcbuffer->pybuffer.shape[0];
-      if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 113, __pyx_L1_error)
+      if (unlikely(__pyx_t_11 < 0)) __PYX_ERR(0, 119, __pyx_L1_error)
     }
     __pyx_t_10 = 0;
     __Pyx_XDECREF_SET(__pyx_v_rows, ((PyArrayObject *)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "genetic_functions.pyx":114
+    /* "genetic_functions.pyx":120
  *         var_index = uniques[k]
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
  *         for j in range(rows.shape[0]):             # <<<<<<<<<<<<<<
@@ -3947,7 +4185,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
     for (__pyx_t_17 = 0; __pyx_t_17 < __pyx_t_16; __pyx_t_17+=1) {
       __pyx_v_j = __pyx_t_17;
 
-      /* "genetic_functions.pyx":115
+      /* "genetic_functions.pyx":121
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]
  *         for j in range(rows.shape[0]):
  *             row = rows[j]             # <<<<<<<<<<<<<<
@@ -3957,7 +4195,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
       __pyx_t_18 = __pyx_v_j;
       __pyx_v_row = (*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_int_t *, __pyx_pybuffernd_rows.rcbuffer->pybuffer.buf, __pyx_t_18, __pyx_pybuffernd_rows.diminfo[0].strides));
 
-      /* "genetic_functions.pyx":116
+      /* "genetic_functions.pyx":122
  *         for j in range(rows.shape[0]):
  *             row = rows[j]
  *             random_var_index = random_var_indices[i]             # <<<<<<<<<<<<<<
@@ -3967,7 +4205,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
       __pyx_t_19 = __pyx_v_i;
       __pyx_v_random_var_index = (*__Pyx_BufPtrStrided1d(__pyx_t_17genetic_functions_int_t *, __pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer.buf, __pyx_t_19, __pyx_pybuffernd_random_var_indices.diminfo[0].strides));
 
-      /* "genetic_functions.pyx":117
+      /* "genetic_functions.pyx":123
  *             row = rows[j]
  *             random_var_index = random_var_indices[i]
  *             i += 1             # <<<<<<<<<<<<<<
@@ -3976,7 +4214,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
  */
       __pyx_v_i = (__pyx_v_i + 1);
 
-      /* "genetic_functions.pyx":118
+      /* "genetic_functions.pyx":124
  *             random_var_index = random_var_indices[i]
  *             i += 1
  *             if random_var_index == var_index:             # <<<<<<<<<<<<<<
@@ -3986,7 +4224,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
       __pyx_t_20 = ((__pyx_v_random_var_index == __pyx_v_var_index) != 0);
       if (__pyx_t_20) {
 
-        /* "genetic_functions.pyx":119
+        /* "genetic_functions.pyx":125
  *             i += 1
  *             if random_var_index == var_index:
  *                 continue             # <<<<<<<<<<<<<<
@@ -3995,7 +4233,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
  */
         goto __pyx_L5_continue;
 
-        /* "genetic_functions.pyx":118
+        /* "genetic_functions.pyx":124
  *             random_var_index = random_var_indices[i]
  *             i += 1
  *             if random_var_index == var_index:             # <<<<<<<<<<<<<<
@@ -4004,7 +4242,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
  */
       }
 
-      /* "genetic_functions.pyx":120
+      /* "genetic_functions.pyx":126
  *             if random_var_index == var_index:
  *                 continue
  *             other_value = solutions[row, random_var_index]             # <<<<<<<<<<<<<<
@@ -4015,7 +4253,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
       __pyx_t_22 = __pyx_v_random_var_index;
       __pyx_v_other_value = (*__Pyx_BufPtrStrided2d(__pyx_t_17genetic_functions_int_t *, __pyx_pybuffernd_solutions.rcbuffer->pybuffer.buf, __pyx_t_21, __pyx_pybuffernd_solutions.diminfo[0].strides, __pyx_t_22, __pyx_pybuffernd_solutions.diminfo[1].strides));
 
-      /* "genetic_functions.pyx":121
+      /* "genetic_functions.pyx":127
  *                 continue
  *             other_value = solutions[row, random_var_index]
  *             this_value = solutions[row, var_index]             # <<<<<<<<<<<<<<
@@ -4026,7 +4264,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
       __pyx_t_24 = __pyx_v_var_index;
       __pyx_v_this_value = (*__Pyx_BufPtrStrided2d(__pyx_t_17genetic_functions_int_t *, __pyx_pybuffernd_solutions.rcbuffer->pybuffer.buf, __pyx_t_23, __pyx_pybuffernd_solutions.diminfo[0].strides, __pyx_t_24, __pyx_pybuffernd_solutions.diminfo[1].strides));
 
-      /* "genetic_functions.pyx":123
+      /* "genetic_functions.pyx":129
  *             this_value = solutions[row, var_index]
  * 
  *             solutions[row, var_index] = other_value             # <<<<<<<<<<<<<<
@@ -4037,7 +4275,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
       __pyx_t_26 = __pyx_v_var_index;
       *__Pyx_BufPtrStrided2d(__pyx_t_17genetic_functions_int_t *, __pyx_pybuffernd_solutions.rcbuffer->pybuffer.buf, __pyx_t_25, __pyx_pybuffernd_solutions.diminfo[0].strides, __pyx_t_26, __pyx_pybuffernd_solutions.diminfo[1].strides) = __pyx_v_other_value;
 
-      /* "genetic_functions.pyx":124
+      /* "genetic_functions.pyx":130
  * 
  *             solutions[row, var_index] = other_value
  *             solutions[row, random_var_index] = this_value             # <<<<<<<<<<<<<<
@@ -4051,7 +4289,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
     }
   }
 
-  /* "genetic_functions.pyx":125
+  /* "genetic_functions.pyx":131
  *             solutions[row, var_index] = other_value
  *             solutions[row, random_var_index] = this_value
  *     return solutions             # <<<<<<<<<<<<<<
@@ -4063,7 +4301,7 @@ static PyObject *__pyx_f_17genetic_functions_swap_mutate(PyArrayObject *__pyx_v_
   __pyx_r = ((PyObject *)__pyx_v_solutions);
   goto __pyx_L0;
 
-  /* "genetic_functions.pyx":102
+  /* "genetic_functions.pyx":108
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef swap_mutate(np.ndarray[int_t, ndim=2] solutions,             # <<<<<<<<<<<<<<
@@ -4138,17 +4376,17 @@ static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self,
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_needs_mutation)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, 1); __PYX_ERR(0, 102, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, 1); __PYX_ERR(0, 108, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_random_var_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, 2); __PYX_ERR(0, 102, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, 2); __PYX_ERR(0, 108, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "swap_mutate") < 0)) __PYX_ERR(0, 102, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "swap_mutate") < 0)) __PYX_ERR(0, 108, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -4163,15 +4401,15 @@ static PyObject *__pyx_pw_17genetic_functions_7swap_mutate(PyObject *__pyx_self,
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 102, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("swap_mutate", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 108, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("genetic_functions.swap_mutate", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solutions), __pyx_ptype_5numpy_ndarray, 1, "solutions", 0))) __PYX_ERR(0, 102, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_needs_mutation), __pyx_ptype_5numpy_ndarray, 1, "needs_mutation", 0))) __PYX_ERR(0, 103, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_random_var_indices), __pyx_ptype_5numpy_ndarray, 1, "random_var_indices", 0))) __PYX_ERR(0, 104, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_solutions), __pyx_ptype_5numpy_ndarray, 1, "solutions", 0))) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_needs_mutation), __pyx_ptype_5numpy_ndarray, 1, "needs_mutation", 0))) __PYX_ERR(0, 109, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_random_var_indices), __pyx_ptype_5numpy_ndarray, 1, "random_var_indices", 0))) __PYX_ERR(0, 110, __pyx_L1_error)
   __pyx_r = __pyx_pf_17genetic_functions_6swap_mutate(__pyx_self, __pyx_v_solutions, __pyx_v_needs_mutation, __pyx_v_random_var_indices);
 
   /* function exit code */
@@ -4208,21 +4446,21 @@ static PyObject *__pyx_pf_17genetic_functions_6swap_mutate(CYTHON_UNUSED PyObjec
   __pyx_pybuffernd_random_var_indices.rcbuffer = &__pyx_pybuffer_random_var_indices;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 108, __pyx_L1_error)
   }
   __pyx_pybuffernd_solutions.diminfo[0].strides = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_solutions.diminfo[0].shape = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_solutions.diminfo[1].strides = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_solutions.diminfo[1].shape = __pyx_pybuffernd_solutions.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer, (PyObject*)__pyx_v_needs_mutation, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer, (PyObject*)__pyx_v_needs_mutation, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 108, __pyx_L1_error)
   }
   __pyx_pybuffernd_needs_mutation.diminfo[0].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_needs_mutation.diminfo[0].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_needs_mutation.diminfo[1].strides = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_needs_mutation.diminfo[1].shape = __pyx_pybuffernd_needs_mutation.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_random_var_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 102, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_random_var_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 108, __pyx_L1_error)
   }
   __pyx_pybuffernd_random_var_indices.diminfo[0].strides = __pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_random_var_indices.diminfo[0].shape = __pyx_pybuffernd_random_var_indices.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_17genetic_functions_swap_mutate(__pyx_v_solutions, __pyx_v_needs_mutation, __pyx_v_random_var_indices, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_17genetic_functions_swap_mutate(__pyx_v_solutions, __pyx_v_needs_mutation, __pyx_v_random_var_indices, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4252,7 +4490,7 @@ static PyObject *__pyx_pf_17genetic_functions_6swap_mutate(CYTHON_UNUSED PyObjec
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":130
+/* "genetic_functions.pyx":136
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef procreate_sequence(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
@@ -4343,37 +4581,37 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
   __pyx_pybuffernd_ordered_crossover_indices.rcbuffer = &__pyx_pybuffer_ordered_crossover_indices;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 136, __pyx_L1_error)
   }
   __pyx_pybuffernd_parents.diminfo[0].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parents.diminfo[0].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parents.diminfo[1].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parents.diminfo[1].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_parents.diminfo[2].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_parents.diminfo[2].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[2]; __pyx_pybuffernd_parents.diminfo[3].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[3]; __pyx_pybuffernd_parents.diminfo[3].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[3];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 136, __pyx_L1_error)
   }
   __pyx_pybuffernd_island_solutions.diminfo[0].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_solutions.diminfo[0].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_solutions.diminfo[1].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_solutions.diminfo[1].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_island_solutions.diminfo[2].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_island_solutions.diminfo[2].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[2];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_ordered_crossover_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_ordered_crossover_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 136, __pyx_L1_error)
   }
   __pyx_pybuffernd_ordered_crossover_indices.diminfo[0].strides = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[0].shape = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[1].strides = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[1].shape = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.shape[1];
 
-  /* "genetic_functions.pyx":136
+  /* "genetic_functions.pyx":142
  *                          int_t death_count,
  *                          int_t variables_len):
  *     cdef np.ndarray[int_t, ndim=2] children = np.zeros((num_islands*death_count, variables_len)).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[int_t, ndim=1] parent1, parent2, child
  *     cdef int_t index0, index1, i, island_index, child_index, parent_island_index1, parent_index1, parent_island_index2, parent_index2
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int32((__pyx_v_num_islands * __pyx_v_death_count)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int32((__pyx_v_num_islands * __pyx_v_death_count)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyInt_From_npy_int32(__pyx_v_variables_len); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_npy_int32(__pyx_v_variables_len); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3);
@@ -4394,15 +4632,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -4418,16 +4656,16 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 136, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 142, __pyx_L1_error)
   __pyx_t_7 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_children.rcbuffer->pybuffer, (PyObject*)__pyx_t_7, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_children = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_children.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 136, __pyx_L1_error)
+      __PYX_ERR(0, 142, __pyx_L1_error)
     } else {__pyx_pybuffernd_children.diminfo[0].strides = __pyx_pybuffernd_children.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_children.diminfo[0].shape = __pyx_pybuffernd_children.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_children.diminfo[1].strides = __pyx_pybuffernd_children.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_children.diminfo[1].shape = __pyx_pybuffernd_children.rcbuffer->pybuffer.shape[1];
     }
   }
@@ -4435,7 +4673,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
   __pyx_v_children = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":140
+  /* "genetic_functions.pyx":146
  *     cdef int_t index0, index1, i, island_index, child_index, parent_island_index1, parent_index1, parent_island_index2, parent_index2
  * 
  *     i = 0             # <<<<<<<<<<<<<<
@@ -4444,7 +4682,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
  */
   __pyx_v_i = 0;
 
-  /* "genetic_functions.pyx":141
+  /* "genetic_functions.pyx":147
  * 
  *     i = 0
  *     for island_index in range(num_islands):             # <<<<<<<<<<<<<<
@@ -4456,37 +4694,37 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
     __pyx_v_island_index = __pyx_t_10;
 
-    /* "genetic_functions.pyx":142
+    /* "genetic_functions.pyx":148
  *     i = 0
  *     for island_index in range(num_islands):
  *         for child_index in range(parents[island_index].shape[0]):             # <<<<<<<<<<<<<<
  *             (parent_island_index1, parent_index1), (parent_island_index2, parent_index2) = parents[island_index][child_index]
  *             parent1 = island_solutions[parent_island_index1][parent_index1]
  */
-    __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_11 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_11 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 142, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_11 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 148, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_12 = __pyx_t_11;
     for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
       __pyx_v_child_index = __pyx_t_13;
 
-      /* "genetic_functions.pyx":143
+      /* "genetic_functions.pyx":149
  *     for island_index in range(num_islands):
  *         for child_index in range(parents[island_index].shape[0]):
  *             (parent_island_index1, parent_index1), (parent_island_index2, parent_index2) = parents[island_index][child_index]             # <<<<<<<<<<<<<<
  *             parent1 = island_solutions[parent_island_index1][parent_index1]
  *             parent2 = island_solutions[parent_island_index2][parent_index2]
  */
-      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
@@ -4495,7 +4733,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 143, __pyx_L1_error)
+          __PYX_ERR(0, 149, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -4508,15 +4746,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_INCREF(__pyx_t_1);
         __Pyx_INCREF(__pyx_t_6);
         #else
-        __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         #endif
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_14 = Py_TYPE(__pyx_t_2)->tp_iternext;
@@ -4524,7 +4762,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_GOTREF(__pyx_t_1);
         index = 1; __pyx_t_6 = __pyx_t_14(__pyx_t_2); if (unlikely(!__pyx_t_6)) goto __pyx_L7_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_6);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_2), 2) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_2), 2) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
         __pyx_t_14 = NULL;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         goto __pyx_L8_unpacking_done;
@@ -4532,7 +4770,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_t_14 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 143, __pyx_L1_error)
+        __PYX_ERR(0, 149, __pyx_L1_error)
         __pyx_L8_unpacking_done:;
       }
       if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -4541,7 +4779,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 143, __pyx_L1_error)
+          __PYX_ERR(0, 149, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -4554,15 +4792,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_INCREF(__pyx_t_2);
         __Pyx_INCREF(__pyx_t_5);
         #else
-        __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_14 = Py_TYPE(__pyx_t_3)->tp_iternext;
@@ -4570,7 +4808,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_GOTREF(__pyx_t_2);
         index = 1; __pyx_t_5 = __pyx_t_14(__pyx_t_3); if (unlikely(!__pyx_t_5)) goto __pyx_L9_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_5);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_3), 2) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_3), 2) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
         __pyx_t_14 = NULL;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L10_unpacking_done;
@@ -4578,12 +4816,12 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_t_14 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 143, __pyx_L1_error)
+        __PYX_ERR(0, 149, __pyx_L1_error)
         __pyx_L10_unpacking_done:;
       }
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_2); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_2); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_5); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_5); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_parent_island_index1 = __pyx_t_15;
       __pyx_v_parent_index1 = __pyx_t_16;
@@ -4593,7 +4831,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 143, __pyx_L1_error)
+          __PYX_ERR(0, 149, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -4606,15 +4844,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_INCREF(__pyx_t_5);
         __Pyx_INCREF(__pyx_t_2);
         #else
-        __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_3 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
+        __pyx_t_3 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_14 = Py_TYPE(__pyx_t_3)->tp_iternext;
@@ -4622,7 +4860,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_GOTREF(__pyx_t_5);
         index = 1; __pyx_t_2 = __pyx_t_14(__pyx_t_3); if (unlikely(!__pyx_t_2)) goto __pyx_L11_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_2);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_3), 2) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_3), 2) < 0) __PYX_ERR(0, 149, __pyx_L1_error)
         __pyx_t_14 = NULL;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L12_unpacking_done;
@@ -4630,29 +4868,29 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_t_14 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 143, __pyx_L1_error)
+        __PYX_ERR(0, 149, __pyx_L1_error)
         __pyx_L12_unpacking_done:;
       }
-      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_5); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_5); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_2); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_2); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_v_parent_island_index2 = __pyx_t_16;
       __pyx_v_parent_index2 = __pyx_t_15;
 
-      /* "genetic_functions.pyx":144
+      /* "genetic_functions.pyx":150
  *         for child_index in range(parents[island_index].shape[0]):
  *             (parent_island_index1, parent_index1), (parent_island_index2, parent_index2) = parents[island_index][child_index]
  *             parent1 = island_solutions[parent_island_index1][parent_index1]             # <<<<<<<<<<<<<<
  *             parent2 = island_solutions[parent_island_index2][parent_index2]
  *             index0, index1 = ordered_crossover_indices[i]
  */
-      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_solutions), __pyx_v_parent_island_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_solutions), __pyx_v_parent_island_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_parent_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 144, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_parent_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 144, __pyx_L1_error)
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 150, __pyx_L1_error)
       __pyx_t_17 = ((PyArrayObject *)__pyx_t_6);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -4669,25 +4907,25 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
           __pyx_t_19 = __pyx_t_20 = __pyx_t_21 = 0;
         }
         __pyx_pybuffernd_parent1.diminfo[0].strides = __pyx_pybuffernd_parent1.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent1.diminfo[0].shape = __pyx_pybuffernd_parent1.rcbuffer->pybuffer.shape[0];
-        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 144, __pyx_L1_error)
+        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 150, __pyx_L1_error)
       }
       __pyx_t_17 = 0;
       __Pyx_XDECREF_SET(__pyx_v_parent1, ((PyArrayObject *)__pyx_t_6));
       __pyx_t_6 = 0;
 
-      /* "genetic_functions.pyx":145
+      /* "genetic_functions.pyx":151
  *             (parent_island_index1, parent_index1), (parent_island_index2, parent_index2) = parents[island_index][child_index]
  *             parent1 = island_solutions[parent_island_index1][parent_index1]
  *             parent2 = island_solutions[parent_island_index2][parent_index2]             # <<<<<<<<<<<<<<
  *             index0, index1 = ordered_crossover_indices[i]
  *             child = ordered_crossover(parent1, parent2, index0, index1)
  */
-      __pyx_t_6 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_solutions), __pyx_v_parent_island_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_solutions), __pyx_v_parent_island_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 151, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, __pyx_v_parent_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, __pyx_v_parent_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 145, __pyx_L1_error)
+      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 151, __pyx_L1_error)
       __pyx_t_17 = ((PyArrayObject *)__pyx_t_4);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -4704,20 +4942,20 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
           __pyx_t_21 = __pyx_t_20 = __pyx_t_19 = 0;
         }
         __pyx_pybuffernd_parent2.diminfo[0].strides = __pyx_pybuffernd_parent2.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent2.diminfo[0].shape = __pyx_pybuffernd_parent2.rcbuffer->pybuffer.shape[0];
-        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 145, __pyx_L1_error)
+        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 151, __pyx_L1_error)
       }
       __pyx_t_17 = 0;
       __Pyx_XDECREF_SET(__pyx_v_parent2, ((PyArrayObject *)__pyx_t_4));
       __pyx_t_4 = 0;
 
-      /* "genetic_functions.pyx":146
+      /* "genetic_functions.pyx":152
  *             parent1 = island_solutions[parent_island_index1][parent_index1]
  *             parent2 = island_solutions[parent_island_index2][parent_index2]
  *             index0, index1 = ordered_crossover_indices[i]             # <<<<<<<<<<<<<<
  *             child = ordered_crossover(parent1, parent2, index0, index1)
  *             children[i] = child
  */
-      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_ordered_crossover_indices), __pyx_v_i, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 146, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_ordered_crossover_indices), __pyx_v_i, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
         PyObject* sequence = __pyx_t_4;
@@ -4725,7 +4963,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 146, __pyx_L1_error)
+          __PYX_ERR(0, 152, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -4738,15 +4976,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_INCREF(__pyx_t_6);
         __Pyx_INCREF(__pyx_t_1);
         #else
-        __pyx_t_6 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 146, __pyx_L1_error)
+        __pyx_t_6 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 152, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         #endif
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+        __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_14 = Py_TYPE(__pyx_t_2)->tp_iternext;
@@ -4754,7 +4992,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_GOTREF(__pyx_t_6);
         index = 1; __pyx_t_1 = __pyx_t_14(__pyx_t_2); if (unlikely(!__pyx_t_1)) goto __pyx_L13_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_1);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_2), 2) < 0) __PYX_ERR(0, 146, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_2), 2) < 0) __PYX_ERR(0, 152, __pyx_L1_error)
         __pyx_t_14 = NULL;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         goto __pyx_L14_unpacking_done;
@@ -4762,26 +5000,26 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_t_14 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 146, __pyx_L1_error)
+        __PYX_ERR(0, 152, __pyx_L1_error)
         __pyx_L14_unpacking_done:;
       }
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_6); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 146, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_6); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_1); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 146, __pyx_L1_error)
+      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_1); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 152, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_index0 = __pyx_t_15;
       __pyx_v_index1 = __pyx_t_16;
 
-      /* "genetic_functions.pyx":147
+      /* "genetic_functions.pyx":153
  *             parent2 = island_solutions[parent_island_index2][parent_index2]
  *             index0, index1 = ordered_crossover_indices[i]
  *             child = ordered_crossover(parent1, parent2, index0, index1)             # <<<<<<<<<<<<<<
  *             children[i] = child
  *             i += 1
  */
-      __pyx_t_4 = __pyx_f_17genetic_functions_ordered_crossover(((PyArrayObject *)__pyx_v_parent1), ((PyArrayObject *)__pyx_v_parent2), __pyx_v_index0, __pyx_v_index1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
+      __pyx_t_4 = __pyx_f_17genetic_functions_ordered_crossover(((PyArrayObject *)__pyx_v_parent1), ((PyArrayObject *)__pyx_v_parent2), __pyx_v_index0, __pyx_v_index1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 147, __pyx_L1_error)
+      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 153, __pyx_L1_error)
       __pyx_t_17 = ((PyArrayObject *)__pyx_t_4);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -4798,22 +5036,22 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
           __pyx_t_19 = __pyx_t_20 = __pyx_t_21 = 0;
         }
         __pyx_pybuffernd_child.diminfo[0].strides = __pyx_pybuffernd_child.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_child.diminfo[0].shape = __pyx_pybuffernd_child.rcbuffer->pybuffer.shape[0];
-        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 147, __pyx_L1_error)
+        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 153, __pyx_L1_error)
       }
       __pyx_t_17 = 0;
       __Pyx_XDECREF_SET(__pyx_v_child, ((PyArrayObject *)__pyx_t_4));
       __pyx_t_4 = 0;
 
-      /* "genetic_functions.pyx":148
+      /* "genetic_functions.pyx":154
  *             index0, index1 = ordered_crossover_indices[i]
  *             child = ordered_crossover(parent1, parent2, index0, index1)
  *             children[i] = child             # <<<<<<<<<<<<<<
  *             i += 1
  *     return children
  */
-      if (unlikely(__Pyx_SetItemInt(((PyObject *)__pyx_v_children), __pyx_v_i, ((PyObject *)__pyx_v_child), __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0) < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(((PyObject *)__pyx_v_children), __pyx_v_i, ((PyObject *)__pyx_v_child), __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0) < 0)) __PYX_ERR(0, 154, __pyx_L1_error)
 
-      /* "genetic_functions.pyx":149
+      /* "genetic_functions.pyx":155
  *             child = ordered_crossover(parent1, parent2, index0, index1)
  *             children[i] = child
  *             i += 1             # <<<<<<<<<<<<<<
@@ -4824,7 +5062,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
     }
   }
 
-  /* "genetic_functions.pyx":150
+  /* "genetic_functions.pyx":156
  *             children[i] = child
  *             i += 1
  *     return children             # <<<<<<<<<<<<<<
@@ -4836,7 +5074,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_sequence(PyArrayObject *_
   __pyx_r = ((PyObject *)__pyx_v_children);
   goto __pyx_L0;
 
-  /* "genetic_functions.pyx":130
+  /* "genetic_functions.pyx":136
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef procreate_sequence(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
@@ -4928,35 +5166,35 @@ static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_island_solutions)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 1); __PYX_ERR(0, 130, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 1); __PYX_ERR(0, 136, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ordered_crossover_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 2); __PYX_ERR(0, 130, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 2); __PYX_ERR(0, 136, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 3); __PYX_ERR(0, 130, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 3); __PYX_ERR(0, 136, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 4); __PYX_ERR(0, 130, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 4); __PYX_ERR(0, 136, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_variables_len)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 5); __PYX_ERR(0, 130, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, 5); __PYX_ERR(0, 136, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "procreate_sequence") < 0)) __PYX_ERR(0, 130, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "procreate_sequence") < 0)) __PYX_ERR(0, 136, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -4971,21 +5209,21 @@ static PyObject *__pyx_pw_17genetic_functions_9procreate_sequence(PyObject *__py
     __pyx_v_parents = ((PyArrayObject *)values[0]);
     __pyx_v_island_solutions = ((PyArrayObject *)values[1]);
     __pyx_v_ordered_crossover_indices = ((PyArrayObject *)values[2]);
-    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[3]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L3_error)
-    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[4]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 134, __pyx_L3_error)
-    __pyx_v_variables_len = __Pyx_PyInt_As_npy_int32(values[5]); if (unlikely((__pyx_v_variables_len == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 135, __pyx_L3_error)
+    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[3]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 139, __pyx_L3_error)
+    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[4]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L3_error)
+    __pyx_v_variables_len = __Pyx_PyInt_As_npy_int32(values[5]); if (unlikely((__pyx_v_variables_len == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 141, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 130, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("procreate_sequence", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 136, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("genetic_functions.procreate_sequence", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parents), __pyx_ptype_5numpy_ndarray, 1, "parents", 0))) __PYX_ERR(0, 130, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_solutions), __pyx_ptype_5numpy_ndarray, 1, "island_solutions", 0))) __PYX_ERR(0, 131, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ordered_crossover_indices), __pyx_ptype_5numpy_ndarray, 1, "ordered_crossover_indices", 0))) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parents), __pyx_ptype_5numpy_ndarray, 1, "parents", 0))) __PYX_ERR(0, 136, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_solutions), __pyx_ptype_5numpy_ndarray, 1, "island_solutions", 0))) __PYX_ERR(0, 137, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ordered_crossover_indices), __pyx_ptype_5numpy_ndarray, 1, "ordered_crossover_indices", 0))) __PYX_ERR(0, 138, __pyx_L1_error)
   __pyx_r = __pyx_pf_17genetic_functions_8procreate_sequence(__pyx_self, __pyx_v_parents, __pyx_v_island_solutions, __pyx_v_ordered_crossover_indices, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len);
 
   /* function exit code */
@@ -5022,21 +5260,21 @@ static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED 
   __pyx_pybuffernd_ordered_crossover_indices.rcbuffer = &__pyx_pybuffer_ordered_crossover_indices;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 136, __pyx_L1_error)
   }
   __pyx_pybuffernd_parents.diminfo[0].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parents.diminfo[0].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parents.diminfo[1].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parents.diminfo[1].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_parents.diminfo[2].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_parents.diminfo[2].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[2]; __pyx_pybuffernd_parents.diminfo[3].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[3]; __pyx_pybuffernd_parents.diminfo[3].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[3];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 136, __pyx_L1_error)
   }
   __pyx_pybuffernd_island_solutions.diminfo[0].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_solutions.diminfo[0].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_solutions.diminfo[1].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_solutions.diminfo[1].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_island_solutions.diminfo[2].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_island_solutions.diminfo[2].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[2];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_ordered_crossover_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_ordered_crossover_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 136, __pyx_L1_error)
   }
   __pyx_pybuffernd_ordered_crossover_indices.diminfo[0].strides = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[0].shape = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[1].strides = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_ordered_crossover_indices.diminfo[1].shape = __pyx_pybuffernd_ordered_crossover_indices.rcbuffer->pybuffer.shape[1];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_17genetic_functions_procreate_sequence(__pyx_v_parents, __pyx_v_island_solutions, __pyx_v_ordered_crossover_indices, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_17genetic_functions_procreate_sequence(__pyx_v_parents, __pyx_v_island_solutions, __pyx_v_ordered_crossover_indices, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5066,7 +5304,7 @@ static PyObject *__pyx_pf_17genetic_functions_8procreate_sequence(CYTHON_UNUSED 
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":155
+/* "genetic_functions.pyx":161
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef procreate_real_valued(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
@@ -5175,52 +5413,52 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
   __pyx_pybuffernd_ub.rcbuffer = &__pyx_pybuffer_ub;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_parents.diminfo[0].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parents.diminfo[0].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parents.diminfo[1].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parents.diminfo[1].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_parents.diminfo[2].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_parents.diminfo[2].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[2]; __pyx_pybuffernd_parents.diminfo[3].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[3]; __pyx_pybuffernd_parents.diminfo[3].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[3];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_island_solutions.diminfo[0].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_solutions.diminfo[0].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_solutions.diminfo[1].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_solutions.diminfo[1].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_island_solutions.diminfo[2].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_island_solutions.diminfo[2].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[2];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_fitnesses, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_fitnesses, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_island_fitnesses.diminfo[0].strides = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_fitnesses.diminfo[0].shape = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_fitnesses.diminfo[1].strides = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_fitnesses.diminfo[1].shape = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer, (PyObject*)__pyx_v_heuristic_crossover_randoms, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer, (PyObject*)__pyx_v_heuristic_crossover_randoms, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[0].strides = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[0].shape = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[1].strides = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[1].shape = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lb.rcbuffer->pybuffer, (PyObject*)__pyx_v_lb, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lb.rcbuffer->pybuffer, (PyObject*)__pyx_v_lb, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_lb.diminfo[0].strides = __pyx_pybuffernd_lb.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_lb.diminfo[0].shape = __pyx_pybuffernd_lb.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ub.rcbuffer->pybuffer, (PyObject*)__pyx_v_ub, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ub.rcbuffer->pybuffer, (PyObject*)__pyx_v_ub, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_ub.diminfo[0].strides = __pyx_pybuffernd_ub.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ub.diminfo[0].shape = __pyx_pybuffernd_ub.rcbuffer->pybuffer.shape[0];
 
-  /* "genetic_functions.pyx":164
+  /* "genetic_functions.pyx":170
  *                             int_t death_count,
  *                             int_t variables_len):
  *     cdef np.ndarray[double_t, ndim=2] children = np.zeros((num_islands*death_count, variables_len)).astype(np.float32)             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[double_t, ndim=1] parent1, parent2, child
  *     cdef int_t fitness1, fitness2, i, island_index, child_index, parent_island_index1, parent_index1, parent_island_index2, parent_index2
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_zeros); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int32((__pyx_v_num_islands * __pyx_v_death_count)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int32((__pyx_v_num_islands * __pyx_v_death_count)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyInt_From_npy_int32(__pyx_v_variables_len); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_npy_int32(__pyx_v_variables_len); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3);
@@ -5241,15 +5479,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -5265,16 +5503,16 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 164, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 170, __pyx_L1_error)
   __pyx_t_7 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_children.rcbuffer->pybuffer, (PyObject*)__pyx_t_7, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_children = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_children.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 164, __pyx_L1_error)
+      __PYX_ERR(0, 170, __pyx_L1_error)
     } else {__pyx_pybuffernd_children.diminfo[0].strides = __pyx_pybuffernd_children.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_children.diminfo[0].shape = __pyx_pybuffernd_children.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_children.diminfo[1].strides = __pyx_pybuffernd_children.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_children.diminfo[1].shape = __pyx_pybuffernd_children.rcbuffer->pybuffer.shape[1];
     }
   }
@@ -5282,7 +5520,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
   __pyx_v_children = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":168
+  /* "genetic_functions.pyx":174
  *     cdef int_t fitness1, fitness2, i, island_index, child_index, parent_island_index1, parent_index1, parent_island_index2, parent_index2
  * 
  *     i = 0             # <<<<<<<<<<<<<<
@@ -5291,7 +5529,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
  */
   __pyx_v_i = 0;
 
-  /* "genetic_functions.pyx":169
+  /* "genetic_functions.pyx":175
  * 
  *     i = 0
  *     for island_index in range(num_islands):             # <<<<<<<<<<<<<<
@@ -5303,37 +5541,37 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
   for (__pyx_t_10 = 0; __pyx_t_10 < __pyx_t_9; __pyx_t_10+=1) {
     __pyx_v_island_index = __pyx_t_10;
 
-    /* "genetic_functions.pyx":170
+    /* "genetic_functions.pyx":176
  *     i = 0
  *     for island_index in range(num_islands):
  *         for child_index in range(parents[island_index].shape[0]):             # <<<<<<<<<<<<<<
  *             (parent_island_index1, parent_index1), (parent_island_index2, parent_index2) = parents[island_index][child_index]
  *             parent1 = island_solutions[parent_island_index1][parent_index1]
  */
-    __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 176, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_11 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_11 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 170, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyInt_As_long(__pyx_t_1); if (unlikely((__pyx_t_11 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 176, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_12 = __pyx_t_11;
     for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
       __pyx_v_child_index = __pyx_t_13;
 
-      /* "genetic_functions.pyx":171
+      /* "genetic_functions.pyx":177
  *     for island_index in range(num_islands):
  *         for child_index in range(parents[island_index].shape[0]):
  *             (parent_island_index1, parent_index1), (parent_island_index2, parent_index2) = parents[island_index][child_index]             # <<<<<<<<<<<<<<
  *             parent1 = island_solutions[parent_island_index1][parent_index1]
  *             parent2 = island_solutions[parent_island_index2][parent_index2]
  */
-      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if ((likely(PyTuple_CheckExact(__pyx_t_4))) || (PyList_CheckExact(__pyx_t_4))) {
@@ -5342,7 +5580,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 171, __pyx_L1_error)
+          __PYX_ERR(0, 177, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -5355,15 +5593,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_INCREF(__pyx_t_1);
         __Pyx_INCREF(__pyx_t_6);
         #else
-        __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         #endif
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_2 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_14 = Py_TYPE(__pyx_t_2)->tp_iternext;
@@ -5371,7 +5609,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_GOTREF(__pyx_t_1);
         index = 1; __pyx_t_6 = __pyx_t_14(__pyx_t_2); if (unlikely(!__pyx_t_6)) goto __pyx_L7_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_6);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_2), 2) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_2), 2) < 0) __PYX_ERR(0, 177, __pyx_L1_error)
         __pyx_t_14 = NULL;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         goto __pyx_L8_unpacking_done;
@@ -5379,7 +5617,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_t_14 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 171, __pyx_L1_error)
+        __PYX_ERR(0, 177, __pyx_L1_error)
         __pyx_L8_unpacking_done:;
       }
       if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -5388,7 +5626,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 171, __pyx_L1_error)
+          __PYX_ERR(0, 177, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -5401,15 +5639,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_INCREF(__pyx_t_2);
         __Pyx_INCREF(__pyx_t_5);
         #else
-        __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_3 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_14 = Py_TYPE(__pyx_t_3)->tp_iternext;
@@ -5417,7 +5655,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_GOTREF(__pyx_t_2);
         index = 1; __pyx_t_5 = __pyx_t_14(__pyx_t_3); if (unlikely(!__pyx_t_5)) goto __pyx_L9_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_5);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_3), 2) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_3), 2) < 0) __PYX_ERR(0, 177, __pyx_L1_error)
         __pyx_t_14 = NULL;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L10_unpacking_done;
@@ -5425,12 +5663,12 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_t_14 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 171, __pyx_L1_error)
+        __PYX_ERR(0, 177, __pyx_L1_error)
         __pyx_L10_unpacking_done:;
       }
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_2); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_2); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_5); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_5); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v_parent_island_index1 = __pyx_t_15;
       __pyx_v_parent_index1 = __pyx_t_16;
@@ -5440,7 +5678,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 171, __pyx_L1_error)
+          __PYX_ERR(0, 177, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -5453,15 +5691,15 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_INCREF(__pyx_t_5);
         __Pyx_INCREF(__pyx_t_2);
         #else
-        __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_5 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_3 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 171, __pyx_L1_error)
+        __pyx_t_3 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_14 = Py_TYPE(__pyx_t_3)->tp_iternext;
@@ -5469,7 +5707,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_GOTREF(__pyx_t_5);
         index = 1; __pyx_t_2 = __pyx_t_14(__pyx_t_3); if (unlikely(!__pyx_t_2)) goto __pyx_L11_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_2);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_3), 2) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_3), 2) < 0) __PYX_ERR(0, 177, __pyx_L1_error)
         __pyx_t_14 = NULL;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         goto __pyx_L12_unpacking_done;
@@ -5477,29 +5715,29 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_t_14 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 171, __pyx_L1_error)
+        __PYX_ERR(0, 177, __pyx_L1_error)
         __pyx_L12_unpacking_done:;
       }
-      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_5); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_16 = __Pyx_PyInt_As_npy_int32(__pyx_t_5); if (unlikely((__pyx_t_16 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_2); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 171, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_2); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_v_parent_island_index2 = __pyx_t_16;
       __pyx_v_parent_index2 = __pyx_t_15;
 
-      /* "genetic_functions.pyx":172
+      /* "genetic_functions.pyx":178
  *         for child_index in range(parents[island_index].shape[0]):
  *             (parent_island_index1, parent_index1), (parent_island_index2, parent_index2) = parents[island_index][child_index]
  *             parent1 = island_solutions[parent_island_index1][parent_index1]             # <<<<<<<<<<<<<<
  *             parent2 = island_solutions[parent_island_index2][parent_index2]
  * 
  */
-      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_solutions), __pyx_v_parent_island_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 172, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_solutions), __pyx_v_parent_island_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_parent_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 172, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_parent_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 178, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 172, __pyx_L1_error)
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 178, __pyx_L1_error)
       __pyx_t_17 = ((PyArrayObject *)__pyx_t_6);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -5516,25 +5754,25 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
           __pyx_t_19 = __pyx_t_20 = __pyx_t_21 = 0;
         }
         __pyx_pybuffernd_parent1.diminfo[0].strides = __pyx_pybuffernd_parent1.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent1.diminfo[0].shape = __pyx_pybuffernd_parent1.rcbuffer->pybuffer.shape[0];
-        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 172, __pyx_L1_error)
+        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 178, __pyx_L1_error)
       }
       __pyx_t_17 = 0;
       __Pyx_XDECREF_SET(__pyx_v_parent1, ((PyArrayObject *)__pyx_t_6));
       __pyx_t_6 = 0;
 
-      /* "genetic_functions.pyx":173
+      /* "genetic_functions.pyx":179
  *             (parent_island_index1, parent_index1), (parent_island_index2, parent_index2) = parents[island_index][child_index]
  *             parent1 = island_solutions[parent_island_index1][parent_index1]
  *             parent2 = island_solutions[parent_island_index2][parent_index2]             # <<<<<<<<<<<<<<
  * 
  *             fitness1 = island_fitnesses[parent_island_index1][parent_index1]
  */
-      __pyx_t_6 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_solutions), __pyx_v_parent_island_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_solutions), __pyx_v_parent_island_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 179, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, __pyx_v_parent_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 173, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, __pyx_v_parent_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 173, __pyx_L1_error)
+      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 179, __pyx_L1_error)
       __pyx_t_17 = ((PyArrayObject *)__pyx_t_4);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -5551,58 +5789,58 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
           __pyx_t_21 = __pyx_t_20 = __pyx_t_19 = 0;
         }
         __pyx_pybuffernd_parent2.diminfo[0].strides = __pyx_pybuffernd_parent2.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent2.diminfo[0].shape = __pyx_pybuffernd_parent2.rcbuffer->pybuffer.shape[0];
-        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 173, __pyx_L1_error)
+        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 179, __pyx_L1_error)
       }
       __pyx_t_17 = 0;
       __Pyx_XDECREF_SET(__pyx_v_parent2, ((PyArrayObject *)__pyx_t_4));
       __pyx_t_4 = 0;
 
-      /* "genetic_functions.pyx":175
+      /* "genetic_functions.pyx":181
  *             parent2 = island_solutions[parent_island_index2][parent_index2]
  * 
  *             fitness1 = island_fitnesses[parent_island_index1][parent_index1]             # <<<<<<<<<<<<<<
  *             fitness2 = island_fitnesses[parent_island_index2][parent_index2]
  * 
  */
-      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_fitnesses), __pyx_v_parent_island_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_fitnesses), __pyx_v_parent_island_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_parent_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_parent_index1, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 181, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_6); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 175, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_6); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 181, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_v_fitness1 = __pyx_t_15;
 
-      /* "genetic_functions.pyx":176
+      /* "genetic_functions.pyx":182
  * 
  *             fitness1 = island_fitnesses[parent_island_index1][parent_index1]
  *             fitness2 = island_fitnesses[parent_island_index2][parent_index2]             # <<<<<<<<<<<<<<
  * 
  *             child = heuristic_crossover(parent1, parent2, fitness1, fitness2, lb, ub, heuristic_crossover_randoms[i])
  */
-      __pyx_t_6 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_fitnesses), __pyx_v_parent_island_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 176, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_GetItemInt(((PyObject *)__pyx_v_island_fitnesses), __pyx_v_parent_island_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, __pyx_v_parent_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, __pyx_v_parent_index2, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_4); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 176, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyInt_As_npy_int32(__pyx_t_4); if (unlikely((__pyx_t_15 == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_v_fitness2 = __pyx_t_15;
 
-      /* "genetic_functions.pyx":178
+      /* "genetic_functions.pyx":184
  *             fitness2 = island_fitnesses[parent_island_index2][parent_index2]
  * 
  *             child = heuristic_crossover(parent1, parent2, fitness1, fitness2, lb, ub, heuristic_crossover_randoms[i])             # <<<<<<<<<<<<<<
  *             children[i] = child
  *             i += 1
  */
-      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_heuristic_crossover_randoms), __pyx_v_i, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_heuristic_crossover_randoms), __pyx_v_i, __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 178, __pyx_L1_error)
-      __pyx_t_6 = __pyx_f_17genetic_functions_heuristic_crossover(((PyArrayObject *)__pyx_v_parent1), ((PyArrayObject *)__pyx_v_parent2), __pyx_v_fitness1, __pyx_v_fitness2, ((PyArrayObject *)__pyx_v_lb), ((PyArrayObject *)__pyx_v_ub), ((PyArrayObject *)__pyx_t_4), 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 178, __pyx_L1_error)
+      if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 184, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_17genetic_functions_heuristic_crossover(((PyArrayObject *)__pyx_v_parent1), ((PyArrayObject *)__pyx_v_parent2), __pyx_v_fitness1, __pyx_v_fitness2, ((PyArrayObject *)__pyx_v_lb), ((PyArrayObject *)__pyx_v_ub), ((PyArrayObject *)__pyx_t_4), 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 178, __pyx_L1_error)
+      if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 184, __pyx_L1_error)
       __pyx_t_17 = ((PyArrayObject *)__pyx_t_6);
       {
         __Pyx_BufFmt_StackElem __pyx_stack[1];
@@ -5619,22 +5857,22 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
           __pyx_t_19 = __pyx_t_20 = __pyx_t_21 = 0;
         }
         __pyx_pybuffernd_child.diminfo[0].strides = __pyx_pybuffernd_child.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_child.diminfo[0].shape = __pyx_pybuffernd_child.rcbuffer->pybuffer.shape[0];
-        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 178, __pyx_L1_error)
+        if (unlikely(__pyx_t_18 < 0)) __PYX_ERR(0, 184, __pyx_L1_error)
       }
       __pyx_t_17 = 0;
       __Pyx_XDECREF_SET(__pyx_v_child, ((PyArrayObject *)__pyx_t_6));
       __pyx_t_6 = 0;
 
-      /* "genetic_functions.pyx":179
+      /* "genetic_functions.pyx":185
  * 
  *             child = heuristic_crossover(parent1, parent2, fitness1, fitness2, lb, ub, heuristic_crossover_randoms[i])
  *             children[i] = child             # <<<<<<<<<<<<<<
  *             i += 1
  *     return children
  */
-      if (unlikely(__Pyx_SetItemInt(((PyObject *)__pyx_v_children), __pyx_v_i, ((PyObject *)__pyx_v_child), __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0) < 0)) __PYX_ERR(0, 179, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(((PyObject *)__pyx_v_children), __pyx_v_i, ((PyObject *)__pyx_v_child), __pyx_t_17genetic_functions_int_t, 1, __Pyx_PyInt_From_npy_int32, 0, 0, 0) < 0)) __PYX_ERR(0, 185, __pyx_L1_error)
 
-      /* "genetic_functions.pyx":180
+      /* "genetic_functions.pyx":186
  *             child = heuristic_crossover(parent1, parent2, fitness1, fitness2, lb, ub, heuristic_crossover_randoms[i])
  *             children[i] = child
  *             i += 1             # <<<<<<<<<<<<<<
@@ -5645,7 +5883,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
     }
   }
 
-  /* "genetic_functions.pyx":181
+  /* "genetic_functions.pyx":187
  *             children[i] = child
  *             i += 1
  *     return children             # <<<<<<<<<<<<<<
@@ -5657,7 +5895,7 @@ static PyObject *__pyx_f_17genetic_functions_procreate_real_valued(PyArrayObject
   __pyx_r = ((PyObject *)__pyx_v_children);
   goto __pyx_L0;
 
-  /* "genetic_functions.pyx":155
+  /* "genetic_functions.pyx":161
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef procreate_real_valued(np.ndarray[int_t, ndim=4] parents,             # <<<<<<<<<<<<<<
@@ -5764,53 +6002,53 @@ static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_island_solutions)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 1); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 1); __PYX_ERR(0, 161, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_island_fitnesses)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 2); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 2); __PYX_ERR(0, 161, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_heuristic_crossover_randoms)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 3); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 3); __PYX_ERR(0, 161, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_lb)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 4); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 4); __PYX_ERR(0, 161, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ub)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 5); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 5); __PYX_ERR(0, 161, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
         if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 6); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 6); __PYX_ERR(0, 161, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  7:
         if (likely((values[7] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 7); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 7); __PYX_ERR(0, 161, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  8:
         if (likely((values[8] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_variables_len)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 8); __PYX_ERR(0, 155, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, 8); __PYX_ERR(0, 161, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "procreate_real_valued") < 0)) __PYX_ERR(0, 155, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "procreate_real_valued") < 0)) __PYX_ERR(0, 161, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 9) {
       goto __pyx_L5_argtuple_error;
@@ -5831,24 +6069,24 @@ static PyObject *__pyx_pw_17genetic_functions_11procreate_real_valued(PyObject *
     __pyx_v_heuristic_crossover_randoms = ((PyArrayObject *)values[3]);
     __pyx_v_lb = ((PyArrayObject *)values[4]);
     __pyx_v_ub = ((PyArrayObject *)values[5]);
-    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[6]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 161, __pyx_L3_error)
-    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[7]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 162, __pyx_L3_error)
-    __pyx_v_variables_len = __Pyx_PyInt_As_npy_int32(values[8]); if (unlikely((__pyx_v_variables_len == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 163, __pyx_L3_error)
+    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[6]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 167, __pyx_L3_error)
+    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[7]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L3_error)
+    __pyx_v_variables_len = __Pyx_PyInt_As_npy_int32(values[8]); if (unlikely((__pyx_v_variables_len == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 169, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 155, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("procreate_real_valued", 1, 9, 9, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 161, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("genetic_functions.procreate_real_valued", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parents), __pyx_ptype_5numpy_ndarray, 1, "parents", 0))) __PYX_ERR(0, 155, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_solutions), __pyx_ptype_5numpy_ndarray, 1, "island_solutions", 0))) __PYX_ERR(0, 156, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_fitnesses), __pyx_ptype_5numpy_ndarray, 1, "island_fitnesses", 0))) __PYX_ERR(0, 157, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_heuristic_crossover_randoms), __pyx_ptype_5numpy_ndarray, 1, "heuristic_crossover_randoms", 0))) __PYX_ERR(0, 158, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 159, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parents), __pyx_ptype_5numpy_ndarray, 1, "parents", 0))) __PYX_ERR(0, 161, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_solutions), __pyx_ptype_5numpy_ndarray, 1, "island_solutions", 0))) __PYX_ERR(0, 162, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_island_fitnesses), __pyx_ptype_5numpy_ndarray, 1, "island_fitnesses", 0))) __PYX_ERR(0, 163, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_heuristic_crossover_randoms), __pyx_ptype_5numpy_ndarray, 1, "heuristic_crossover_randoms", 0))) __PYX_ERR(0, 164, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_lb), __pyx_ptype_5numpy_ndarray, 1, "lb", 0))) __PYX_ERR(0, 165, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ub), __pyx_ptype_5numpy_ndarray, 1, "ub", 0))) __PYX_ERR(0, 166, __pyx_L1_error)
   __pyx_r = __pyx_pf_17genetic_functions_10procreate_real_valued(__pyx_self, __pyx_v_parents, __pyx_v_island_solutions, __pyx_v_island_fitnesses, __pyx_v_heuristic_crossover_randoms, __pyx_v_lb, __pyx_v_ub, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len);
 
   /* function exit code */
@@ -5903,36 +6141,36 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
   __pyx_pybuffernd_ub.rcbuffer = &__pyx_pybuffer_ub;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_v_parents, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_parents.diminfo[0].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parents.diminfo[0].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parents.diminfo[1].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parents.diminfo[1].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_parents.diminfo[2].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_parents.diminfo[2].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[2]; __pyx_pybuffernd_parents.diminfo[3].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[3]; __pyx_pybuffernd_parents.diminfo[3].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[3];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_solutions.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_solutions, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 3, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_island_solutions.diminfo[0].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_solutions.diminfo[0].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_solutions.diminfo[1].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_solutions.diminfo[1].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_island_solutions.diminfo[2].strides = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_island_solutions.diminfo[2].shape = __pyx_pybuffernd_island_solutions.rcbuffer->pybuffer.shape[2];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_fitnesses, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer, (PyObject*)__pyx_v_island_fitnesses, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_island_fitnesses.diminfo[0].strides = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_island_fitnesses.diminfo[0].shape = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_island_fitnesses.diminfo[1].strides = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_island_fitnesses.diminfo[1].shape = __pyx_pybuffernd_island_fitnesses.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer, (PyObject*)__pyx_v_heuristic_crossover_randoms, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer, (PyObject*)__pyx_v_heuristic_crossover_randoms, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[0].strides = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[0].shape = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[1].strides = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_heuristic_crossover_randoms.diminfo[1].shape = __pyx_pybuffernd_heuristic_crossover_randoms.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lb.rcbuffer->pybuffer, (PyObject*)__pyx_v_lb, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_lb.rcbuffer->pybuffer, (PyObject*)__pyx_v_lb, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_lb.diminfo[0].strides = __pyx_pybuffernd_lb.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_lb.diminfo[0].shape = __pyx_pybuffernd_lb.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ub.rcbuffer->pybuffer, (PyObject*)__pyx_v_ub, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 155, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_ub.rcbuffer->pybuffer, (PyObject*)__pyx_v_ub, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_double_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 161, __pyx_L1_error)
   }
   __pyx_pybuffernd_ub.diminfo[0].strides = __pyx_pybuffernd_ub.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ub.diminfo[0].shape = __pyx_pybuffernd_ub.rcbuffer->pybuffer.shape[0];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_17genetic_functions_procreate_real_valued(__pyx_v_parents, __pyx_v_island_solutions, __pyx_v_island_fitnesses, __pyx_v_heuristic_crossover_randoms, __pyx_v_lb, __pyx_v_ub, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_17genetic_functions_procreate_real_valued(__pyx_v_parents, __pyx_v_island_solutions, __pyx_v_island_fitnesses, __pyx_v_heuristic_crossover_randoms, __pyx_v_lb, __pyx_v_ub, __pyx_v_num_islands, __pyx_v_death_count, __pyx_v_variables_len, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5968,7 +6206,7 @@ static PyObject *__pyx_pf_17genetic_functions_10procreate_real_valued(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":186
+/* "genetic_functions.pyx":192
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef random_selection(int_t num_solutions,             # <<<<<<<<<<<<<<
@@ -6020,23 +6258,23 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   __pyx_pybuffernd_parent_indices.rcbuffer = &__pyx_pybuffer_parent_indices;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 186, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 192, __pyx_L1_error)
   }
   __pyx_pybuffernd_parent_indices.diminfo[0].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent_indices.diminfo[0].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parent_indices.diminfo[1].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parent_indices.diminfo[1].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[1];
 
-  /* "genetic_functions.pyx":191
+  /* "genetic_functions.pyx":197
  *                        dict other_island_indices,
  *                        np.ndarray[int_t, ndim=2] parent_indices):
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
  *     cdef Py_ssize_t i = 0
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_arange); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_arange); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int32((__pyx_v_num_solutions - __pyx_v_death_count)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int32((__pyx_v_num_solutions - __pyx_v_death_count)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -6051,15 +6289,15 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -6075,16 +6313,16 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 191, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 191, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 197, __pyx_L1_error)
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_indices.rcbuffer->pybuffer, (PyObject*)__pyx_t_6, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_indices = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_indices.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 191, __pyx_L1_error)
+      __PYX_ERR(0, 197, __pyx_L1_error)
     } else {__pyx_pybuffernd_indices.diminfo[0].strides = __pyx_pybuffernd_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_indices.diminfo[0].shape = __pyx_pybuffernd_indices.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -6092,23 +6330,23 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   __pyx_v_indices = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":192
+  /* "genetic_functions.pyx":198
  *                        np.ndarray[int_t, ndim=2] parent_indices):
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t i = 0
  *     cdef Py_ssize_t child_index, island_index
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_num_islands); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_num_islands); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyInt_From_npy_int32(__pyx_v_death_count); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_npy_int32(__pyx_v_death_count); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_3);
@@ -6135,15 +6373,15 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_5, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int32); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int32); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -6159,16 +6397,16 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 198, __pyx_L1_error)
   __pyx_t_8 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_t_8, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) {
       __pyx_v_parents = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_parents.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 192, __pyx_L1_error)
+      __PYX_ERR(0, 198, __pyx_L1_error)
     } else {__pyx_pybuffernd_parents.diminfo[0].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parents.diminfo[0].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parents.diminfo[1].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parents.diminfo[1].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_parents.diminfo[2].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_parents.diminfo[2].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[2]; __pyx_pybuffernd_parents.diminfo[3].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[3]; __pyx_pybuffernd_parents.diminfo[3].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[3];
     }
   }
@@ -6176,7 +6414,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   __pyx_v_parents = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":193
+  /* "genetic_functions.pyx":199
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
  *     cdef Py_ssize_t i = 0             # <<<<<<<<<<<<<<
@@ -6185,7 +6423,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
  */
   __pyx_v_i = 0;
 
-  /* "genetic_functions.pyx":196
+  /* "genetic_functions.pyx":202
  *     cdef Py_ssize_t child_index, island_index
  * 
  *     for island_index in range(num_islands):             # <<<<<<<<<<<<<<
@@ -6197,7 +6435,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
     __pyx_v_island_index = __pyx_t_11;
 
-    /* "genetic_functions.pyx":197
+    /* "genetic_functions.pyx":203
  * 
  *     for island_index in range(num_islands):
  *         for child_index in range(death_count):             # <<<<<<<<<<<<<<
@@ -6209,28 +6447,28 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
     for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
       __pyx_v_child_index = __pyx_t_14;
 
-      /* "genetic_functions.pyx":199
+      /* "genetic_functions.pyx":205
  *         for child_index in range(death_count):
  *             # This sets the island indices for the parents. One from home, one from afar.
  *             parents[island_index][child_index][0][0] = island_index             # <<<<<<<<<<<<<<
  *             parents[island_index][child_index][1][0] = next(other_island_indices[island_index])
  * 
  */
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 199, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 199, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 199, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_t_2, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 199, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_2, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 205, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "genetic_functions.pyx":200
+      /* "genetic_functions.pyx":206
  *             # This sets the island indices for the parents. One from home, one from afar.
  *             parents[island_index][child_index][0][0] = island_index
  *             parents[island_index][child_index][1][0] = next(other_island_indices[island_index])             # <<<<<<<<<<<<<<
@@ -6239,77 +6477,77 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
  */
       if (unlikely(__pyx_v_other_island_indices == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 200, __pyx_L1_error)
+        __PYX_ERR(0, 206, __pyx_L1_error)
       }
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_other_island_indices, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_other_island_indices, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyIter_Next(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyIter_Next(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_t_2, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 200, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_2, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 206, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "genetic_functions.pyx":204
+      /* "genetic_functions.pyx":210
  *             # This sets the index of the parent within the islands chosen above
  *             # i keeps track of how many parents we've ticked so far
  *             parents[island_index][child_index][0][1] = parent_indices[i][0]             # <<<<<<<<<<<<<<
  *             parents[island_index][child_index][1][1] = parent_indices[i][1]
  *             i += 1
  */
-      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parent_indices), __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parent_indices), __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 204, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 1, __pyx_t_2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 204, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 1, __pyx_t_2, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "genetic_functions.pyx":205
+      /* "genetic_functions.pyx":211
  *             # i keeps track of how many parents we've ticked so far
  *             parents[island_index][child_index][0][1] = parent_indices[i][0]
  *             parents[island_index][child_index][1][1] = parent_indices[i][1]             # <<<<<<<<<<<<<<
  *             i += 1
  *     return parents
  */
-      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parent_indices), __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parent_indices), __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_t_2, 1, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 205, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_2, 1, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "genetic_functions.pyx":206
+      /* "genetic_functions.pyx":212
  *             parents[island_index][child_index][0][1] = parent_indices[i][0]
  *             parents[island_index][child_index][1][1] = parent_indices[i][1]
  *             i += 1             # <<<<<<<<<<<<<<
@@ -6320,7 +6558,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
     }
   }
 
-  /* "genetic_functions.pyx":207
+  /* "genetic_functions.pyx":213
  *             parents[island_index][child_index][1][1] = parent_indices[i][1]
  *             i += 1
  *     return parents             # <<<<<<<<<<<<<<
@@ -6332,7 +6570,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection(__pyx_t_17genetic_
   __pyx_r = ((PyObject *)__pyx_v_parents);
   goto __pyx_L0;
 
-  /* "genetic_functions.pyx":186
+  /* "genetic_functions.pyx":192
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef random_selection(int_t num_solutions,             # <<<<<<<<<<<<<<
@@ -6411,29 +6649,29 @@ static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 1); __PYX_ERR(0, 186, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 1); __PYX_ERR(0, 192, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 2); __PYX_ERR(0, 186, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 2); __PYX_ERR(0, 192, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other_island_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 3); __PYX_ERR(0, 186, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 3); __PYX_ERR(0, 192, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_parent_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 4); __PYX_ERR(0, 186, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, 4); __PYX_ERR(0, 192, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "random_selection") < 0)) __PYX_ERR(0, 186, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "random_selection") < 0)) __PYX_ERR(0, 192, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -6444,22 +6682,22 @@ static PyObject *__pyx_pw_17genetic_functions_13random_selection(PyObject *__pyx
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_num_solutions = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_num_solutions == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 186, __pyx_L3_error)
-    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 187, __pyx_L3_error)
-    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 188, __pyx_L3_error)
+    __pyx_v_num_solutions = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_num_solutions == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 192, __pyx_L3_error)
+    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 193, __pyx_L3_error)
+    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 194, __pyx_L3_error)
     __pyx_v_other_island_indices = ((PyObject*)values[3]);
     __pyx_v_parent_indices = ((PyArrayObject *)values[4]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 186, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("random_selection", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 192, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("genetic_functions.random_selection", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other_island_indices), (&PyDict_Type), 1, "other_island_indices", 1))) __PYX_ERR(0, 189, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent_indices), __pyx_ptype_5numpy_ndarray, 1, "parent_indices", 0))) __PYX_ERR(0, 190, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other_island_indices), (&PyDict_Type), 1, "other_island_indices", 1))) __PYX_ERR(0, 195, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent_indices), __pyx_ptype_5numpy_ndarray, 1, "parent_indices", 0))) __PYX_ERR(0, 196, __pyx_L1_error)
   __pyx_r = __pyx_pf_17genetic_functions_12random_selection(__pyx_self, __pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices);
 
   /* function exit code */
@@ -6484,11 +6722,11 @@ static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED P
   __pyx_pybuffernd_parent_indices.rcbuffer = &__pyx_pybuffer_parent_indices;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 186, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 192, __pyx_L1_error)
   }
   __pyx_pybuffernd_parent_indices.diminfo[0].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent_indices.diminfo[0].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parent_indices.diminfo[1].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parent_indices.diminfo[1].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[1];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_17genetic_functions_random_selection(__pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_17genetic_functions_random_selection(__pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 192, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6514,7 +6752,7 @@ static PyObject *__pyx_pf_17genetic_functions_12random_selection(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "genetic_functions.pyx":213
+/* "genetic_functions.pyx":219
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef random_selection_v2(int_t num_solutions,             # <<<<<<<<<<<<<<
@@ -6566,23 +6804,23 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   __pyx_pybuffernd_parent_indices.rcbuffer = &__pyx_pybuffer_parent_indices;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 213, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 219, __pyx_L1_error)
   }
   __pyx_pybuffernd_parent_indices.diminfo[0].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent_indices.diminfo[0].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parent_indices.diminfo[1].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parent_indices.diminfo[1].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[1];
 
-  /* "genetic_functions.pyx":219
+  /* "genetic_functions.pyx":225
  *                           np.ndarray[int_t, ndim=2] parent_indices,
  *                           dict topology_network):
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
  *     cdef Py_ssize_t i = 0
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_arange); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_arange); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int32((__pyx_v_num_solutions - __pyx_v_death_count)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int32((__pyx_v_num_solutions - __pyx_v_death_count)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_5 = NULL;
   if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
@@ -6597,15 +6835,15 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 219, __pyx_L1_error)
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -6621,16 +6859,16 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 219, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 225, __pyx_L1_error)
   __pyx_t_6 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_indices.rcbuffer->pybuffer, (PyObject*)__pyx_t_6, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_indices = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_indices.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 219, __pyx_L1_error)
+      __PYX_ERR(0, 225, __pyx_L1_error)
     } else {__pyx_pybuffernd_indices.diminfo[0].strides = __pyx_pybuffernd_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_indices.diminfo[0].shape = __pyx_pybuffernd_indices.rcbuffer->pybuffer.shape[0];
     }
   }
@@ -6638,23 +6876,23 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   __pyx_v_indices = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":220
+  /* "genetic_functions.pyx":226
  *                           dict topology_network):
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t i = 0
  *     cdef Py_ssize_t child_index, island_index
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_num_islands); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_npy_int32(__pyx_v_num_islands); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyInt_From_npy_int32(__pyx_v_death_count); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_npy_int32(__pyx_v_death_count); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_3);
@@ -6681,15 +6919,15 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   __pyx_t_4 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_5, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7);
   __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 220, __pyx_L1_error)
+  if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int32); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int32); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -6705,16 +6943,16 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_4, __pyx_t_7) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_7);
   __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 220, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 226, __pyx_L1_error)
   __pyx_t_8 = ((PyArrayObject *)__pyx_t_1);
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parents.rcbuffer->pybuffer, (PyObject*)__pyx_t_8, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 4, 0, __pyx_stack) == -1)) {
       __pyx_v_parents = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_parents.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 220, __pyx_L1_error)
+      __PYX_ERR(0, 226, __pyx_L1_error)
     } else {__pyx_pybuffernd_parents.diminfo[0].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parents.diminfo[0].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parents.diminfo[1].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parents.diminfo[1].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[1]; __pyx_pybuffernd_parents.diminfo[2].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[2]; __pyx_pybuffernd_parents.diminfo[2].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[2]; __pyx_pybuffernd_parents.diminfo[3].strides = __pyx_pybuffernd_parents.rcbuffer->pybuffer.strides[3]; __pyx_pybuffernd_parents.diminfo[3].shape = __pyx_pybuffernd_parents.rcbuffer->pybuffer.shape[3];
     }
   }
@@ -6722,7 +6960,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   __pyx_v_parents = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "genetic_functions.pyx":221
+  /* "genetic_functions.pyx":227
  *     cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
  *     cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
  *     cdef Py_ssize_t i = 0             # <<<<<<<<<<<<<<
@@ -6731,7 +6969,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
  */
   __pyx_v_i = 0;
 
-  /* "genetic_functions.pyx":224
+  /* "genetic_functions.pyx":230
  *     cdef Py_ssize_t child_index, island_index
  * 
  *     for island_index in range(num_islands):             # <<<<<<<<<<<<<<
@@ -6743,7 +6981,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
     __pyx_v_island_index = __pyx_t_11;
 
-    /* "genetic_functions.pyx":225
+    /* "genetic_functions.pyx":231
  * 
  *     for island_index in range(num_islands):
  *         for child_index in range(death_count):             # <<<<<<<<<<<<<<
@@ -6755,28 +6993,28 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
     for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
       __pyx_v_child_index = __pyx_t_14;
 
-      /* "genetic_functions.pyx":227
+      /* "genetic_functions.pyx":233
  *         for child_index in range(death_count):
  *             # This sets the island indices for the parents. One from home, one from afar.
  *             parents[island_index][child_index][0][0] = island_index             # <<<<<<<<<<<<<<
  *             parents[island_index][child_index][1][0] = topology_network[island_index][next(other_island_indices[island_index])]
  * 
  */
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_t_2, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 227, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_2, 0, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 233, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "genetic_functions.pyx":228
+      /* "genetic_functions.pyx":234
  *             # This sets the island indices for the parents. One from home, one from afar.
  *             parents[island_index][child_index][0][0] = island_index
  *             parents[island_index][child_index][1][0] = topology_network[island_index][next(other_island_indices[island_index])]             # <<<<<<<<<<<<<<
@@ -6785,90 +7023,90 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
  */
       if (unlikely(__pyx_v_topology_network == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 228, __pyx_L1_error)
+        __PYX_ERR(0, 234, __pyx_L1_error)
       }
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_topology_network, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_topology_network, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (unlikely(__pyx_v_other_island_indices == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-        __PYX_ERR(0, 228, __pyx_L1_error)
+        __PYX_ERR(0, 234, __pyx_L1_error)
       }
-      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_island_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_other_island_indices, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyDict_GetItem(__pyx_v_other_island_indices, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyIter_Next(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyIter_Next(__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 0, __pyx_t_7, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 228, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 0, __pyx_t_7, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 234, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "genetic_functions.pyx":232
+      /* "genetic_functions.pyx":238
  *             # This sets the index of the parent within the islands chosen above
  *             # i keeps track of how many parents we've ticked so far
  *             parents[island_index][child_index][0][1] = parent_indices[i][0]             # <<<<<<<<<<<<<<
  *             parents[island_index][child_index][1][1] = parent_indices[i][1]
  *             i += 1
  */
-      __pyx_t_7 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parent_indices), __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 232, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parent_indices), __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 238, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_7, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 238, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 232, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 238, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_7, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 232, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 238, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_t_7, 1, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 232, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_7, 1, __pyx_t_1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 238, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "genetic_functions.pyx":233
+      /* "genetic_functions.pyx":239
  *             # i keeps track of how many parents we've ticked so far
  *             parents[island_index][child_index][0][1] = parent_indices[i][0]
  *             parents[island_index][child_index][1][1] = parent_indices[i][1]             # <<<<<<<<<<<<<<
  *             i += 1
  *     return parents
  */
-      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parent_indices), __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parent_indices), __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_GetItemInt(__pyx_t_1, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(((PyObject *)__pyx_v_parents), __pyx_v_island_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, __pyx_v_child_index, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_2, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 1, __pyx_t_7, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 233, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_t_1, 1, __pyx_t_7, long, 1, __Pyx_PyInt_From_long, 0, 0, 0) < 0)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-      /* "genetic_functions.pyx":234
+      /* "genetic_functions.pyx":240
  *             parents[island_index][child_index][0][1] = parent_indices[i][0]
  *             parents[island_index][child_index][1][1] = parent_indices[i][1]
  *             i += 1             # <<<<<<<<<<<<<<
@@ -6878,7 +7116,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
     }
   }
 
-  /* "genetic_functions.pyx":235
+  /* "genetic_functions.pyx":241
  *             parents[island_index][child_index][1][1] = parent_indices[i][1]
  *             i += 1
  *     return parents             # <<<<<<<<<<<<<<
@@ -6888,7 +7126,7 @@ static PyObject *__pyx_f_17genetic_functions_random_selection_v2(__pyx_t_17genet
   __pyx_r = ((PyObject *)__pyx_v_parents);
   goto __pyx_L0;
 
-  /* "genetic_functions.pyx":213
+  /* "genetic_functions.pyx":219
  * @cython.boundscheck(False)
  * @cython.wraparound(False)
  * cpdef random_selection_v2(int_t num_solutions,             # <<<<<<<<<<<<<<
@@ -6970,35 +7208,35 @@ static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_death_count)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 1); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 1); __PYX_ERR(0, 219, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_num_islands)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 2); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 2); __PYX_ERR(0, 219, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_other_island_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 3); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 3); __PYX_ERR(0, 219, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_parent_indices)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 4); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 4); __PYX_ERR(0, 219, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_topology_network)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 5); __PYX_ERR(0, 213, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, 5); __PYX_ERR(0, 219, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "random_selection_v2") < 0)) __PYX_ERR(0, 213, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "random_selection_v2") < 0)) __PYX_ERR(0, 219, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -7010,24 +7248,24 @@ static PyObject *__pyx_pw_17genetic_functions_15random_selection_v2(PyObject *__
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
       values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
-    __pyx_v_num_solutions = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_num_solutions == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 213, __pyx_L3_error)
-    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 214, __pyx_L3_error)
-    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L3_error)
+    __pyx_v_num_solutions = __Pyx_PyInt_As_npy_int32(values[0]); if (unlikely((__pyx_v_num_solutions == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 219, __pyx_L3_error)
+    __pyx_v_death_count = __Pyx_PyInt_As_npy_int32(values[1]); if (unlikely((__pyx_v_death_count == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 220, __pyx_L3_error)
+    __pyx_v_num_islands = __Pyx_PyInt_As_npy_int32(values[2]); if (unlikely((__pyx_v_num_islands == ((npy_int32)-1)) && PyErr_Occurred())) __PYX_ERR(0, 221, __pyx_L3_error)
     __pyx_v_other_island_indices = ((PyObject*)values[3]);
     __pyx_v_parent_indices = ((PyArrayObject *)values[4]);
     __pyx_v_topology_network = ((PyObject*)values[5]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 213, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("random_selection_v2", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 219, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("genetic_functions.random_selection_v2", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other_island_indices), (&PyDict_Type), 1, "other_island_indices", 1))) __PYX_ERR(0, 216, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent_indices), __pyx_ptype_5numpy_ndarray, 1, "parent_indices", 0))) __PYX_ERR(0, 217, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_topology_network), (&PyDict_Type), 1, "topology_network", 1))) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other_island_indices), (&PyDict_Type), 1, "other_island_indices", 1))) __PYX_ERR(0, 222, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_parent_indices), __pyx_ptype_5numpy_ndarray, 1, "parent_indices", 0))) __PYX_ERR(0, 223, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_topology_network), (&PyDict_Type), 1, "topology_network", 1))) __PYX_ERR(0, 224, __pyx_L1_error)
   __pyx_r = __pyx_pf_17genetic_functions_14random_selection_v2(__pyx_self, __pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, __pyx_v_topology_network);
 
   /* function exit code */
@@ -7052,11 +7290,11 @@ static PyObject *__pyx_pf_17genetic_functions_14random_selection_v2(CYTHON_UNUSE
   __pyx_pybuffernd_parent_indices.rcbuffer = &__pyx_pybuffer_parent_indices;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 213, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_parent_indices.rcbuffer->pybuffer, (PyObject*)__pyx_v_parent_indices, &__Pyx_TypeInfo_nn___pyx_t_17genetic_functions_int_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 219, __pyx_L1_error)
   }
   __pyx_pybuffernd_parent_indices.diminfo[0].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_parent_indices.diminfo[0].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_parent_indices.diminfo[1].strides = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_parent_indices.diminfo[1].shape = __pyx_pybuffernd_parent_indices.rcbuffer->pybuffer.shape[1];
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_17genetic_functions_random_selection_v2(__pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, __pyx_v_topology_network, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_17genetic_functions_random_selection_v2(__pyx_v_num_solutions, __pyx_v_death_count, __pyx_v_num_islands, __pyx_v_other_island_indices, __pyx_v_parent_indices, __pyx_v_topology_network, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9580,6 +9818,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_lb, __pyx_k_lb, sizeof(__pyx_k_lb), 0, 0, 1, 1},
   {&__pyx_n_s_low, __pyx_k_low, sizeof(__pyx_k_low), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
+  {&__pyx_n_s_mutation_radius, __pyx_k_mutation_radius, sizeof(__pyx_k_mutation_radius), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_kp_u_ndarray_is_not_C_contiguous, __pyx_k_ndarray_is_not_C_contiguous, sizeof(__pyx_k_ndarray_is_not_C_contiguous), 0, 1, 0, 0},
   {&__pyx_kp_u_ndarray_is_not_Fortran_contiguou, __pyx_k_ndarray_is_not_Fortran_contiguou, sizeof(__pyx_k_ndarray_is_not_Fortran_contiguou), 0, 1, 0, 0},
@@ -9626,28 +9865,28 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "genetic_functions.pyx":87
- *                     np.ndarray[double_t, ndim=1] ub,
- *                     np.ndarray[int_t, ndim=2] needs_mutation):
+  /* "genetic_functions.pyx":88
+ *                     np.ndarray[int_t, ndim=2] needs_mutation,
+ *                     double_t mutation_radius):
  *     cdef np.ndarray[int_t, ndim=1] uniques = np.unique(needs_mutation[:, 1])             # <<<<<<<<<<<<<<
  *     cdef int_t i, var_index
  *     cdef np.ndarray[int_t, ndim=1] rows
  */
-  __pyx_slice_ = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_slice_ = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice_);
   __Pyx_GIVEREF(__pyx_slice_);
-  __pyx_tuple__2 = PyTuple_Pack(2, __pyx_slice_, __pyx_int_1); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(2, __pyx_slice_, __pyx_int_1); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "genetic_functions.pyx":93
+  /* "genetic_functions.pyx":94
  *     for i in range(len(uniques)):
  *         var_index = uniques[i]
  *         rows = needs_mutation[needs_mutation[:, 1] == var_index][:, 0]             # <<<<<<<<<<<<<<
- *         solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
- *                                                        high=ub[var_index],
+ *         if mutation_radius == 0:
+ *             solutions[rows, var_index] = np.random.uniform(low=lb[var_index],
  */
-  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_slice_, __pyx_int_0); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_slice_, __pyx_int_0); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
