@@ -83,8 +83,8 @@ cpdef heuristic_crossover(np.ndarray[double_t, ndim=1] solution1,
 cpdef mutate_random(np.ndarray[double_t, ndim=2] solutions,
                     np.ndarray[double_t, ndim=1] lb,
                     np.ndarray[double_t, ndim=1] ub,
-                    np.ndarray[int_t, ndim=2] needs_mutation)
-                    double_t mutation_radius:
+                    np.ndarray[int_t, ndim=2] needs_mutation,
+                    double_t mutation_radius):
     cdef np.ndarray[int_t, ndim=1] uniques = np.unique(needs_mutation[:, 1])
     cdef int_t i, var_index
     cdef np.ndarray[int_t, ndim=1] rows
