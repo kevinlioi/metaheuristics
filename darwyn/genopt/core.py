@@ -41,6 +41,7 @@ class GeneticOptimizer:
                  num_islands=128,
                  death_rate=.5,
                  min_target=None,
+                 mutation_radius=0,
                  args=None,
                  integer_solution=False,
                  log_metrics=True):
@@ -57,6 +58,7 @@ class GeneticOptimizer:
         self.num_islands = num_islands
         self.death_rate = death_rate
         self.min_target = min_target
+        self.mutation_radius = mutation_radius
         self.args = args
         self.integer_solution = integer_solution
         if self.problem_type == 'real_valued':
@@ -162,7 +164,8 @@ class GeneticOptimizer:
                 mutated_children = genetic_functions.mutate_random(solutions=children,
                                                                    lb=self.lb,
                                                                    ub=self.ub,
-                                                                   needs_mutation=mutations['needs_mutation'][iterations % 1000])
+                                                                   needs_mutation=mutations['needs_mutation'][iterations % 1000],
+                                                                   mutation_radius=self.mutation_radius)
                 if self.integer_solution:
                     mutated_children = np.round(mutated_children).astype(np.int32)
             next_gen_solutions = mutated_children.reshape(self.num_islands, self.death_count, self.num_vars)
