@@ -36,7 +36,7 @@ else:
 
 setup(
     name='darwyn_genopt',
-    version='1.0.0',
+    version='1.1.0',
     description='Optimizing analytic functions utilizing a genetic algorithm',
     url='git@github.com:darwynhq/dsor-genopt.git',
     author='Kevin Lioi',
