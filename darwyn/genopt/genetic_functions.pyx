@@ -211,31 +211,3 @@ cpdef random_selection(int_t num_solutions,
             parents[island_index][child_index][1][1] = parent_indices[i][1]
             i += 1
     return parents
-
-
-
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cpdef random_selection_v2(int_t num_solutions,
-                          int_t death_count,
-                          int_t num_islands,
-                          dict other_island_indices,
-                          np.ndarray[int_t, ndim=2] parent_indices,
-                          dict topology_network):
-    cdef np.ndarray[int_t, ndim=1] indices = np.arange(num_solutions-death_count).astype(np.int32)
-    cdef np.ndarray[int_t, ndim=4] parents = np.zeros((num_islands, death_count, 2, 2)).astype(np.int32)
-    cdef Py_ssize_t i = 0
-    cdef Py_ssize_t child_index, island_index
-
-    for island_index in range(num_islands):
-        for child_index in range(death_count):
-            # This sets the island indices for the parents. One from home, one from afar.
-            parents[island_index][child_index][0][0] = island_index
-            parents[island_index][child_index][1][0] = topology_network[island_index][next(other_island_indices[island_index])]
-            
-            # This sets the index of the parent within the islands chosen above
-            # i keeps track of how many parents we've ticked so far
-            parents[island_index][child_index][0][1] = parent_indices[i][0]
-            parents[island_index][child_index][1][1] = parent_indices[i][1]
-            i += 1
-    return parents

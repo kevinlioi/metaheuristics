@@ -46,7 +46,13 @@ setup(
         # Setuptools 18.0 properly handles Cython extensions.
         'setuptools>=18.0',
         'cython',
-        'numpy'
+        'numpy',
+        'scipy',
+        'numba',
+        'pandas',
+        'matplotlib',
+        'line-profiler',
+        'networkx'
     ],
     packages=find_packages(),
     ext_modules=cythonised_files,
