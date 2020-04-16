@@ -40,7 +40,7 @@ setup(
     description='Optimizing analytic functions utilizing a genetic algorithm',
     url='git@github.com:darwynhq/dsor-genopt.git',
     author='Kevin Lioi',
-    author_email='kevin@darwynhq.com',
+    author_email='kevin@getdarwyn.com',
     license='unlicense',
     setup_requires=[
         # Setuptools 18.0 properly handles Cython extensions.
