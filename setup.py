@@ -38,7 +38,7 @@ setup(
     name='darwyn_genopt',
     version='1.1.0',
     description='Optimizing analytic functions utilizing a genetic algorithm',
-    url='git@github.com:darwynhq/dsor-genopt.git',
+    url='https://github.com/kevinlioi/metaheuristics',
     author='Kevin Lioi',
     author_email='kevin@getdarwyn.com',
     license='unlicense',
