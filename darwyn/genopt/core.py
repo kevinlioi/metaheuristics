@@ -49,8 +49,8 @@ class GeneticOptimizer:
         self.objective = objective
         self.G = G
         self.problem_type = problem_type
-        self.lb = lb.astype(np.float32)
-        self.ub = ub.astype(np.float32)
+        self.lb = lb
+        self.ub = ub
         self.variables = variables
         self.num_solutions = num_solutions
         self.mutation_rate = mutation_rate
@@ -62,6 +62,8 @@ class GeneticOptimizer:
         self.args = args
         self.integer_solution = integer_solution
         if self.problem_type == 'real_valued':
+            self.lb = lb.astype(np.float32)
+            self.ub = ub.astype(np.float32)
             self.num_vars = len(self.lb)
         elif self.problem_type == 'sequence':
             self.num_vars = len(variables)
@@ -123,8 +125,6 @@ class GeneticOptimizer:
                 # Should consider making a "random number factory" function.
                 # Then alter on it could be adopted to take a stream or something clever.
                 other_island_indices, parent_indices, crossover_random_nums, mutations = self.random_number_factory()
-                if iterations > 0:
-                    print(self.metrics[-1])
 
             # Order solutions by fitness
             argsorts = [np.argsort(island_fitnesses[island_index]) for island_index in range(self.num_islands)]
@@ -178,7 +178,7 @@ class GeneticOptimizer:
               indices_for_computed_solutions.extend([island_index]*self.death_count))
              for island_index in range(self.num_islands)]
             if self.args is None:
-                computed_fitnesses = self.objective(np.concatenate(solutions_to_compute_fitness_for))
+                computed_fitnesses = [self.objective(solution) for solution in np.concatenate(solutions_to_compute_fitness_for)]  # self.objective(np.concatenate(solutions_to_compute_fitness_for))
             else:
                 solutions_to_compute_fitness_for = np.concatenate(solutions_to_compute_fitness_for)
                 computed_fitnesses = [self.objective(solution, **self.args)
