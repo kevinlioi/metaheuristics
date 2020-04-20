@@ -3,7 +3,6 @@ import math
 from numba import jit
 from scipy.optimize import root
 import bisect
-import matplotlib.pyplot as plt
 
 
 @jit
@@ -19,7 +18,14 @@ def domination_test(x, score):
 
 
 class SimulatedAnnealing:
-    def __init__(self, objectives, max_epochs=150, M=1000, a=.925, diagnostic_sample_size=1000, num_solutions_to_return=np.inf, save_attainment_snapshots=False):
+    def __init__(self,
+                 objectives,
+                 max_epochs=150,
+                 M=1000,
+                 a=.925,
+                 diagnostic_sample_size=1000,
+                 num_solutions_to_return=np.inf,
+                 save_attainment_snapshots=False):
         """
             max_iterations: This shouldn't be changed (optimized default). It is the max_iterations of the simulated annealing procedure to do.
             M: It is the number of neighbors to find during one iteration of the simulated annealing procedure.
@@ -53,7 +59,6 @@ class SimulatedAnnealing:
 
         temp_iteration = 0
         while temp_iteration < self.max_epochs:
-            print(temp_iteration)
             T_k = self.a**temp_iteration*T_0
             for m in range(self.M):
                 self.multiobj_iteration(T_k)
@@ -230,106 +235,3 @@ class MultiObjective:
 
     def fitnesses(self, solution):
         return self.objective_function(solution)
-
-
-##########################################################
-##########################################################
-# Analytical multi-objective functions for testing
-
-
-def fonseca_fleming(solution):
-    """lb: np.array([-4, -4])
-       ub: np.array([4, 4])"""
-
-    f = 1 / np.sqrt(len(solution))
-    fitness1 = 1 - np.exp(-np.sum((solution - f)**2))
-    fitness2 = 1 - np.exp(-np.sum((solution + f)**2))
-    return np.array([-fitness1, -fitness2])
-
-
-def kursawe(solution):
-    """lb = np.array([-5, -5, -5])
-       ub = np.array([5, 5, 5])"""
-
-    s1 = -10*np.exp(-.2*np.sqrt(solution[0]**2 + solution[1]**2))
-    s2 = -10*np.exp(-.2*np.sqrt(solution[1]**2 + solution[2]**2))
-    fitness1 = s1 + s2
-    fitness2 = np.sum(np.abs(solution)**.8 + 5*np.sin(solution**3))
-    return np.array([-fitness1, -fitness2])
-
-
-def schafferN1(solution):
-    """lb: np.array([-A, -A])
-       ub: np.array([A, A])"""
-
-    fitness1 = solution[0]**2
-    fitness2 = (solution[0] - 2)**2
-    return np.array([-fitness1, -fitness2])
-
-
-def schafferN2(solution):
-    """lb: np.array([-5, -5])
-       ub: np.array([10, 10])"""
-
-    if solution[0] <= 1:
-        fitness1 = -solution[0]
-    elif solution[0] <= 3:
-        fitness1 = solution[0] - 2
-    elif solution[0] <= 4:
-        fitness1 = 4 - solution[0]
-    else:
-        fitness1 = solution[0] - 4
-    fitness2 = (solution[0] - 5)**2
-    return np.array([-fitness1, -fitness2])
-
-
-def poloni(solution):
-    """lb: np.array([-np.pi, -10])
-       ub: np.array([10, np.pi])"""
-
-    A1 = 0.8736485623140641
-    A2 = 2.7485724432686394
-    B1 = .5*np.sin(solution[0]) - 2*np.cos(solution[0]) + np.sin(solution[1]) - 1.5*np.cos(solution[1])
-    B2 = 1.5*np.sin(solution[0]) - np.cos(solution[0]) + 2*np.sin(solution[1]) - .5*np.cos(solution[1])
-    fitness1 = 1 + (A1 - B1)**2 + (A2 - B2)**2
-    fitness2 = (solution[0] + 3)**2 + (solution[1] + 1)**2
-    return np.array([-fitness1, -fitness2])
-
-
-def zitzler_deb_thiele_1(solution):
-    """lb: np.array([0]*30)
-       ub: np.array([1]*30)"""
-
-    g = lambda s: 1 + (9/29)*np.sum(s[1:])
-    h = lambda s: 1 - np.sqrt(s[0] / g(s))
-    fitness1 = solution[0]
-    fitness2 = g(solution)*h(solution)
-    return np.array([-fitness1, -fitness2])
-
-
-def zitzler_deb_thiele_3(solution):
-    """lb: np.array([0]*30)
-       ub: np.array([1]*30)"""
-
-    g = lambda s: 1 + (9/29)*np.sum(s[1:])
-    h = lambda s: 1 - np.sqrt(s[0] / g(s)) - (s[0] / g(s))*np.sin(10*np.pi*s[0])
-    fitness1 = solution[0]
-    fitness2 = g(solution)*h(solution)
-    return np.array([-fitness1, -fitness2])
-
-
-objectives = MultiObjective(lb=np.array([0]*30),
-                            ub=np.array([1]*30),
-                            objective_function=kursawe,
-                            neighborhood_radius=.0001)
-SA = SimulatedAnnealing(objectives=objectives,
-                        max_epochs=4000,
-                        M=3000,
-                        a=.99,
-                        diagnostic_sample_size=1500,
-                        save_attainment_snapshots=False)
-pareto_solutions, pareto_fitnesses = SA.optimize()
-
-plt.scatter(-pareto_fitnesses[:, 0], -pareto_fitnesses[:, 1], s=1)
-plt.ylim((0, 1))
-plt.xlim((0, 1))
