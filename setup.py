@@ -35,7 +35,7 @@ else:
     ]
 
 setup(
-    name='darwyn_genopt',
+    name='darwyn-genopt-kevinlioi',
     version='1.1.0',
     description='Optimizing analytic functions utilizing a genetic algorithm',
     url='https://github.com/kevinlioi/metaheuristics',
