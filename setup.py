@@ -36,7 +36,7 @@ else:
 
 setup(
     name='darwyn-genopt',
-    version='1.1.0',
+    version='1.2.0',
     description='Optimizing analytic functions utilizing a genetic algorithm',
     url='https://github.com/kevinlioi/metaheuristics',
     author='Kevin Lioi',
@@ -59,6 +59,9 @@ setup(
     cmdclass = {'build_ext': CustomBuildExtCommand},
     install_requires=[
         'numpy',
+        'networkx',
+        'scipy',
+        'numba'
     ],
     zip_safe=False
 )

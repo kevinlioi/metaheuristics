@@ -10,8 +10,7 @@ The simulated annealing algorithm solves multiobjective optimization problems, a
 
 ### Dependencies
 * numpy
-* collections
-* cython
+* networkx
 
 ### Arguments
 *The GeneticOptimizer class requires several inputs:*
@@ -45,7 +44,9 @@ best_solution is a numpy array, best fitness is a float, and metrics is a list o
 ###### Real-valued Optimization
 Real-valued example. Relatively easy problem, does not require a huge population.
 
-```
+```python
+from darwyn.genopt import GeneticOptimizer
+import numpy as np
 import networkx as nx
 def styblinski_tang(solution):
     return np.sum(solution**4 - 16*solution**2 + 5*solution)/2
@@ -77,7 +78,9 @@ Note the almost absurd difficulty of the problem. There are more possible sequen
    
 The experiment takes a while, but it does 30 runs of lattice and social network topologies to reveal that the latter is better. Better to do in parallel but I wanted to keep the dependencies simple
 
-```
+```python
+from darwyn.genopt import GeneticOptimizer
+import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -139,10 +142,8 @@ plt.legend()
 
 ### Dependencies 
 * numpy
-* math
-* numba
-* bisect
 * scipy
+* numba
 
 ### Arguments
 *The SimulatedAnnealing class requires several inputs:*
@@ -163,7 +164,9 @@ pareto_solutions and pareto_fitnesses, both numpy arrays.
 ### Examples
 ###### Real-valued Optimization
 The MultiObjective class is itself an example on how to use this and can be found along with SimulatedAnnealing class. It models having a neighbor and fitness function, so that you can do other kinds of problems with two competing objectives.
-```
+```python
+from darwyn.genopt import MultiObjective, SimulatedAnnealing
+import numpy as np
 def kursawe(solution):
     """lb = np.array([-5, -5, -5])
        ub = np.array([5, 5, 5])"""
