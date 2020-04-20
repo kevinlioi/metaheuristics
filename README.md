@@ -1,6 +1,6 @@
 # metaheuristics
 
-Contains classes for two different metaheuristics; a genetic algorithm and simulated annealing.
+Contains classes for two different metaheuristics; a genetic algorithm and simulated annealing. Screenshots of output can be found as commited .png files 
 
 The genetic algorithm can solve either real-valued optimization problems or sequence optimization problems. The novel aspect of this algorithm is abandoning island migration for island procreation, e.g. individuals of one island can only procreate with individuals of other islands. These islands are connected to one another through a networkx graph. An important result is that for most problems, a lattice is often best but for extremely difficult problems a social network (such as Watts-Strogatz) often performs better.
 
